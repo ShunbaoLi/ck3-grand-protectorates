@@ -7,10 +7,8 @@
 grand_protectorate_window_is_open = {
 	scope = character
 	is_shown = {
-		root ?= {
-			has_character_flag = grand_protectorate_window_open
-			exists = var:current_grand_protectorate
-		}
+		has_character_flag = grand_protectorate_window_open
+		exists = var:current_grand_protectorate
 	}
 }
 
@@ -82,6 +80,7 @@ grand_protectorate_is_de_jure_established = {
 	is_shown = {
 		exists = var:current_grand_protectorate
 		scope:target_kingdom = {
+			exists = de_jure_liege
 			de_jure_liege = root.var:current_grand_protectorate
 		}
 	}

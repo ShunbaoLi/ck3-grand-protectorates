@@ -47,10 +47,15 @@
  grand_protectorate_events.0001.t: "天子开府：设大都护府"
  grand_protectorate_events.0001.desc: "外蕃虽远，亦当天子之民。当今皇威赫赫，四海向化，卿等以为当于何方先行开置大都护府，以镇抚四裔、申明纪纲？"
  grand_protectorate_events.0001.a: "设安西大都护府（统摄西域诸国）"
+ grand_protectorate_events.0001.a.tt: "开启安西大都护府辖区管辖与勘定面板"
  grand_protectorate_events.0001.b: "设安东大都护府（统摄辽东半岛）"
+ grand_protectorate_events.0001.b.tt: "开启安东大都护府辖区管辖与勘定面板"
  grand_protectorate_events.0001.c: "设安北大都护府（统摄大漠漠北）"
+ grand_protectorate_events.0001.c.tt: "开启安北大都护府辖区管辖与勘定面板"
  grand_protectorate_events.0001.d: "设安南大都护府（统摄岭外诸邦）"
+ grand_protectorate_events.0001.d.tt: "开启安南大都护府辖区管辖与勘定面板"
  grand_protectorate_events.0001.dismiss: "暂缓开府"
+ grand_protectorate_events.0001.dismiss.tt: "暂缓设立，来日再议"
 
  # --- 通知与横幅提示 ---
  grand_protectorate_confirmed_toast_title: "天子敕定封疆"

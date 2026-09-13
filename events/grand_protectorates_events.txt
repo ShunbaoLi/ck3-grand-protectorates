@@ -20,6 +20,7 @@ grand_protectorate_events.0001 = {
 			NOT = { exists = title:e_anxi_protectorate.holder }
 			can_unlock_anxi_protectorate_trigger = yes
 		}
+		custom_tooltip = grand_protectorate_events.0001.a.tt
 		grand_protectorate_open_management_window_effect = {
 			TARGET = title:e_anxi_protectorate
 		}
@@ -32,6 +33,7 @@ grand_protectorate_events.0001 = {
 			NOT = { exists = title:e_andong_protectorate.holder }
 			can_unlock_andong_protectorate_trigger = yes
 		}
+		custom_tooltip = grand_protectorate_events.0001.b.tt
 		grand_protectorate_open_management_window_effect = {
 			TARGET = title:e_andong_protectorate
 		}
@@ -44,6 +46,7 @@ grand_protectorate_events.0001 = {
 			NOT = { exists = title:e_anbei_protectorate.holder }
 			can_unlock_anbei_protectorate_trigger = yes
 		}
+		custom_tooltip = grand_protectorate_events.0001.c.tt
 		grand_protectorate_open_management_window_effect = {
 			TARGET = title:e_anbei_protectorate
 		}
@@ -56,6 +59,7 @@ grand_protectorate_events.0001 = {
 			NOT = { exists = title:e_annan_protectorate.holder }
 			can_unlock_annan_protectorate_trigger = yes
 		}
+		custom_tooltip = grand_protectorate_events.0001.d.tt
 		grand_protectorate_open_management_window_effect = {
 			TARGET = title:e_annan_protectorate
 		}
@@ -64,5 +68,6 @@ grand_protectorate_events.0001 = {
 	# 选项 5：暂缓开府
 	option = {
 		name = grand_protectorate_events.0001.dismiss
+		custom_tooltip = grand_protectorate_events.0001.dismiss.tt
 	}
 }

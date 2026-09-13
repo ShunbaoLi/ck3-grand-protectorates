@@ -60,7 +60,10 @@ establish_grand_protectorate_decision = {
 					}
 				}
 				any_sub_realm_county = {
-					kingdom = {
+					exists = de_jure_liege
+					exists = de_jure_liege.de_jure_liege
+					de_jure_liege.de_jure_liege = {
+						tier = tier_kingdom
 						NOT = { is_zhongyuan_core_kingdom_trigger = yes }
 					}
 				}

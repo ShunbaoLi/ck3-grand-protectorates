@@ -10,6 +10,7 @@ grand_protectorate_open_management_window_effect = {
 	}
 	root = {
 		save_scope_as = player_scope
+		set_character_flag = grand_protectorate_window_open
 		set_variable = {
 			name = current_grand_protectorate
 			value = scope:target_protectorate
@@ -39,11 +40,22 @@ grand_protectorate_open_management_window_effect = {
 
 		# 3. 扫描领地内实际控制伯爵领的王国（处理暂未创建头衔的地理区域王国）
 		every_sub_realm_county = {
-			kingdom = {
+			if = {
 				limit = {
-					is_candidate_kingdom_for_specific_protectorate_trigger = yes
+					exists = de_jure_liege
+					exists = de_jure_liege.de_jure_liege
 				}
-				grand_protectorate_register_candidate_kingdom_effect = yes
+				de_jure_liege = {
+					de_jure_liege = {
+						if = {
+							limit = {
+								tier = tier_kingdom
+								is_candidate_kingdom_for_specific_protectorate_trigger = yes
+							}
+							grand_protectorate_register_candidate_kingdom_effect = yes
+						}
+					}
+				}
 			}
 		}
 
@@ -56,9 +68,6 @@ grand_protectorate_open_management_window_effect = {
 				grand_protectorate_register_candidate_kingdom_effect = yes
 			}
 		}
-
-		# 开启专属UI窗口标识
-		set_character_flag = grand_protectorate_window_open
 	}
 }
 
@@ -112,11 +121,18 @@ grand_protectorate_register_candidate_kingdom_effect = {
 				value = de_jure_liege
 			}
 		}
+		else = {
+			set_variable = {
+				name = display_original_empire
+				value = scope:target_protectorate
+			}
+		}
 
 		# 若当前已归属于目标都护府，默认置为勾选状态 [√]
 		if = {
 			limit = {
 				exists = scope:target_protectorate
+				exists = de_jure_liege
 				de_jure_liege = scope:target_protectorate
 			}
 			scope:player_scope = {

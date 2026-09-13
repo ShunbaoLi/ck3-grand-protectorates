@@ -47,10 +47,15 @@
  grand_protectorate_events.0001.t: "Imperial Edict: Establish Grand Protectorate"
  grand_protectorate_events.0001.desc: "Though distant, the peoples of the four frontiers belong under Heaven's aegis. With imperial majesty recognized across the realms, in which cardinal direction shall we first inaugurate a Grand Protectorate to maintain order and establish imperial governance?"
  grand_protectorate_events.0001.a: "Establish Anxi Grand Protectorate (Western Regions & Central Asia)"
+ grand_protectorate_events.0001.a.tt: "Open Anxi Grand Protectorate Management & Jurisdiction Panel"
  grand_protectorate_events.0001.b: "Establish Andong Grand Protectorate (Liaodong & Korea)"
+ grand_protectorate_events.0001.b.tt: "Open Andong Grand Protectorate Management & Jurisdiction Panel"
  grand_protectorate_events.0001.c: "Establish Anbei Grand Protectorate (Northern Steppe & Siberia)"
+ grand_protectorate_events.0001.c.tt: "Open Anbei Grand Protectorate Management & Jurisdiction Panel"
  grand_protectorate_events.0001.d: "Establish Annan Grand Protectorate (Southern Realms & Indochina)"
+ grand_protectorate_events.0001.d.tt: "Open Annan Grand Protectorate Management & Jurisdiction Panel"
  grand_protectorate_events.0001.dismiss: "Postpone for Now"
+ grand_protectorate_events.0001.dismiss.tt: "Postpone the establishment of a Grand Protectorate for now"
 
  # --- Toasts & Notifications ---
  grand_protectorate_confirmed_toast_title: "Imperial Frontier Demarcated"
