@@ -14,10 +14,16 @@ grand_protectorate_open_management_window_effect = {
 		set_variable = grand_protectorate_window_open
 		set_variable = {
 			name = current_grand_protectorate
-			value = scope:target_protectorate
+			value = $TARGET$
 		}
 		clear_variable_list = grand_protectorate_candidates
 		clear_variable_list = grand_protectorate_selected_kingdoms
+
+		send_interface_toast = {
+			title = grand_protectorate_opened_toast_title
+			left_icon = $TARGET$
+			custom_tooltip = grand_protectorate_opened_toast_desc
+		}
 
 		# 1. 扫描天子直接持有的王国
 		every_held_title = {

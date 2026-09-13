@@ -43,6 +43,8 @@
  unlock_anbei_protectorate_trigger_desc: "控制哈喇和林草原伯爵领"
 
  # --- 通知与横幅提示 ---
+ grand_protectorate_opened_toast_title: "天子诏令：开府更勘"
+ grand_protectorate_opened_toast_desc: "圣躬已宣旨定策，大都护府政务院即刻更勘辖内诸王国法理归属。"
  grand_protectorate_confirmed_toast_title: "天子敕定封疆"
  grand_protectorate_confirmed_toast_desc: "大都护府辖区更勘敕令已行布海内，诸王国法理已即时更定成制！"
  grand_protectorate_decommissioned_toast_title: "大都护府正式裁撤"

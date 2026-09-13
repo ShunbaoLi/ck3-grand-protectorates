@@ -43,6 +43,8 @@
  unlock_anbei_protectorate_trigger_desc: "Controls the County of Karakorum"
 
  # --- Toasts & Notifications ---
+ grand_protectorate_opened_toast_title: "Imperial Decree: Protectorate Demarcation"
+ grand_protectorate_opened_toast_desc: "The imperial decree has been promulgated. The Chancellery is now preparing the realignment of frontier kingdoms."
  grand_protectorate_confirmed_toast_title: "Imperial Frontier Demarcated"
  grand_protectorate_confirmed_toast_desc: "The imperial edict realigning the Grand Protectorate has been enacted. De jure kingdom jurisdictions have shifted immediately!"
  grand_protectorate_decommissioned_toast_title: "Grand Protectorate Decommissioned"

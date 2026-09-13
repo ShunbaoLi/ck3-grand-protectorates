@@ -7,11 +7,10 @@
 grand_protectorate_window_is_open = {
 	scope = character
 	is_shown = {
-		OR = {
+		root ?= {
 			has_character_flag = grand_protectorate_window_open
-			has_variable = grand_protectorate_window_open
+			has_variable = current_grand_protectorate
 		}
-		exists = var:current_grand_protectorate
 	}
 }
 
@@ -19,7 +18,9 @@ grand_protectorate_window_is_open = {
 grand_protectorate_close_window = {
 	scope = character
 	effect = {
-		grand_protectorate_close_window_effect = yes
+		root ?= {
+			grand_protectorate_close_window_effect = yes
+		}
 	}
 }
 
@@ -30,9 +31,11 @@ grand_protectorate_is_kingdom_selected = {
 		target_kingdom
 	}
 	is_shown = {
-		is_target_in_variable_list = {
-			name = grand_protectorate_selected_kingdoms
-			target = scope:target_kingdom
+		root ?= {
+			is_target_in_variable_list = {
+				name = grand_protectorate_selected_kingdoms
+				target = scope:target_kingdom
+			}
 		}
 	}
 }
@@ -44,7 +47,9 @@ grand_protectorate_toggle_kingdom = {
 		target_kingdom
 	}
 	effect = {
-		grand_protectorate_toggle_kingdom_effect = yes
+		root ?= {
+			grand_protectorate_toggle_kingdom_effect = yes
+		}
 	}
 }
 
@@ -52,7 +57,9 @@ grand_protectorate_toggle_kingdom = {
 grand_protectorate_confirm_edict = {
 	scope = character
 	effect = {
-		grand_protectorate_confirm_edict_effect = yes
+		root ?= {
+			grand_protectorate_confirm_edict_effect = yes
+		}
 	}
 }
 
@@ -60,8 +67,10 @@ grand_protectorate_confirm_edict = {
 grand_protectorate_selected_count_is_zero = {
 	scope = character
 	is_shown = {
-		NOT = {
-			has_variable_list = grand_protectorate_selected_kingdoms
+		root ?= {
+			NOT = {
+				has_variable_list = grand_protectorate_selected_kingdoms
+			}
 		}
 	}
 }
@@ -70,7 +79,9 @@ grand_protectorate_selected_count_is_zero = {
 grand_protectorate_selected_count_is_positive = {
 	scope = character
 	is_shown = {
-		has_variable_list = grand_protectorate_selected_kingdoms
+		root ?= {
+			has_variable_list = grand_protectorate_selected_kingdoms
+		}
 	}
 }
 
@@ -81,10 +92,12 @@ grand_protectorate_is_de_jure_established = {
 		target_kingdom
 	}
 	is_shown = {
-		exists = var:current_grand_protectorate
-		scope:target_kingdom = {
-			exists = de_jure_liege
-			de_jure_liege = root.var:current_grand_protectorate
+		root ?= {
+			has_variable = current_grand_protectorate
+			scope:target_kingdom = {
+				exists = de_jure_liege
+				de_jure_liege = root.var:current_grand_protectorate
+			}
 		}
 	}
 }

@@ -130,6 +130,8 @@ establish_grand_protectorate_decision = {
 					OR = {
 						scope:establish_anxi_option = yes
 						scope:manage_anxi_option = yes
+						exists = scope:establish_anxi_option
+						exists = scope:manage_anxi_option
 					}
 				}
 				grand_protectorate_open_management_window_effect = {
@@ -141,6 +143,8 @@ establish_grand_protectorate_decision = {
 					OR = {
 						scope:establish_andong_option = yes
 						scope:manage_andong_option = yes
+						exists = scope:establish_andong_option
+						exists = scope:manage_andong_option
 					}
 				}
 				grand_protectorate_open_management_window_effect = {
@@ -152,10 +156,17 @@ establish_grand_protectorate_decision = {
 					OR = {
 						scope:establish_anbei_option = yes
 						scope:manage_anbei_option = yes
+						exists = scope:establish_anbei_option
+						exists = scope:manage_anbei_option
 					}
 				}
 				grand_protectorate_open_management_window_effect = {
 					TARGET = title:e_anbei_protectorate
+				}
+			}
+			else = {
+				grand_protectorate_open_management_window_effect = {
+					TARGET = title:e_anxi_protectorate
 				}
 			}
 		}
