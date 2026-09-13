@@ -1,0 +1,67 @@
+﻿l_english:
+ # ====================================================================
+ # CK3 Grand Protectorates - English Localization
+ # 天子敕建大都护府 - 英文本地化
+ # ====================================================================
+
+ # --- Four Imperial Grand Protectorate Titles ---
+ e_anxi_protectorate: "Anxi Grand Protectorate"
+ e_anxi_protectorate_adj: "Anxi"
+ e_andong_protectorate: "Andong Grand Protectorate"
+ e_andong_protectorate_adj: "Andong"
+ e_anbei_protectorate: "Anbei Grand Protectorate"
+ e_anbei_protectorate_adj: "Anbei"
+ e_annan_protectorate: "Annan Grand Protectorate"
+ e_annan_protectorate_adj: "Annan"
+
+ # --- Decisions ---
+ establish_grand_protectorate_decision: "Imperial Edict: Establish Grand Protectorate"
+ establish_grand_protectorate_decision_desc: "To pacify the distant frontier and stabilize foreign domains, the Son of Heaven may establish imperial Grand Protectorates administered by appointed military governors."
+ establish_grand_protectorate_decision_tooltip: "Create an imperial-tier Grand Protectorate and demarcate its de jure territories."
+ establish_grand_protectorate_decision_confirm: "Promulgate Edict"
+ establish_grand_protectorate_has_candidate_tt: "You control at least one non-Zhongyuan kingdom eligible for frontier protectorate administration."
+
+ realign_anxi_protectorate_decision: "Realign Anxi Grand Protectorate"
+ realign_anxi_protectorate_decision_desc: "Survey and adjust the de jure boundaries and constituent kingdoms of the Anxi Grand Protectorate in the Western Regions, Transoxiana, and Persia."
+ realign_anxi_protectorate_decision_tooltip: "Adjust the de jure jurisdiction of the Anxi Grand Protectorate."
+
+ realign_andong_protectorate_decision: "Realign Andong Grand Protectorate"
+ realign_andong_protectorate_decision_desc: "Survey and adjust the de jure boundaries and constituent kingdoms of the Andong Grand Protectorate across Liaodong, Korea, and Japan."
+ realign_andong_protectorate_decision_tooltip: "Adjust the de jure jurisdiction of the Andong Grand Protectorate."
+
+ realign_anbei_protectorate_decision: "Realign Anbei Grand Protectorate"
+ realign_anbei_protectorate_decision_desc: "Survey and adjust the de jure boundaries and constituent kingdoms of the Anbei Grand Protectorate across the northern steppe and Siberia."
+ realign_anbei_protectorate_decision_tooltip: "Adjust the de jure jurisdiction of the Anbei Grand Protectorate."
+
+ realign_annan_protectorate_decision: "Realign Annan Grand Protectorate"
+ realign_annan_protectorate_decision_desc: "Survey and adjust the de jure boundaries and constituent kingdoms of the Annan Grand Protectorate across Lingnan, Indochina, and the southern seas."
+ realign_annan_protectorate_decision_tooltip: "Adjust the de jure jurisdiction of the Annan Grand Protectorate."
+
+ realign_grand_protectorate_decision_confirm: "Open Management Panel"
+
+ # --- Event Guidance ---
+ grand_protectorate_events.0001.t: "Imperial Edict: Establish Grand Protectorate"
+ grand_protectorate_events.0001.desc: "Though distant, the peoples of the four frontiers belong under Heaven's aegis. With imperial majesty recognized across the realms, in which cardinal direction shall we first inaugurate a Grand Protectorate to maintain order and establish imperial governance?"
+ grand_protectorate_events.0001.a: "Establish Anxi Grand Protectorate (Western Regions & Central Asia)"
+ grand_protectorate_events.0001.b: "Establish Andong Grand Protectorate (Liaodong & Korea)"
+ grand_protectorate_events.0001.c: "Establish Anbei Grand Protectorate (Northern Steppe & Siberia)"
+ grand_protectorate_events.0001.d: "Establish Annan Grand Protectorate (Southern Realms & Indochina)"
+ grand_protectorate_events.0001.dismiss: "Postpone for Now"
+
+ # --- Toasts & Notifications ---
+ grand_protectorate_confirmed_toast_title: "Imperial Frontier Demarcated"
+ grand_protectorate_confirmed_toast_desc: "The imperial edict realigning the Grand Protectorate has been enacted. De jure kingdom jurisdictions have shifted immediately!"
+ grand_protectorate_decommissioned_toast_title: "Grand Protectorate Decommissioned"
+ grand_protectorate_decommissioned_toast_desc: "As its jurisdiction was emptied, the Grand Protectorate has been dismantled. All former constituent kingdoms safely returned to their ancestral empires, and court prestige has been refunded."
+
+ # --- GUI Windows & Widgets ---
+ GRAND_PROTECTORATE_WINDOW_HEADER: "Grand Protectorate Chancellery · Jurisdiction Demarcation"
+ GRAND_PROTECTORATE_PANEL_SUBHEADER: "Tier 5 Imperial Jurisdiction created by the Hegemon, governed via Protectorate Contract and Governor Succession"
+ GRAND_PROTECTORATE_INSTRUCTIONS: "Check the kingdoms below to incorporate them into this Grand Protectorate. Leaving all boxes unchecked will decommission the title."
+ GRAND_PROTECTORATE_NO_CANDIDATE_KINGDOMS: "No eligible candidate kingdoms found in your realm."
+ GRAND_PROTECTORATE_CARD_SUBTITLE: "Ancestral Empire: [Title.MakeScope.Var('display_original_empire').GetTitle.GetNameNoTooltip] · [Title.MakeScope.Var('de_jure_duchy_count').GetValue|0] Duchies"
+ GRAND_PROTECTORATE_STATUS_ESTABLISHED: "[Current De Jure]"
+ GRAND_PROTECTORATE_DECOMMISSION_WARNING: "⚠️ All jurisdictions cleared. This Grand Protectorate will be formally decommissioned."
+ GRAND_PROTECTORATE_BUTTON_CANCEL: "Cancel"
+ GRAND_PROTECTORATE_CONFIRM_BUTTON: "Enact Imperial Edict: Demarcate Frontier"
+ GRAND_PROTECTORATE_CONFIRM_BUTTON_TT: "Assign all checked kingdoms to this Grand Protectorate's de jure empire. Any unchecked former kingdoms safely return to their ancestral mother empires."

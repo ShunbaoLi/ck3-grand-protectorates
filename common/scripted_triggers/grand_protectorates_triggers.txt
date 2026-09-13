@@ -1,0 +1,181 @@
+﻿# ====================================================================
+# CK3 Grand Protectorates - Scripted Triggers
+# 天子敕建大都护府 - 脚本判定触发器
+# ====================================================================
+
+# 判定角色是否为具备设府资格的天朝天子
+is_celestial_hegemon_trigger = {
+	is_ai = no
+	highest_held_title_tier >= tier_hegemony
+}
+
+# 判定某个王国是否为中原腹地核心王国（保护中原基本盘法理不被误划入都护府）
+is_zhongyuan_core_kingdom_trigger = {
+	OR = {
+		this = title:k_henan
+		this = title:k_hebei
+		this = title:k_hedong
+		this = title:k_shandong
+		this = title:k_guanlong
+		this = title:k_shannan
+		this = title:k_huainan
+		this = title:k_jiangnan
+	}
+}
+
+# 判定王国是否属于玩家统辖控制领地（或已划归大都护府）
+is_kingdom_under_player_realm_trigger = {
+	OR = {
+		# 被玩家自身持有
+		holder = root
+		# 被玩家下属封臣持有
+		holder = {
+			target_is_liege_or_above = root
+		}
+		# 头衔暂无人持有，但玩家领内控制了该王国下属的伯爵领
+		AND = {
+			NOT = { exists = holder }
+			root = {
+				any_sub_realm_county = {
+					kingdom = prevprev
+				}
+			}
+		}
+		# 若已有大都护府法理归属，亦属于有效管理标的
+		AND = {
+			exists = scope:target_protectorate
+			de_jure_liege = scope:target_protectorate
+		}
+	}
+}
+
+# 安西大都护府候选王国判定（西域、河中、中亚、吐蕃、波斯方向）
+is_candidate_kingdom_for_anxi_trigger = {
+	tier = tier_kingdom
+	NOT = { is_zhongyuan_core_kingdom_trigger = yes }
+	is_kingdom_under_player_realm_trigger = yes
+	OR = {
+		de_jure_liege = title:e_anxi_protectorate
+		title_capital_county = {
+			OR = {
+				title_province = { geographical_region = world_steppe_tarim }
+				title_province = { geographical_region = world_steppe_central }
+				title_province = { geographical_region = world_middle_east_persia }
+				title_province = { geographical_region = world_tibet }
+				title_province = { geographical_region = world_middle_east }
+				title_province = { geographical_region = world_india_rajastan }
+			}
+		}
+		any_de_jure_county = {
+			title_province = {
+				OR = {
+					geographical_region = world_steppe_tarim
+					geographical_region = world_steppe_central
+					geographical_region = world_middle_east_persia
+					geographical_region = world_tibet
+				}
+			}
+		}
+	}
+}
+
+# 安东大都护府候选王国判定（辽东、朝鲜半岛、日本方向）
+is_candidate_kingdom_for_andong_trigger = {
+	tier = tier_kingdom
+	NOT = { is_zhongyuan_core_kingdom_trigger = yes }
+	is_kingdom_under_player_realm_trigger = yes
+	OR = {
+		de_jure_liege = title:e_andong_protectorate
+		title_capital_county = {
+			OR = {
+				title_province = { geographical_region = world_asia_korea }
+				title_province = { geographical_region = world_asia_japan }
+				title_province = { geographical_region = world_asia_sakhalin_hokkaido }
+				title_province = { geographical_region = world_steppe_east }
+			}
+		}
+		any_de_jure_county = {
+			title_province = {
+				OR = {
+					geographical_region = world_asia_korea
+					geographical_region = world_asia_japan
+					geographical_region = world_steppe_east
+				}
+			}
+		}
+	}
+}
+
+# 安北大都护府候选王国判定（蒙古草原、西伯利亚冻原方向）
+is_candidate_kingdom_for_anbei_trigger = {
+	tier = tier_kingdom
+	NOT = { is_zhongyuan_core_kingdom_trigger = yes }
+	is_kingdom_under_player_realm_trigger = yes
+	OR = {
+		de_jure_liege = title:e_anbei_protectorate
+		title_capital_county = {
+			OR = {
+				title_province = { geographical_region = world_siberia }
+				title_province = { geographical_region = world_steppe }
+			}
+		}
+		any_de_jure_county = {
+			title_province = {
+				OR = {
+					geographical_region = world_siberia
+					geographical_region = world_steppe
+				}
+			}
+		}
+	}
+}
+
+# 安南大都护府候选王国判定（岭南、交趾、中南半岛、南洋方向）
+is_candidate_kingdom_for_annan_trigger = {
+	tier = tier_kingdom
+	NOT = { is_zhongyuan_core_kingdom_trigger = yes }
+	is_kingdom_under_player_realm_trigger = yes
+	OR = {
+		de_jure_liege = title:e_annan_protectorate
+		title_capital_county = {
+			OR = {
+				title_province = { geographical_region = world_asia_southeast }
+				title_province = { geographical_region = world_burma }
+				title_province = { geographical_region = world_asia_vietnam }
+			}
+		}
+		any_de_jure_county = {
+			title_province = {
+				OR = {
+					geographical_region = world_asia_southeast
+					geographical_region = world_burma
+					geographical_region = world_asia_vietnam
+				}
+			}
+		}
+		de_jure_liege = title:e_lingnan
+	}
+}
+
+# 综合判定目标王国是否符合当前正在处理的大都护府
+is_candidate_kingdom_for_specific_protectorate_trigger = {
+	trigger_if = {
+		limit = { scope:target_protectorate = title:e_anxi_protectorate }
+		is_candidate_kingdom_for_anxi_trigger = yes
+	}
+	trigger_else_if = {
+		limit = { scope:target_protectorate = title:e_andong_protectorate }
+		is_candidate_kingdom_for_andong_trigger = yes
+	}
+	trigger_else_if = {
+		limit = { scope:target_protectorate = title:e_anbei_protectorate }
+		is_candidate_kingdom_for_anbei_trigger = yes
+	}
+	trigger_else_if = {
+		limit = { scope:target_protectorate = title:e_annan_protectorate }
+		is_candidate_kingdom_for_annan_trigger = yes
+	}
+	trigger_else = {
+		always = no
+	}
+}

@@ -1,0 +1,66 @@
+﻿# ====================================================================
+# CK3 Grand Protectorates - Events
+# 天子敕建大都护府 - 开府决策与事件交互
+# ====================================================================
+
+namespace = grand_protectorate_events
+
+# 设立大都护府引导事件
+grand_protectorate_events.0001 = {
+	type = character_event
+	title = grand_protectorate_events.0001.t
+	desc = grand_protectorate_events.0001.desc
+	theme = realm
+	left_portrait = root
+
+	is_triggered_only = yes
+
+	# 选项 1：设立安西大都护府
+	option = {
+		name = grand_protectorate_events.0001.a
+		trigger = {
+			NOT = { exists = title:e_anxi_protectorate.holder }
+		}
+		grand_protectorate_open_management_window_effect = {
+			TARGET = title:e_anxi_protectorate
+		}
+	}
+
+	# 选项 2：设立安东大都护府
+	option = {
+		name = grand_protectorate_events.0001.b
+		trigger = {
+			NOT = { exists = title:e_andong_protectorate.holder }
+		}
+		grand_protectorate_open_management_window_effect = {
+			TARGET = title:e_andong_protectorate
+		}
+	}
+
+	# 选项 3：设立安北大都护府
+	option = {
+		name = grand_protectorate_events.0001.c
+		trigger = {
+			NOT = { exists = title:e_anbei_protectorate.holder }
+		}
+		grand_protectorate_open_management_window_effect = {
+			TARGET = title:e_anbei_protectorate
+		}
+	}
+
+	# 选项 4：设立安南大都护府
+	option = {
+		name = grand_protectorate_events.0001.d
+		trigger = {
+			NOT = { exists = title:e_annan_protectorate.holder }
+		}
+		grand_protectorate_open_management_window_effect = {
+			TARGET = title:e_annan_protectorate
+		}
+	}
+
+	# 选项 5：暂缓开府
+	option = {
+		name = grand_protectorate_events.0001.dismiss
+	}
+}

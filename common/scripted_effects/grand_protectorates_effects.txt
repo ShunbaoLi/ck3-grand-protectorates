@@ -1,0 +1,278 @@
+﻿# ====================================================================
+# CK3 Grand Protectorates - Scripted Effects
+# 天子敕建大都护府 - 核心业务逻辑与数据闭环脚本
+# ====================================================================
+
+# 打开并初始化大都护府管理多选面板
+grand_protectorate_open_management_window_effect = {
+	$TARGET = {
+		save_scope_as = target_protectorate
+	}
+	root = {
+		save_scope_as = player_scope
+		set_variable = {
+			name = current_grand_protectorate
+			value = scope:target_protectorate
+		}
+		clear_variable_list = grand_protectorate_candidates
+		clear_variable_list = grand_protectorate_selected_kingdoms
+
+		# 1. 扫描天子直接持有的王国
+		every_held_title = {
+			limit = {
+				tier = tier_kingdom
+				is_candidate_kingdom_for_specific_protectorate_trigger = yes
+			}
+			grand_protectorate_register_candidate_kingdom_effect = yes
+		}
+
+		# 2. 扫描封臣持有的王国
+		every_vassal_or_below = {
+			every_held_title = {
+				limit = {
+					tier = tier_kingdom
+					is_candidate_kingdom_for_specific_protectorate_trigger = yes
+				}
+				grand_protectorate_register_candidate_kingdom_effect = yes
+			}
+		}
+
+		# 3. 扫描领地内实际控制伯爵领的王国（处理暂未创建头衔的地理区域王国）
+		every_sub_realm_county = {
+			kingdom = {
+				limit = {
+					is_candidate_kingdom_for_specific_protectorate_trigger = yes
+				}
+				grand_protectorate_register_candidate_kingdom_effect = yes
+			}
+		}
+
+		# 4. 扫描当前已隶属于该大都护府法理的既有王国
+		scope:target_protectorate = {
+			every_de_jure_vassal_title = {
+				limit = {
+					tier = tier_kingdom
+				}
+				grand_protectorate_register_candidate_kingdom_effect = yes
+			}
+		}
+
+		# 开启专属UI窗口标识
+		set_character_flag = grand_protectorate_window_open
+	}
+}
+
+# 注册候选王国并计算公国数与母帝国信息
+grand_protectorate_register_candidate_kingdom_effect = {
+	if = {
+		limit = {
+			NOT = {
+				scope:player_scope = {
+					is_target_in_variable_list = {
+						name = grand_protectorate_candidates
+						target = prev
+					}
+				}
+			}
+		}
+		scope:player_scope = {
+			add_to_variable_list = {
+				name = grand_protectorate_candidates
+				target = prev
+			}
+		}
+
+		# 动态计算法理公国总数
+		set_variable = {
+			name = de_jure_duchy_count
+			value = 0
+		}
+		every_de_jure_vassal_title = {
+			limit = { tier = tier_duchy }
+			prev = {
+				change_variable = {
+					name = de_jure_duchy_count
+					add = 1
+				}
+			}
+		}
+
+		# 解析母帝国展示信息
+		if = {
+			limit = { exists = var:original_de_jure_empire }
+			set_variable = {
+				name = display_original_empire
+				value = var:original_de_jure_empire
+			}
+		}
+		else_if = {
+			limit = { exists = de_jure_liege }
+			set_variable = {
+				name = display_original_empire
+				value = de_jure_liege
+			}
+		}
+
+		# 若当前已归属于目标都护府，默认置为勾选状态 [√]
+		if = {
+			limit = {
+				exists = scope:target_protectorate
+				de_jure_liege = scope:target_protectorate
+			}
+			scope:player_scope = {
+				add_to_variable_list = {
+					name = grand_protectorate_selected_kingdoms
+					target = prev
+				}
+			}
+		}
+	}
+}
+
+# GUI多选复选框切换效果
+grand_protectorate_toggle_kingdom_effect = {
+	if = {
+		limit = {
+			is_target_in_variable_list = {
+				name = grand_protectorate_selected_kingdoms
+				target = scope:target_kingdom
+			}
+		}
+		remove_list_variable = {
+			name = grand_protectorate_selected_kingdoms
+			target = scope:target_kingdom
+		}
+	}
+	else = {
+		add_to_variable_list = {
+			name = grand_protectorate_selected_kingdoms
+			target = scope:target_kingdom
+		}
+	}
+}
+
+# 确认颁布天子敕令：更勘疆理 / 裁撤闭环
+grand_protectorate_confirm_edict_effect = {
+	var:current_grand_protectorate = {
+		save_scope_as = current_grand_protectorate
+	}
+
+	# 分支 A：裁撤机制（若勾选数为 0）
+	if = {
+		limit = {
+			NOT = {
+				has_variable_list = grand_protectorate_selected_kingdoms
+			}
+		}
+		# 将原本隶属于该大都护府的所有王国，依变量精准退回母帝国法理
+		scope:current_grand_protectorate = {
+			every_de_jure_vassal_title = {
+				limit = { tier = tier_kingdom }
+				if = {
+					limit = { exists = var:original_de_jure_empire }
+					set_de_jure_liege_title = var:original_de_jure_empire
+					remove_variable = original_de_jure_empire
+				}
+			}
+		}
+
+		# 销毁大都护府帝国头衔并返还威望
+		if = {
+			limit = {
+				exists = scope:current_grand_protectorate.holder
+			}
+			destroy_title = scope:current_grand_protectorate
+			add_prestige = 300
+			send_interface_toast = {
+				title = grand_protectorate_decommissioned_toast_title
+				left_icon = scope:current_grand_protectorate
+				custom_tooltip = grand_protectorate_decommissioned_toast_desc
+			}
+		}
+	}
+	# 分支 B：设府与更勘（勾选数 > 0）
+	else = {
+		# 若头衔未激活，正式创建并赋予天子，同时挂载总督委任法
+		if = {
+			limit = {
+				NOT = { exists = scope:current_grand_protectorate.holder }
+			}
+			create_title_and_vassal_change = {
+				type = created
+				save_scope_as = change
+				add_claim_on_loss = no
+			}
+			scope:current_grand_protectorate = {
+				change_title_holder = {
+					holder = root
+					change = scope:change
+				}
+			}
+			resolve_title_and_vassal_change = scope:change
+			scope:current_grand_protectorate = {
+				add_title_law = celestial_military_appointment_succession_law
+			}
+		}
+
+		# 1. 处理被勾选的王国：划入大都护府法理，并永久记录原始母帝国变量
+		every_in_list = {
+			variable = grand_protectorate_selected_kingdoms
+			if = {
+				limit = {
+					NOT = { de_jure_liege = scope:current_grand_protectorate }
+				}
+				# 仅在尚无原始记录时写入，保证哪怕多次调整也不丢失最根本母帝国
+				if = {
+					limit = {
+						NOT = { exists = var:original_de_jure_empire }
+						exists = de_jure_liege
+					}
+					set_variable = {
+						name = original_de_jure_empire
+						value = de_jure_liege
+					}
+				}
+				set_de_jure_liege_title = scope:current_grand_protectorate
+			}
+		}
+
+		# 2. 处理原本隶属于该府但本次被取消勾选的王国：精准退回原母帝国
+		scope:current_grand_protectorate = {
+			every_de_jure_vassal_title = {
+				limit = {
+					tier = tier_kingdom
+					NOT = {
+						root = {
+							is_target_in_variable_list = {
+								name = grand_protectorate_selected_kingdoms
+								target = prev
+							}
+						}
+					}
+				}
+				if = {
+					limit = { exists = var:original_de_jure_empire }
+					set_de_jure_liege_title = var:original_de_jure_empire
+					remove_variable = original_de_jure_empire
+				}
+			}
+		}
+
+		send_interface_toast = {
+			title = grand_protectorate_confirmed_toast_title
+			left_icon = scope:current_grand_protectorate
+			custom_tooltip = grand_protectorate_confirmed_toast_desc
+		}
+	}
+
+	# 清理临时状态与关闭界面
+	grand_protectorate_close_window_effect = yes
+}
+
+# 安全关闭管理面板并清理临时变量
+grand_protectorate_close_window_effect = {
+	remove_character_flag = grand_protectorate_window_open
+	remove_variable = current_grand_protectorate
+	clear_variable_list = grand_protectorate_candidates
+	clear_variable_list = grand_protectorate_selected_kingdoms
+}

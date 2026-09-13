@@ -1,0 +1,219 @@
+﻿######################################################################
+# CK3 Grand Protectorates - Management Window
+# 天子敕建大都护府 - 专属管辖管理与法理更勘面板
+######################################################################
+
+window = {
+	name = "window_grand_protectorate"
+	visible_at_creation = no
+	parentanchor = center
+	size = { 720 860 }
+	layer = windows_layer
+	filter_mouse = all
+	movable = yes
+
+	using = Window_Background
+	using = Window_Decoration
+	using = Animation_ShowHide_Standard
+
+	datacontext = "[GetPlayer]"
+	visible = "[And(GetPlayer.IsValid, GetScriptedGui('grand_protectorate_window_is_open').IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).End))]"
+
+	vbox = {
+		using = Window_Margins
+		layoutpolicy_horizontal = expanding
+		layoutpolicy_vertical = expanding
+
+		# 顶部装饰与标题栏
+		header_pattern = {
+			layoutpolicy_horizontal = expanding
+
+			blockoverride "header_text"
+			{
+				text = "GRAND_PROTECTORATE_WINDOW_HEADER"
+			}
+
+			blockoverride "button_close"
+			{
+				onclick = "[GetScriptedGui('grand_protectorate_close_window').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+			}
+		}
+
+		# 当前处理的大都护府主信息横幅
+		widget = {
+			datacontext = "[GetPlayer.MakeScope.Var('current_grand_protectorate').GetTitle]"
+			layoutpolicy_horizontal = expanding
+			size = { 0 84 }
+
+			background = {
+				using = Background_Area
+			}
+
+			hbox = {
+				margin = { 16 8 }
+				spacing = 14
+
+				coa_title_medium = {}
+
+				vbox = {
+					layoutpolicy_horizontal = expanding
+					align = left
+					spacing = 3
+
+					text_single = {
+						text = "[Title.GetNameNoTooltip]"
+						default_format = "#high;bold;size18"
+						align = nobaseline
+					}
+
+					text_single = {
+						text = "GRAND_PROTECTORATE_PANEL_SUBHEADER"
+						default_format = "#low"
+						align = nobaseline
+					}
+				}
+			}
+		}
+
+		# 操作提示说明
+		hbox = {
+			layoutpolicy_horizontal = expanding
+			margin = { 12 8 }
+
+			text_single = {
+				layoutpolicy_horizontal = expanding
+				text = "GRAND_PROTECTORATE_INSTRUCTIONS"
+				default_format = "#I"
+				align = nobaseline
+			}
+		}
+
+		# 候选王国列表滚动区
+		scrollbox = {
+			name = "candidate_kingdoms_scrollbox"
+			layoutpolicy_horizontal = expanding
+			layoutpolicy_vertical = expanding
+
+			blockoverride "scrollbox_empty"
+			{
+				visible = "[IsDataModelEmpty( GetPlayer.MakeScope.GetList('grand_protectorate_candidates') )]"
+				text = "GRAND_PROTECTORATE_NO_CANDIDATE_KINGDOMS"
+			}
+
+			blockoverride "scrollbox_content"
+			{
+				vbox = {
+					layoutpolicy_horizontal = expanding
+					datamodel = "[GetPlayer.MakeScope.GetList('grand_protectorate_candidates')]"
+					spacing = 5
+
+					item = {
+						widget = {
+							datacontext = "[Scope.Title]"
+							layoutpolicy_horizontal = expanding
+							size = { 0 62 }
+
+							button_standard = {
+								size = { 100% 100% }
+								onclick = "[GetScriptedGui('grand_protectorate_toggle_kingdom').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('target_kingdom', Title.MakeScope).End)]"
+								down = "[GetScriptedGui('grand_protectorate_is_kingdom_selected').IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('target_kingdom', Title.MakeScope).End)]"
+
+								hbox = {
+									margin = { 12 6 }
+									spacing = 10
+
+									# 复选框：复用 window_great_project.gui 标准组件
+									button_checkbox = {
+										size = { 30 30 }
+										checked = "[GetScriptedGui('grand_protectorate_is_kingdom_selected').IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('target_kingdom', Title.MakeScope).End)]"
+										onclick = "[GetScriptedGui('grand_protectorate_toggle_kingdom').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('target_kingdom', Title.MakeScope).End)]"
+									}
+
+									# 王国金冠小盾徽
+									coa_title_tiny_crown = {}
+
+									# 王国名称及母帝国/公国数副标
+									vbox = {
+										layoutpolicy_horizontal = expanding
+										align = left
+										spacing = 2
+
+										text_single = {
+											text = "[Title.GetNameNoTooltip]"
+											default_format = "#bold"
+											align = nobaseline
+										}
+
+										text_single = {
+											text = "GRAND_PROTECTORATE_CARD_SUBTITLE"
+											default_format = "#low"
+											align = nobaseline
+										}
+									}
+
+									# 既有法理归属状态指示
+									text_single = {
+										visible = "[ObjectsEqual( Title.GetDeJureLiege, GetPlayer.MakeScope.Var('current_grand_protectorate').GetTitle )]"
+										text = "GRAND_PROTECTORATE_STATUS_ESTABLISHED"
+										default_format = "#positive"
+										align = nobaseline
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
+		# 裁撤机制警示栏（当勾选数为 0 时高亮浮现）
+		widget = {
+			visible = "[GetScriptedGui('grand_protectorate_selected_count_is_zero').IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+			layoutpolicy_horizontal = expanding
+			size = { 0 46 }
+
+			background = {
+				using = Background_Area_Dark
+			}
+
+			hbox = {
+				margin = { 16 6 }
+				spacing = 8
+
+				icon = {
+					size = { 28 28 }
+					texture = "gfx/interface/icons/symbols/icon_alert.dds"
+				}
+
+				text_single = {
+					layoutpolicy_horizontal = expanding
+					text = "GRAND_PROTECTORATE_DECOMMISSION_WARNING"
+					default_format = "#high;bold"
+					align = nobaseline
+				}
+			}
+		}
+
+		# 底部大按钮操作区
+		hbox = {
+			layoutpolicy_horizontal = expanding
+			margin = { 16 12 }
+			spacing = 12
+
+			button_standard = {
+				size = { 160 48 }
+				text = "GRAND_PROTECTORATE_BUTTON_CANCEL"
+				onclick = "[GetScriptedGui('grand_protectorate_close_window').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+			}
+
+			# 醒目的金色确认大按钮
+			button_primary_big = {
+				layoutpolicy_horizontal = expanding
+				size = { 0 48 }
+				text = "GRAND_PROTECTORATE_CONFIRM_BUTTON"
+				onclick = "[GetScriptedGui('grand_protectorate_confirm_edict').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
+				tooltip = "GRAND_PROTECTORATE_CONFIRM_BUTTON_TT"
+			}
+		}
+	}
+}

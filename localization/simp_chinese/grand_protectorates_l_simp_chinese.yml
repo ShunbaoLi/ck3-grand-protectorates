@@ -1,0 +1,67 @@
+﻿l_simp_chinese:
+ # ====================================================================
+ # CK3 Grand Protectorates - Simplified Chinese Localization
+ # 天子敕建大都护府 - 简体中文本地化
+ # ====================================================================
+
+ # --- 四大帝国级大都护府头衔 ---
+ e_anxi_protectorate: "安西大都护府"
+ e_anxi_protectorate_adj: "安西"
+ e_andong_protectorate: "安东大都护府"
+ e_andong_protectorate_adj: "安东"
+ e_anbei_protectorate: "安北大都护府"
+ e_anbei_protectorate_adj: "安北"
+ e_annan_protectorate: "安南大都护府"
+ e_annan_protectorate_adj: "安南"
+
+ # --- 决议本地化 ---
+ establish_grand_protectorate_decision: "天子开府：设大都护府"
+ establish_grand_protectorate_decision_desc: "凡外邦四夷，羁縻绥抚，皆当开建大都护府，列置行省总督，统摄封疆，以卫宗周。"
+ establish_grand_protectorate_decision_tooltip: "开建帝国级大都护府并勘定法理辖区"
+ establish_grand_protectorate_decision_confirm: "颁诏开府"
+ establish_grand_protectorate_has_candidate_tt: "领地内控制至少一个符合四方设府条件的非中原王国"
+
+ realign_anxi_protectorate_decision: "更勘安西大都护府辖区"
+ realign_anxi_protectorate_decision_desc: "更订安西大都护府所统辖之西域、河中及中亚诸邦法理疆界。"
+ realign_anxi_protectorate_decision_tooltip: "调整安西大都护府法理辖区"
+
+ realign_andong_protectorate_decision: "更勘安东大都护府辖区"
+ realign_andong_protectorate_decision_desc: "更订安东大都护府所统辖之辽东、朝鲜半岛及扶桑诸邦法理疆界。"
+ realign_andong_protectorate_decision_tooltip: "调整安东大都护府法理辖区"
+
+ realign_anbei_protectorate_decision: "更勘安北大都护府辖区"
+ realign_anbei_protectorate_decision_desc: "更订安北大都护府所统辖之大漠草原及极北冻原诸邦法理疆界。"
+ realign_anbei_protectorate_decision_tooltip: "调整安北大都护府法理辖区"
+
+ realign_annan_protectorate_decision: "更勘安南大都护府辖区"
+ realign_annan_protectorate_decision_desc: "更订安南大都护府所统辖之岭南、交趾及南洋诸邦法理疆界。"
+ realign_annan_protectorate_decision_tooltip: "调整安南大都护府法理辖区"
+
+ realign_grand_protectorate_decision_confirm: "开启更勘面板"
+
+ # --- 事件引导本地化 ---
+ grand_protectorate_events.0001.t: "天子开府：设大都护府"
+ grand_protectorate_events.0001.desc: "外蕃虽远，亦当天子之民。当今皇威赫赫，四海向化，卿等以为当于何方先行开置大都护府，以镇抚四裔、申明纪纲？"
+ grand_protectorate_events.0001.a: "设安西大都护府（统摄西域诸国）"
+ grand_protectorate_events.0001.b: "设安东大都护府（统摄辽东半岛）"
+ grand_protectorate_events.0001.c: "设安北大都护府（统摄大漠漠北）"
+ grand_protectorate_events.0001.d: "设安南大都护府（统摄岭外诸邦）"
+ grand_protectorate_events.0001.dismiss: "暂缓开府"
+
+ # --- 通知与横幅提示 ---
+ grand_protectorate_confirmed_toast_title: "天子敕定封疆"
+ grand_protectorate_confirmed_toast_desc: "大都护府辖区更勘敕令已行布海内，诸王国法理已即时更定成制！"
+ grand_protectorate_decommissioned_toast_title: "大都护府正式裁撤"
+ grand_protectorate_decommissioned_toast_desc: "因辖区尽数清空，该大都护府已被正式裁撤，其原属王国法理已悉数归复其母帝国，并返还部分朝廷威望。"
+
+ # --- 界面 UI 文本 ---
+ GRAND_PROTECTORATE_WINDOW_HEADER: "大都护府政务院 · 辖区管辖更勘"
+ GRAND_PROTECTORATE_PANEL_SUBHEADER: "天朝天子敕建之五级帝国疆理，行都护行省契约与总督委任法"
+ GRAND_PROTECTORATE_INSTRUCTIONS: "请在下方列表中勾选划入该大都护府的王国。若清空勾选，将触发裁撤程序。"
+ GRAND_PROTECTORATE_NO_CANDIDATE_KINGDOMS: "暂无符合设府或更勘条件的候选王国。"
+ GRAND_PROTECTORATE_CARD_SUBTITLE: "母帝国：[Title.MakeScope.Var('display_original_empire').GetTitle.GetNameNoTooltip] · 辖 [Title.MakeScope.Var('de_jure_duchy_count').GetValue|0] 公国"
+ GRAND_PROTECTORATE_STATUS_ESTABLISHED: "【现辖法理】"
+ GRAND_PROTECTORATE_DECOMMISSION_WARNING: "⚠️ 辖区已清空，该大都护府将被正式裁撤"
+ GRAND_PROTECTORATE_BUTTON_CANCEL: "放弃更改"
+ GRAND_PROTECTORATE_CONFIRM_BUTTON: "【颁布天子敕令：更勘疆理】"
+ GRAND_PROTECTORATE_CONFIRM_BUTTON_TT: "将当前勾选的所有王国划归该大都护府法理；未勾选的已辖王国将安全退还母帝国法理。"

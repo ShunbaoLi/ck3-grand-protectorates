@@ -1,0 +1,161 @@
+﻿# ====================================================================
+# CK3 Grand Protectorates - Decisions
+# 天子敕建大都护府 - 开府设治与更勘辖区决议
+# ====================================================================
+
+# 【天子开府：设大都护府】
+establish_grand_protectorate_decision = {
+	picture = {
+		reference = "gfx/interface/illustrations/decisions/decision_realm.dds"
+	}
+	title = establish_grand_protectorate_decision
+	desc = establish_grand_protectorate_decision_desc
+	selection_tooltip = establish_grand_protectorate_decision_tooltip
+	confirm_text = establish_grand_protectorate_decision_confirm
+
+	is_shown = {
+		is_celestial_hegemon_trigger = yes
+		# 尚有大都护府未曾设立
+		OR = {
+			NOT = { exists = title:e_anxi_protectorate.holder }
+			NOT = { exists = title:e_andong_protectorate.holder }
+			NOT = { exists = title:e_anbei_protectorate.holder }
+			NOT = { exists = title:e_annan_protectorate.holder }
+		}
+	}
+
+	is_valid = {
+		custom_tooltip = {
+			text = establish_grand_protectorate_has_candidate_tt
+			OR = {
+				any_held_title = {
+					tier = tier_kingdom
+					NOT = { is_zhongyuan_core_kingdom_trigger = yes }
+				}
+				any_vassal_or_below = {
+					any_held_title = {
+						tier = tier_kingdom
+						NOT = { is_zhongyuan_core_kingdom_trigger = yes }
+					}
+				}
+				any_sub_realm_county = {
+					kingdom = {
+						NOT = { is_zhongyuan_core_kingdom_trigger = yes }
+					}
+				}
+			}
+		}
+	}
+
+	effect = {
+		trigger_event = grand_protectorate_events.0001
+	}
+
+	ai_will_do = {
+		base = 0
+	}
+}
+
+# 【更勘安西大都护府辖区】
+realign_anxi_protectorate_decision = {
+	picture = {
+		reference = "gfx/interface/illustrations/decisions/decision_realm.dds"
+	}
+	title = realign_anxi_protectorate_decision
+	desc = realign_anxi_protectorate_decision_desc
+	selection_tooltip = realign_anxi_protectorate_decision_tooltip
+	confirm_text = realign_grand_protectorate_decision_confirm
+
+	is_shown = {
+		is_celestial_hegemon_trigger = yes
+		exists = title:e_anxi_protectorate.holder
+	}
+
+	effect = {
+		grand_protectorate_open_management_window_effect = {
+			TARGET = title:e_anxi_protectorate
+		}
+	}
+
+	ai_will_do = {
+		base = 0
+	}
+}
+
+# 【更勘安东大都护府辖区】
+realign_andong_protectorate_decision = {
+	picture = {
+		reference = "gfx/interface/illustrations/decisions/decision_realm.dds"
+	}
+	title = realign_andong_protectorate_decision
+	desc = realign_andong_protectorate_decision_desc
+	selection_tooltip = realign_andong_protectorate_decision_tooltip
+	confirm_text = realign_grand_protectorate_decision_confirm
+
+	is_shown = {
+		is_celestial_hegemon_trigger = yes
+		exists = title:e_andong_protectorate.holder
+	}
+
+	effect = {
+		grand_protectorate_open_management_window_effect = {
+			TARGET = title:e_andong_protectorate
+		}
+	}
+
+	ai_will_do = {
+		base = 0
+	}
+}
+
+# 【更勘安北大都护府辖区】
+realign_anbei_protectorate_decision = {
+	picture = {
+		reference = "gfx/interface/illustrations/decisions/decision_realm.dds"
+	}
+	title = realign_anbei_protectorate_decision
+	desc = realign_anbei_protectorate_decision_desc
+	selection_tooltip = realign_anbei_protectorate_decision_tooltip
+	confirm_text = realign_grand_protectorate_decision_confirm
+
+	is_shown = {
+		is_celestial_hegemon_trigger = yes
+		exists = title:e_anbei_protectorate.holder
+	}
+
+	effect = {
+		grand_protectorate_open_management_window_effect = {
+			TARGET = title:e_anbei_protectorate
+		}
+	}
+
+	ai_will_do = {
+		base = 0
+	}
+}
+
+# 【更勘安南大都护府辖区】
+realign_annan_protectorate_decision = {
+	picture = {
+		reference = "gfx/interface/illustrations/decisions/decision_realm.dds"
+	}
+	title = realign_annan_protectorate_decision
+	desc = realign_annan_protectorate_decision_desc
+	selection_tooltip = realign_annan_protectorate_decision_tooltip
+	confirm_text = realign_grand_protectorate_decision_confirm
+
+	is_shown = {
+		is_celestial_hegemon_trigger = yes
+		exists = title:e_annan_protectorate.holder
+	}
+
+	effect = {
+		grand_protectorate_open_management_window_effect = {
+			TARGET = title:e_annan_protectorate
+		}
+	}
+
+	ai_will_do = {
+		base = 0
+	}
+}

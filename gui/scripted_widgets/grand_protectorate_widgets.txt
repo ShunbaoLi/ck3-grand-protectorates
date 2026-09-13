@@ -1,0 +1,2 @@
+﻿# Register standalone Grand Protectorates management window with the HUD
+gui/window_grand_protectorate.gui = window_grand_protectorate

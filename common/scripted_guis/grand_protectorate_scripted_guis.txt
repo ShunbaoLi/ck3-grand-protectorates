@@ -1,0 +1,74 @@
+﻿# ====================================================================
+# CK3 Grand Protectorates - Scripted GUIs
+# 天子敕建大都护府 - 专属界面交互与数据绑定
+# ====================================================================
+
+# 判定管理面板是否开启并具备有效管理标的
+grand_protectorate_window_is_open = {
+	scope = character
+	is_shown = {
+		root ?= {
+			has_character_flag = grand_protectorate_window_open
+			exists = var:current_grand_protectorate
+		}
+	}
+}
+
+# 关闭面板操作
+grand_protectorate_close_window = {
+	scope = character
+	effect = {
+		grand_protectorate_close_window_effect = yes
+	}
+}
+
+# 判定某个王国在当前面板中是否处于选中状态 [√]
+grand_protectorate_is_kingdom_selected = {
+	scope = character
+	saved_scopes = {
+		target_kingdom
+	}
+	is_shown = {
+		is_target_in_variable_list = {
+			name = grand_protectorate_selected_kingdoms
+			target = scope:target_kingdom
+		}
+	}
+}
+
+# 切换王国的勾选 / 取消勾选状态
+grand_protectorate_toggle_kingdom = {
+	scope = character
+	saved_scopes = {
+		target_kingdom
+	}
+	effect = {
+		grand_protectorate_toggle_kingdom_effect = yes
+	}
+}
+
+# 提交敕令变更（更勘 / 设府 / 裁撤）
+grand_protectorate_confirm_edict = {
+	scope = character
+	effect = {
+		grand_protectorate_confirm_edict_effect = yes
+	}
+}
+
+# 判定当前选中王国数是否为 0（用于动态触发裁撤警示文本）
+grand_protectorate_selected_count_is_zero = {
+	scope = character
+	is_shown = {
+		NOT = {
+			has_variable_list = grand_protectorate_selected_kingdoms
+		}
+	}
+}
+
+# 判定当前选中王国数是否大于 0
+grand_protectorate_selected_count_is_positive = {
+	scope = character
+	is_shown = {
+		has_variable_list = grand_protectorate_selected_kingdoms
+	}
+}

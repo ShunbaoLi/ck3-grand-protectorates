@@ -1,0 +1,38 @@
+﻿# ====================================================================
+# CK3 Grand Protectorates - On Actions
+# 天子敕建大都护府 - 头衔受领与官制契约自动化绑定
+# ====================================================================
+
+on_title_gain = {
+	effect = {
+		# 当大都护府头衔被授予封臣时，自动激活都护行省契约与总督委任法
+		if = {
+			limit = {
+				OR = {
+					scope:target = title:e_anxi_protectorate
+					scope:target = title:e_andong_protectorate
+					scope:target = title:e_anbei_protectorate
+					scope:target = title:e_annan_protectorate
+				}
+				is_independent_ruler = no
+				liege = {
+					highest_held_title_tier >= tier_hegemony
+				}
+			}
+			# 确保头衔附带总督任命继承法
+			scope:target = {
+				if = {
+					limit = {
+						NOT = { has_title_law = celestial_military_appointment_succession_law }
+					}
+					add_title_law = celestial_military_appointment_succession_law
+				}
+			}
+			# 赋予天朝都护行省契约，自动获得“大都护”官称与机构
+			vassal_contract_set_obligation_level = {
+				type = celestial_provinces
+				level = celestial_province_protectorate
+			}
+		}
+	}
+}
