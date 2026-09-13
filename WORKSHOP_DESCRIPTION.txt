@@ -12,14 +12,13 @@
 
 [h3]📌 核心机制与特色[/h3]
 [list]
-[*] [b]四大帝国级专属头衔规划（独立解耦零冲突）[/b]：
-  - [b]安西大都护府（e_anxi_protectorate）[/b]：面向西域、中亚、河中、吐蕃与波斯方向，治所西州。
-  - [b]安东大都护府（e_andong_protectorate）[/b]：面向辽东、朝鲜半岛与扶桑方向，治所幽州。独立专属头衔，不覆写原版泛辽东 e_andong，保障契丹/辽等历史剧本 100% 零冲突。
-  - [b]安北大都护府（e_anbei_protectorate）[/b]：面向蒙古大漠草原与极北冻原方向，治所五原。
-  - [b]安南大都护府（e_annan_protectorate）[/b]：面向岭南外藩、交趾、中南半岛与南洋方向，治所交州（龙编）。
-[*] [b]天子开府与辖区更勘决议[/b]：
-  - 玩家身为天朝霸权皇帝时，领内控制候选王国即可触发【天子开府：设大都护府】。
-  - 大都护府设立后，常驻开放【更勘xx大都护府辖区】决议，随时调整法理疆界。
+[*] [b]三大帝国级专属头衔规划（独立解耦零冲突）[/b]：
+  - [b]安西大都护府（e_anxi_protectorate）[/b]：面向西域、中亚、河中、吐蕃与波斯方向，法理首都高昌。
+  - [b]安东大都护府（e_andong_protectorate）[/b]：面向辽东、朝鲜半岛与扶桑方向，法理首都沈阳。独立专属头衔，不覆写原版泛辽东 e_andong，保障契丹/辽等历史剧本 100% 零冲突。
+  - [b]安北大都护府（e_anbei_protectorate）[/b]：面向蒙古大漠草原与极北冻原方向，法理首都哈喇和林。
+[*] [b]天子敕建大都护府决议（原生列表集成）[/b]：
+  - 玩家身为天朝霸权皇帝时，控制对应战略枢纽即可在决议内直接选择设府或更勘管理。
+  - 大都护府设立后，选项动态切换为“管理xx大都护府”，随时增减调整法理疆界。
 [*] [b]专属管理界面（window_grand_protectorate.gui）[/b]：
   - 复选框控件：复用原版大型工程标准规范 button_checkbox 组件；
   - 头衔卡片：参考分封界面，配备金冠小盾徽（coa_title_tiny_crown）、王国名称、原母帝国名称及公国数量副标；
@@ -42,11 +41,10 @@
 
 [h3]📌 Key Features[/h3]
 [list]
-[*] [b]Four Independent Imperial Protectorates (Decoupled & Conflict-Free)[/b]:
-  - [b]Anxi Grand Protectorate[/b]: Western Regions, Tarim Basin, Transoxiana, Persia, Tibet (Seat: Xizhou).
-  - [b]Andong Grand Protectorate[/b]: Liaodong, Korea, Japan (Seat: Youzhou). Completely decoupled from vanilla e_andong for 100% compatibility.
-  - [b]Anbei Grand Protectorate[/b]: Northern Steppe, Siberia (Seat: Wuyuan).
-  - [b]Annan Grand Protectorate[/b]: Lingnan, Indochina, Southeast Asia (Seat: Jiaozhou).
+[*] [b]Three Independent Imperial Protectorates (Decoupled & Conflict-Free)[/b]:
+  - [b]Anxi Grand Protectorate[/b]: Western Regions, Tarim Basin, Transoxiana, Persia, Tibet (De Jure Capital: Gaochang).
+  - [b]Andong Grand Protectorate[/b]: Liaodong, Korea, Japan (De Jure Capital: Shenyang). Completely decoupled from vanilla e_andong for 100% compatibility.
+  - [b]Anbei Grand Protectorate[/b]: Northern Steppe, Siberia (De Jure Capital: Karakorum).
 [*] [b]Establishment & Realignment Decisions[/b]:
   - Dedicated imperial decisions to establish or continually adjust protectorate jurisdictions.
 [*] [b]Dedicated Multi-Select GUI Panel[/b]:

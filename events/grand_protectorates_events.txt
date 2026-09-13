@@ -52,18 +52,6 @@ grand_protectorate_events.0001 = {
 		}
 	}
 
-	# 选项 4：设立安南大都护府
-	option = {
-		name = grand_protectorate_events.0001.d
-		trigger = {
-			NOT = { exists = title:e_annan_protectorate.holder }
-			can_unlock_annan_protectorate_trigger = yes
-		}
-		custom_tooltip = grand_protectorate_events.0001.d.tt
-		grand_protectorate_open_management_window_effect = {
-			TARGET = title:e_annan_protectorate
-		}
-	}
 
 	# 选项 5：暂缓开府
 	option = {

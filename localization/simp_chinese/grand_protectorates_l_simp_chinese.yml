@@ -4,15 +4,13 @@
  # 天子敕建大都护府 - 简体中文本地化
  # ====================================================================
 
- # --- 四大帝国级大都护府头衔 ---
+ # --- 三大帝国级大都护府头衔 ---
  e_anxi_protectorate: "安西大都护府"
  e_anxi_protectorate_adj: "安西"
  e_andong_protectorate: "安东大都护府"
  e_andong_protectorate_adj: "安东"
  e_anbei_protectorate: "安北大都护府"
  e_anbei_protectorate_adj: "安北"
- e_annan_protectorate: "安南大都护府"
- e_annan_protectorate_adj: "安南"
 
  # --- 决议与选项本地化 ---
  establish_grand_protectorate_decision: "天子敕建：大都护府事务"
@@ -20,7 +18,7 @@
  establish_grand_protectorate_decision_tooltip: "开建帝国级大都护府，或调整已有大都护府之法理辖区"
  establish_grand_protectorate_decision_confirm: "颁诏开府"
  establish_grand_protectorate_has_unlocked_tt: "领内至少已控制一个未设大都护府的核心战略伯爵领"
- establish_grand_protectorate_has_candidate_tt: "领地内控制至少一个符合四方设府条件的非中原王国"
+ establish_grand_protectorate_has_candidate_tt: "领地内控制至少一个符合三方设府条件的非中原王国"
  unlock_anxi_protectorate_trigger_desc: "控制高昌伯爵领"
  unlock_andong_protectorate_trigger_desc: "控制沈阳伯爵领"
  unlock_anbei_protectorate_trigger_desc: "控制哈喇和林草原伯爵领"
@@ -42,11 +40,6 @@
  manage_anbei_option: "管理安北大都护府"
  manage_anbei_option_desc: "增减或更勘安北大都护府所统辖之大漠草原各王国法理辖区。"
 
- establish_annan_option: "设安南大都护府"
- establish_annan_option_desc: "在南方开建安南大都护府（法理首都：交趾），统摄岭南、交趾及南洋诸邦。"
- manage_annan_option: "管理安南大都护府"
- manage_annan_option_desc: "增减或更勘安南大都护府所统辖之岭外南洋各王国法理辖区。"
-
  realign_anxi_protectorate_decision: "更勘安西大都护府辖区"
  realign_anxi_protectorate_decision_desc: "更订安西大都护府所统辖之西域、河中及中亚诸邦法理疆界。"
  realign_anxi_protectorate_decision_tooltip: "调整安西大都护府法理辖区"
@@ -59,10 +52,6 @@
  realign_anbei_protectorate_decision_desc: "更订安北大都护府所统辖之大漠草原及极北冻原诸邦法理疆界。"
  realign_anbei_protectorate_decision_tooltip: "调整安北大都护府法理辖区"
 
- realign_annan_protectorate_decision: "更勘安南大都护府辖区"
- realign_annan_protectorate_decision_desc: "更订安南大都护府所统辖之岭南、交趾及南洋诸邦法理疆界。"
- realign_annan_protectorate_decision_tooltip: "调整安南大都护府法理辖区"
-
  realign_grand_protectorate_decision_confirm: "开启更勘面板"
 
  # --- 事件引导本地化 ---
@@ -74,8 +63,6 @@
  grand_protectorate_events.0001.b.tt: "开启安东大都护府辖区管辖与勘定面板"
  grand_protectorate_events.0001.c: "设安北大都护府（统摄大漠漠北）"
  grand_protectorate_events.0001.c.tt: "开启安北大都护府辖区管辖与勘定面板"
- grand_protectorate_events.0001.d: "设安南大都护府（统摄岭外诸邦）"
- grand_protectorate_events.0001.d.tt: "开启安南大都护府辖区管辖与勘定面板"
  grand_protectorate_events.0001.dismiss: "暂缓开府"
  grand_protectorate_events.0001.dismiss.tt: "暂缓设立，来日再议"
 

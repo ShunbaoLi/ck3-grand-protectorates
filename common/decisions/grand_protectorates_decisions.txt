@@ -115,36 +115,6 @@ establish_grand_protectorate_decision = {
 			icon = "gfx/interface/icons/empire_crown.dds"
 			ai_chance = { value = 100 }
 		}
-
-		# 安南大都护府：未设府
-		item = {
-			value = establish_annan_option
-			is_shown = {
-				NOT = { exists = title:e_annan_protectorate.holder }
-			}
-			is_valid = {
-				can_unlock_annan_protectorate_trigger = yes
-			}
-			current_description = establish_annan_option_desc
-			localization = establish_annan_option
-			icon = "gfx/interface/icons/empire_crown.dds"
-			ai_chance = { value = 100 }
-		}
-
-		# 安南大都护府：已设府 -> 管理/增减法理
-		item = {
-			value = manage_annan_option
-			is_shown = {
-				exists = title:e_annan_protectorate.holder
-			}
-			is_valid = {
-				always = yes
-			}
-			current_description = manage_annan_option_desc
-			localization = manage_annan_option
-			icon = "gfx/interface/icons/empire_crown.dds"
-			ai_chance = { value = 100 }
-		}
 	}
 
 	effect = {
@@ -179,17 +149,6 @@ establish_grand_protectorate_decision = {
 			}
 			grand_protectorate_open_management_window_effect = {
 				TARGET = title:e_anbei_protectorate
-			}
-		}
-		else_if = {
-			limit = {
-				OR = {
-					scope:establish_annan_option = yes
-					scope:manage_annan_option = yes
-				}
-			}
-			grand_protectorate_open_management_window_effect = {
-				TARGET = title:e_annan_protectorate
 			}
 		}
 	}

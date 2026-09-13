@@ -20,7 +20,7 @@
 In vanilla CK3 and official DLC expansions such as *Tours & Tournaments* and *The Great Project (East Asia & Empires)*, managing vast frontier domains often lacks the historical grandeur of the Tang Dynasty's Grand Protectorate system. Relying on vanilla century-long de jure drift is far too slow and inflexible for rapidly expanding empires.
 
 This mod empowers the Celestial Emperor (Son of Heaven) with absolute imperial authority to establish and realign frontier jurisdictions:
-- **Four Independent Imperial-Tier (Tier 5) Grand Protectorates** (Anxi, Andong, Anbei, Annan);
+- **Three Independent Imperial-Tier (Tier 5) Grand Protectorates** (Anxi, Andong, Anbei);
 - A dedicated **Multi-Select Management Panel** with native checkboxes to flexibly reassign kingdom de jure status;
 - A complete **Ancestral Empire Memory & Safe Return Loop**, alongside a dynamic **Decommission Mechanism** when jurisdictions are cleared;
 - Deep integration with Celestial bureaucracy: automatically binds the **Protectorate Subject Contract (celestial_province_protectorate)** and **Governor Succession Law (celestial_military_appointment_succession_law)**, granting appointed rulers the title of "Grand Protector" (大都护).
@@ -29,7 +29,7 @@ This mod empowers the Celestial Emperor (Son of Heaven) with absolute imperial a
 
 ---
 
-## 🏛️ The Four Grand Protectorates Matrix
+## 🏛️ The Three Grand Protectorates Matrix
 
 To guarantee 100% zero conflict with vanilla files and historical bookmarks, this mod uses completely decoupled title IDs (e.g. `e_andong_protectorate` does not overwrite or touch vanilla `e_andong`), complete with official Chinese Imperial Seal coats of arms:
 
@@ -38,17 +38,16 @@ To guarantee 100% zero conflict with vanilla files and historical bookmarks, thi
 | **Anxi Grand Protectorate** | `e_anxi_protectorate` | **Gaochang** (`c_kara_khoja`) | Controls County of **Gaochang** | Western Regions, Tarim Basin, Transoxiana, Persia, Tibet | Celestial Protectorate Contract · Governor Succession |
 | **Andong Grand Protectorate** | `e_andong_protectorate` | **Shenyang** (`c_LIAO_shenyang`) | Controls County of **Shenyang** | Liaodong, Korean Peninsula, Japanese Archipelago | Celestial Protectorate Contract · Governor Succession |
 | **Anbei Grand Protectorate** | `e_anbei_protectorate` | **Karakorum** (`c_karakorum`) | Controls County of **Karakorum** | Mongolian Steppes, Lake Baikal, Siberian Tundra | Celestial Protectorate Contract · Governor Succession |
-| **Annan Grand Protectorate** | `e_annan_protectorate` | **Jiaozhou / Thang Long** (`c_thang_long`) | Open (Southern frontier control) | Lingnan Outer Frontiers, Indochina, Southeast Asia | Celestial Protectorate Contract · Governor Succession |
 
 ---
 
 ## ⚙️ Workflow & De Jure Data Loop
 
-`mermaid
+```mermaid
 flowchart TD
-    A[Celestial Emperor / Hegemon] -->|Take Decision| B(Establish Grand Protectorate)
-    B --> C{Select Cardinal Direction}
-    C -->|Anxi / Andong / Anbei / Annan| D[Open Dedicated Management GUI]
+    A[Celestial Emperor / Hegemon] -->|Take Decision| B(Imperial Affairs: Grand Protectorates)
+    B --> C{Select Protectorate to Establish or Manage}
+    C -->|Anxi / Andong / Anbei| D[Open Dedicated Management GUI]
     
     D --> E[Check Candidate Kingdoms]
     E -->|Record original_de_jure_empire| F[Shift De Jure via set_de_jure_liege_title]

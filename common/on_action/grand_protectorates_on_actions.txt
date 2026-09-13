@@ -12,7 +12,6 @@ on_title_gain = {
 					scope:target = title:e_anxi_protectorate
 					scope:target = title:e_andong_protectorate
 					scope:target = title:e_anbei_protectorate
-					scope:target = title:e_annan_protectorate
 				}
 				is_independent_ruler = no
 				liege = {

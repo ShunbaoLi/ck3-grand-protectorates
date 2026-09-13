@@ -47,18 +47,3 @@ e_anbei_protectorate = {
 	destroy_if_invalid_heir = no
 	no_automatic_claims = yes
 }
-
-# 安南大都护府（统摄岭南、交趾、中南半岛、南洋诸国）
-e_annan_protectorate = {
-	color = { 185 65 85 }
-	capital = c_thang_long
-	definite_form = yes
-	can_create = {
-		always = no
-	}
-	can_create_on_partition = {
-		always = no
-	}
-	destroy_if_invalid_heir = no
-	no_automatic_claims = yes
-}
