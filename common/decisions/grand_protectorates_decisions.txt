@@ -26,6 +26,27 @@ establish_grand_protectorate_decision = {
 
 	is_valid = {
 		custom_tooltip = {
+			text = establish_grand_protectorate_has_unlocked_tt
+			OR = {
+				AND = {
+					NOT = { exists = title:e_anxi_protectorate.holder }
+					can_unlock_anxi_protectorate_trigger = yes
+				}
+				AND = {
+					NOT = { exists = title:e_andong_protectorate.holder }
+					can_unlock_andong_protectorate_trigger = yes
+				}
+				AND = {
+					NOT = { exists = title:e_anbei_protectorate.holder }
+					can_unlock_anbei_protectorate_trigger = yes
+				}
+				AND = {
+					NOT = { exists = title:e_annan_protectorate.holder }
+					can_unlock_annan_protectorate_trigger = yes
+				}
+			}
+		}
+		custom_tooltip = {
 			text = establish_grand_protectorate_has_candidate_tt
 			OR = {
 				any_held_title = {

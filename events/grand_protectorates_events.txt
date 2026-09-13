@@ -20,6 +20,7 @@ grand_protectorate_events.0001 = {
 		name = grand_protectorate_events.0001.a
 		trigger = {
 			NOT = { exists = title:e_anxi_protectorate.holder }
+			can_unlock_anxi_protectorate_trigger = yes
 		}
 		grand_protectorate_open_management_window_effect = {
 			TARGET = title:e_anxi_protectorate
@@ -31,6 +32,7 @@ grand_protectorate_events.0001 = {
 		name = grand_protectorate_events.0001.b
 		trigger = {
 			NOT = { exists = title:e_andong_protectorate.holder }
+			can_unlock_andong_protectorate_trigger = yes
 		}
 		grand_protectorate_open_management_window_effect = {
 			TARGET = title:e_andong_protectorate
@@ -42,6 +44,7 @@ grand_protectorate_events.0001 = {
 		name = grand_protectorate_events.0001.c
 		trigger = {
 			NOT = { exists = title:e_anbei_protectorate.holder }
+			can_unlock_anbei_protectorate_trigger = yes
 		}
 		grand_protectorate_open_management_window_effect = {
 			TARGET = title:e_anbei_protectorate
@@ -53,6 +56,7 @@ grand_protectorate_events.0001 = {
 		name = grand_protectorate_events.0001.d
 		trigger = {
 			NOT = { exists = title:e_annan_protectorate.holder }
+			can_unlock_annan_protectorate_trigger = yes
 		}
 		grand_protectorate_open_management_window_effect = {
 			TARGET = title:e_annan_protectorate

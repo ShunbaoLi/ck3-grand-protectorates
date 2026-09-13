@@ -19,7 +19,11 @@
  establish_grand_protectorate_decision_desc: "To pacify the distant frontier and stabilize foreign domains, the Son of Heaven may establish imperial Grand Protectorates administered by appointed military governors."
  establish_grand_protectorate_decision_tooltip: "Create an imperial-tier Grand Protectorate and demarcate its de jure territories."
  establish_grand_protectorate_decision_confirm: "Promulgate Edict"
+ establish_grand_protectorate_has_unlocked_tt: "You or your realm control the strategic county required for at least one unestablished Grand Protectorate"
  establish_grand_protectorate_has_candidate_tt: "You control at least one non-Zhongyuan kingdom eligible for frontier protectorate administration."
+ unlock_anxi_protectorate_trigger_desc: "Controls the County of Gaochang"
+ unlock_andong_protectorate_trigger_desc: "Controls the County of Shenyang"
+ unlock_anbei_protectorate_trigger_desc: "Controls the County of Karakorum"
 
  realign_anxi_protectorate_decision: "Realign Anxi Grand Protectorate"
  realign_anxi_protectorate_decision_desc: "Survey and adjust the de jure boundaries and constituent kingdoms of the Anxi Grand Protectorate in the Western Regions, Transoxiana, and Persia."

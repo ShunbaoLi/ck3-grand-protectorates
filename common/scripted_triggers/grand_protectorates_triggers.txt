@@ -179,3 +179,66 @@ is_candidate_kingdom_for_specific_protectorate_trigger = {
 		always = no
 	}
 }
+
+# ====================================================================
+# 战略枢纽伯爵领解锁判定触发器
+# ====================================================================
+
+# 安西大都护府解锁要求：玩家或其领内封臣必须统辖高昌伯爵领
+can_unlock_anxi_protectorate_trigger = {
+	custom_description = {
+		text = unlock_anxi_protectorate_trigger_desc
+		OR = {
+			title:c_kara_khoja = {
+				holder = {
+					OR = {
+						this = root
+						target_is_liege_or_above = root
+					}
+				}
+			}
+			root = { completely_controls = title:c_kara_khoja }
+		}
+	}
+}
+
+# 安东大都护府解锁要求：玩家或其领内封臣必须统辖沈阳伯爵领
+can_unlock_andong_protectorate_trigger = {
+	custom_description = {
+		text = unlock_andong_protectorate_trigger_desc
+		OR = {
+			title:c_LIAO_shenyang = {
+				holder = {
+					OR = {
+						this = root
+						target_is_liege_or_above = root
+					}
+				}
+			}
+			root = { completely_controls = title:c_LIAO_shenyang }
+		}
+	}
+}
+
+# 安北大都护府解锁要求：玩家或其领内封臣必须统辖哈喇和林草原伯爵领
+can_unlock_anbei_protectorate_trigger = {
+	custom_description = {
+		text = unlock_anbei_protectorate_trigger_desc
+		OR = {
+			title:c_karakorum = {
+				holder = {
+					OR = {
+						this = root
+						target_is_liege_or_above = root
+					}
+				}
+			}
+			root = { completely_controls = title:c_karakorum }
+		}
+	}
+}
+
+# 安南大都护府解锁要求：天朝开放设治
+can_unlock_annan_protectorate_trigger = {
+	always = yes
+}

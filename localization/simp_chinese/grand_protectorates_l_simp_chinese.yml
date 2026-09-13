@@ -19,7 +19,11 @@
  establish_grand_protectorate_decision_desc: "凡外邦四夷，羁縻绥抚，皆当开建大都护府，列置行省总督，统摄封疆，以卫宗周。"
  establish_grand_protectorate_decision_tooltip: "开建帝国级大都护府并勘定法理辖区"
  establish_grand_protectorate_decision_confirm: "颁诏开府"
+ establish_grand_protectorate_has_unlocked_tt: "领内至少已控制一个未设大都护府的核心战略伯爵领"
  establish_grand_protectorate_has_candidate_tt: "领地内控制至少一个符合四方设府条件的非中原王国"
+ unlock_anxi_protectorate_trigger_desc: "控制高昌伯爵领"
+ unlock_andong_protectorate_trigger_desc: "控制沈阳伯爵领"
+ unlock_anbei_protectorate_trigger_desc: "控制哈喇和林草原伯爵领"
 
  realign_anxi_protectorate_decision: "更勘安西大都护府辖区"
  realign_anxi_protectorate_decision_desc: "更订安西大都护府所统辖之西域、河中及中亚诸邦法理疆界。"

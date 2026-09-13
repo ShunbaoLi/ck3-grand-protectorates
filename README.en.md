@@ -31,14 +31,14 @@ This mod empowers the Celestial Emperor (Son of Heaven) with absolute imperial a
 
 ## 🏛️ The Four Grand Protectorates Matrix
 
-To guarantee 100% zero conflict with vanilla files and historical bookmarks, this mod uses completely decoupled title IDs (e.g. e_andong_protectorate does not overwrite or touch vanilla e_andong):
+To guarantee 100% zero conflict with vanilla files and historical bookmarks, this mod uses completely decoupled title IDs (e.g. `e_andong_protectorate` does not overwrite or touch vanilla `e_andong`), complete with official Chinese Imperial Seal coats of arms:
 
-| Grand Protectorate | Title ID | Historic Seat | Geographic Orientation | Government & Succession |
-| :--- | :--- | :--- | :--- | :--- |
-| **Anxi Grand Protectorate** | e_anxi_protectorate | Xizhou (c_xizhou) | Western Regions, Tarim Basin, Transoxiana, Persia, Tibet | Celestial Protectorate Contract · Governor Succession |
-| **Andong Grand Protectorate** | e_andong_protectorate | Youzhou (c_youzhou) | Liaodong, Korean Peninsula, Japanese Archipelago | Celestial Protectorate Contract · Governor Succession |
-| **Anbei Grand Protectorate** | e_anbei_protectorate | Wuyuan (c_wuyuan) | Mongolian Steppes, Lake Baikal, Siberian Tundra | Celestial Protectorate Contract · Governor Succession |
-| **Annan Grand Protectorate** | e_annan_protectorate | Jiaozhou / Longbian (c_thang_long) | Lingnan Outer Frontiers, Indochina, Southeast Asia | Celestial Protectorate Contract · Governor Succession |
+| Grand Protectorate | Title ID | De Jure Capital | Unlock County Requirement | Geographic Orientation | Government & Succession |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **Anxi Grand Protectorate** | `e_anxi_protectorate` | **Gaochang** (`c_kara_khoja`) | Controls County of **Gaochang** | Western Regions, Tarim Basin, Transoxiana, Persia, Tibet | Celestial Protectorate Contract · Governor Succession |
+| **Andong Grand Protectorate** | `e_andong_protectorate` | **Shenyang** (`c_LIAO_shenyang`) | Controls County of **Shenyang** | Liaodong, Korean Peninsula, Japanese Archipelago | Celestial Protectorate Contract · Governor Succession |
+| **Anbei Grand Protectorate** | `e_anbei_protectorate` | **Karakorum** (`c_karakorum`) | Controls County of **Karakorum** | Mongolian Steppes, Lake Baikal, Siberian Tundra | Celestial Protectorate Contract · Governor Succession |
+| **Annan Grand Protectorate** | `e_annan_protectorate` | **Jiaozhou / Thang Long** (`c_thang_long`) | Open (Southern frontier control) | Lingnan Outer Frontiers, Indochina, Southeast Asia | Celestial Protectorate Contract · Governor Succession |
 
 ---
 
