@@ -5,7 +5,7 @@
 
 # 打开并初始化大都护府管理多选面板
 grand_protectorate_open_management_window_effect = {
-	$TARGET = {
+	$TARGET$ = {
 		save_scope_as = target_protectorate
 	}
 	root = {
@@ -49,7 +49,7 @@ grand_protectorate_open_management_window_effect = {
 
 		# 4. 扫描当前已隶属于该大都护府法理的既有王国
 		scope:target_protectorate = {
-			every_de_jure_vassal_title = {
+			every_in_de_jure_hierarchy = {
 				limit = {
 					tier = tier_kingdom
 				}
@@ -87,7 +87,7 @@ grand_protectorate_register_candidate_kingdom_effect = {
 			name = de_jure_duchy_count
 			value = 0
 		}
-		every_de_jure_vassal_title = {
+		every_in_de_jure_hierarchy = {
 			limit = { tier = tier_duchy }
 			prev = {
 				change_variable = {
@@ -166,7 +166,7 @@ grand_protectorate_confirm_edict_effect = {
 		}
 		# 将原本隶属于该大都护府的所有王国，依变量精准退回母帝国法理
 		scope:current_grand_protectorate = {
-			every_de_jure_vassal_title = {
+			every_in_de_jure_hierarchy = {
 				limit = { tier = tier_kingdom }
 				if = {
 					limit = { exists = var:original_de_jure_empire }
@@ -238,7 +238,7 @@ grand_protectorate_confirm_edict_effect = {
 
 		# 2. 处理原本隶属于该府但本次被取消勾选的王国：精准退回原母帝国
 		scope:current_grand_protectorate = {
-			every_de_jure_vassal_title = {
+			every_in_de_jure_hierarchy = {
 				limit = {
 					tier = tier_kingdom
 					NOT = {

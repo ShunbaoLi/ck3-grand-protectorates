@@ -41,7 +41,8 @@ window = {
 
 		# 当前处理的大都护府主信息横幅
 		widget = {
-			datacontext = "[GetPlayer.MakeScope.Var('current_grand_protectorate').GetTitle]"
+			visible = "[GetPlayer.MakeScope.Var('current_grand_protectorate').Title.IsValid]"
+			datacontext = "[GetPlayer.MakeScope.Var('current_grand_protectorate').Title]"
 			layoutpolicy_horizontal = expanding
 			size = { 0 84 }
 
@@ -57,19 +58,18 @@ window = {
 
 				vbox = {
 					layoutpolicy_horizontal = expanding
-					align = left
 					spacing = 3
 
 					text_single = {
 						text = "[Title.GetNameNoTooltip]"
 						default_format = "#high;bold;size18"
-						align = nobaseline
+						align = left|nobaseline
 					}
 
 					text_single = {
 						text = "GRAND_PROTECTORATE_PANEL_SUBHEADER"
 						default_format = "#low"
-						align = nobaseline
+						align = left|nobaseline
 					}
 				}
 			}
@@ -126,7 +126,7 @@ window = {
 									button_checkbox = {
 										size = { 30 30 }
 										checked = "[GetScriptedGui('grand_protectorate_is_kingdom_selected').IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('target_kingdom', Title.MakeScope).End)]"
-										onclick = "[GetScriptedGui('grand_protectorate_toggle_kingdom').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('target_kingdom', Title.MakeScope).End)]"
+										alwaystransparent = yes
 									}
 
 									# 王国金冠小盾徽
@@ -135,25 +135,24 @@ window = {
 									# 王国名称及母帝国/公国数副标
 									vbox = {
 										layoutpolicy_horizontal = expanding
-										align = left
 										spacing = 2
 
 										text_single = {
 											text = "[Title.GetNameNoTooltip]"
 											default_format = "#bold"
-											align = nobaseline
+											align = left|nobaseline
 										}
 
 										text_single = {
 											text = "GRAND_PROTECTORATE_CARD_SUBTITLE"
 											default_format = "#low"
-											align = nobaseline
+											align = left|nobaseline
 										}
 									}
 
 									# 既有法理归属状态指示
 									text_single = {
-										visible = "[ObjectsEqual( Title.GetDeJureLiege, GetPlayer.MakeScope.Var('current_grand_protectorate').GetTitle )]"
+										visible = "[GetScriptedGui('grand_protectorate_is_de_jure_established').IsShown(GuiScope.SetRoot(GetPlayer.MakeScope).AddScope('target_kingdom', Title.MakeScope).End)]"
 										text = "GRAND_PROTECTORATE_STATUS_ESTABLISHED"
 										default_format = "#positive"
 										align = nobaseline

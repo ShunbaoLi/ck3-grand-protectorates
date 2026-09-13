@@ -72,6 +72,7 @@ establish_grand_protectorate_decision = {
 		trigger_event = grand_protectorate_events.0001
 	}
 
+	ai_check_interval = 0
 	ai_will_do = {
 		base = 0
 	}
@@ -98,6 +99,7 @@ realign_anxi_protectorate_decision = {
 		}
 	}
 
+	ai_check_interval = 0
 	ai_will_do = {
 		base = 0
 	}
@@ -124,6 +126,7 @@ realign_andong_protectorate_decision = {
 		}
 	}
 
+	ai_check_interval = 0
 	ai_will_do = {
 		base = 0
 	}
@@ -150,6 +153,7 @@ realign_anbei_protectorate_decision = {
 		}
 	}
 
+	ai_check_interval = 0
 	ai_will_do = {
 		base = 0
 	}
@@ -176,6 +180,7 @@ realign_annan_protectorate_decision = {
 		}
 	}
 
+	ai_check_interval = 0
 	ai_will_do = {
 		base = 0
 	}

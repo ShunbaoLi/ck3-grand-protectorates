@@ -72,3 +72,17 @@ grand_protectorate_selected_count_is_positive = {
 		has_variable_list = grand_protectorate_selected_kingdoms
 	}
 }
+
+# 判定某个王国在当前大都护府中是否属于既有法理
+grand_protectorate_is_de_jure_established = {
+	scope = character
+	saved_scopes = {
+		target_kingdom
+	}
+	is_shown = {
+		exists = var:current_grand_protectorate
+		scope:target_kingdom = {
+			de_jure_liege = root.var:current_grand_protectorate
+		}
+	}
+}

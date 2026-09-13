@@ -63,7 +63,7 @@
  GRAND_PROTECTORATE_PANEL_SUBHEADER: "Tier 5 Imperial Jurisdiction created by the Hegemon, governed via Protectorate Contract and Governor Succession"
  GRAND_PROTECTORATE_INSTRUCTIONS: "Check the kingdoms below to incorporate them into this Grand Protectorate. Leaving all boxes unchecked will decommission the title."
  GRAND_PROTECTORATE_NO_CANDIDATE_KINGDOMS: "No eligible candidate kingdoms found in your realm."
- GRAND_PROTECTORATE_CARD_SUBTITLE: "Ancestral Empire: [Title.MakeScope.Var('display_original_empire').GetTitle.GetNameNoTooltip] · [Title.MakeScope.Var('de_jure_duchy_count').GetValue|0] Duchies"
+ GRAND_PROTECTORATE_CARD_SUBTITLE: "Ancestral Empire: [Title.MakeScope.Var('display_original_empire').Title.GetNameNoTooltip] · [Title.MakeScope.Var('de_jure_duchy_count').GetValue|0] Duchies"
  GRAND_PROTECTORATE_STATUS_ESTABLISHED: "[Current De Jure]"
  GRAND_PROTECTORATE_DECOMMISSION_WARNING: "⚠️ All jurisdictions cleared. This Grand Protectorate will be formally decommissioned."
  GRAND_PROTECTORATE_BUTTON_CANCEL: "Cancel"

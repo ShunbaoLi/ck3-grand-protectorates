@@ -13,8 +13,6 @@ grand_protectorate_events.0001 = {
 	theme = realm
 	left_portrait = root
 
-	is_triggered_only = yes
-
 	# 选项 1：设立安西大都护府
 	option = {
 		name = grand_protectorate_events.0001.a

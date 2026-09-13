@@ -15,11 +15,13 @@ is_zhongyuan_core_kingdom_trigger = {
 		this = title:k_henan
 		this = title:k_hebei
 		this = title:k_hedong
-		this = title:k_shandong
-		this = title:k_guanlong
+		this = title:k_qingxu
+		this = title:k_guannei
 		this = title:k_shannan
 		this = title:k_huainan
-		this = title:k_jiangnan
+		this = title:k_jiangdong
+		this = title:k_jiangxi
+		this = title:k_liangzhe
 	}
 }
 
@@ -35,9 +37,12 @@ is_kingdom_under_player_realm_trigger = {
 		# 头衔暂无人持有，但玩家领内控制了该王国下属的伯爵领
 		AND = {
 			NOT = { exists = holder }
-			root = {
-				any_sub_realm_county = {
-					kingdom = prevprev
+			any_de_jure_county = {
+				holder = {
+					OR = {
+						this = root
+						target_is_liege_or_above = root
+					}
 				}
 			}
 		}
