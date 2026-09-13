@@ -14,16 +14,38 @@
  e_annan_protectorate: "安南大都护府"
  e_annan_protectorate_adj: "安南"
 
- # --- 决议本地化 ---
- establish_grand_protectorate_decision: "天子开府：设大都护府"
- establish_grand_protectorate_decision_desc: "凡外邦四夷，羁縻绥抚，皆当开建大都护府，列置行省总督，统摄封疆，以卫宗周。"
- establish_grand_protectorate_decision_tooltip: "开建帝国级大都护府并勘定法理辖区"
+ # --- 决议与选项本地化 ---
+ establish_grand_protectorate_decision: "天子敕建：大都护府事务"
+ establish_grand_protectorate_decision_desc: "凡外邦四夷，羁縻绥抚，皆当开建大都护府，列置行省总督，统摄封疆，以卫宗周。已建大都护府亦可随时更勘法理辖区。"
+ establish_grand_protectorate_decision_tooltip: "开建帝国级大都护府，或调整已有大都护府之法理辖区"
  establish_grand_protectorate_decision_confirm: "颁诏开府"
  establish_grand_protectorate_has_unlocked_tt: "领内至少已控制一个未设大都护府的核心战略伯爵领"
  establish_grand_protectorate_has_candidate_tt: "领地内控制至少一个符合四方设府条件的非中原王国"
  unlock_anxi_protectorate_trigger_desc: "控制高昌伯爵领"
  unlock_andong_protectorate_trigger_desc: "控制沈阳伯爵领"
  unlock_anbei_protectorate_trigger_desc: "控制哈喇和林草原伯爵领"
+
+ ESTABLISH_GRAND_PROTECTORATE_NEXT_STEP_BUTTON: "进入辖区勘定"
+
+ establish_anxi_option: "设安西大都护府"
+ establish_anxi_option_desc: "在西域开建安西大都护府（法理首都：高昌），统摄河中、吐火罗及西域诸邦。"
+ manage_anxi_option: "管理安西大都护府"
+ manage_anxi_option_desc: "增减或更勘安西大都护府所统辖之西域各王国法理辖区。"
+
+ establish_andong_option: "设安东大都护府"
+ establish_andong_option_desc: "在辽东开建安东大都护府（法理首都：沈阳），统摄辽东、朝鲜半岛及扶桑诸邦。"
+ manage_andong_option: "管理安东大都护府"
+ manage_andong_option_desc: "增减或更勘安东大都护府所统辖之辽东及东海各王国法理辖区。"
+
+ establish_anbei_option: "设安北大都护府"
+ establish_anbei_option_desc: "在漠北开建安北大都护府（法理首都：哈喇和林），统摄大漠南北及极北草原诸部。"
+ manage_anbei_option: "管理安北大都护府"
+ manage_anbei_option_desc: "增减或更勘安北大都护府所统辖之大漠草原各王国法理辖区。"
+
+ establish_annan_option: "设安南大都护府"
+ establish_annan_option_desc: "在南方开建安南大都护府（法理首都：交趾），统摄岭南、交趾及南洋诸邦。"
+ manage_annan_option: "管理安南大都护府"
+ manage_annan_option_desc: "增减或更勘安南大都护府所统辖之岭外南洋各王国法理辖区。"
 
  realign_anxi_protectorate_decision: "更勘安西大都护府辖区"
  realign_anxi_protectorate_decision_desc: "更订安西大都护府所统辖之西域、河中及中亚诸邦法理疆界。"

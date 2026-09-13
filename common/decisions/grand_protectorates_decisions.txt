@@ -1,185 +1,196 @@
 ﻿# ====================================================================
 # CK3 Grand Protectorates - Decisions
-# 天子敕建大都护府 - 开府设治与更勘辖区决议
+# 天子敕建大都护府 - 开府设治与更勘辖区一体化决议
 # ====================================================================
 
-# 【天子开府：设大都护府】
+# 【天子敕建：大都护府事务】
 establish_grand_protectorate_decision = {
 	picture = {
-		reference = "gfx/interface/illustrations/decisions/decision_realm.dds"
+		reference = "gfx/interface/illustrations/decisions/tgp_scholars.dds"
 	}
 	title = establish_grand_protectorate_decision
 	desc = establish_grand_protectorate_decision_desc
 	selection_tooltip = establish_grand_protectorate_decision_tooltip
-	confirm_text = establish_grand_protectorate_decision_confirm
 
 	is_shown = {
 		is_celestial_hegemon_trigger = yes
-		# 尚有大都护府未曾设立
-		OR = {
-			NOT = { exists = title:e_anxi_protectorate.holder }
-			NOT = { exists = title:e_andong_protectorate.holder }
-			NOT = { exists = title:e_anbei_protectorate.holder }
-			NOT = { exists = title:e_annan_protectorate.holder }
+	}
+
+	is_valid_showing_failures_only = {
+		is_imprisoned = no
+	}
+
+	widget = {
+		gui = "decision_view_widget_option_list_generic"
+		controller = decision_option_list_controller
+		decision_to_second_step_button = "ESTABLISH_GRAND_PROTECTORATE_NEXT_STEP_BUTTON"
+		show_from_start = yes
+
+		# 安西大都护府：未设府
+		item = {
+			value = establish_anxi_option
+			is_shown = {
+				NOT = { exists = title:e_anxi_protectorate.holder }
+			}
+			is_valid = {
+				can_unlock_anxi_protectorate_trigger = yes
+			}
+			current_description = establish_anxi_option_desc
+			localization = establish_anxi_option
+			icon = "gfx/interface/icons/empire_crown.dds"
+			ai_chance = { value = 100 }
+		}
+
+		# 安西大都护府：已设府 -> 管理/增减法理
+		item = {
+			value = manage_anxi_option
+			is_shown = {
+				exists = title:e_anxi_protectorate.holder
+			}
+			is_valid = {
+				always = yes
+			}
+			current_description = manage_anxi_option_desc
+			localization = manage_anxi_option
+			icon = "gfx/interface/icons/empire_crown.dds"
+			ai_chance = { value = 100 }
+		}
+
+		# 安东大都护府：未设府
+		item = {
+			value = establish_andong_option
+			is_shown = {
+				NOT = { exists = title:e_andong_protectorate.holder }
+			}
+			is_valid = {
+				can_unlock_andong_protectorate_trigger = yes
+			}
+			current_description = establish_andong_option_desc
+			localization = establish_andong_option
+			icon = "gfx/interface/icons/empire_crown.dds"
+			ai_chance = { value = 100 }
+		}
+
+		# 安东大都护府：已设府 -> 管理/增减法理
+		item = {
+			value = manage_andong_option
+			is_shown = {
+				exists = title:e_andong_protectorate.holder
+			}
+			is_valid = {
+				always = yes
+			}
+			current_description = manage_andong_option_desc
+			localization = manage_andong_option
+			icon = "gfx/interface/icons/empire_crown.dds"
+			ai_chance = { value = 100 }
+		}
+
+		# 安北大都护府：未设府
+		item = {
+			value = establish_anbei_option
+			is_shown = {
+				NOT = { exists = title:e_anbei_protectorate.holder }
+			}
+			is_valid = {
+				can_unlock_anbei_protectorate_trigger = yes
+			}
+			current_description = establish_anbei_option_desc
+			localization = establish_anbei_option
+			icon = "gfx/interface/icons/empire_crown.dds"
+			ai_chance = { value = 100 }
+		}
+
+		# 安北大都护府：已设府 -> 管理/增减法理
+		item = {
+			value = manage_anbei_option
+			is_shown = {
+				exists = title:e_anbei_protectorate.holder
+			}
+			is_valid = {
+				always = yes
+			}
+			current_description = manage_anbei_option_desc
+			localization = manage_anbei_option
+			icon = "gfx/interface/icons/empire_crown.dds"
+			ai_chance = { value = 100 }
+		}
+
+		# 安南大都护府：未设府
+		item = {
+			value = establish_annan_option
+			is_shown = {
+				NOT = { exists = title:e_annan_protectorate.holder }
+			}
+			is_valid = {
+				can_unlock_annan_protectorate_trigger = yes
+			}
+			current_description = establish_annan_option_desc
+			localization = establish_annan_option
+			icon = "gfx/interface/icons/empire_crown.dds"
+			ai_chance = { value = 100 }
+		}
+
+		# 安南大都护府：已设府 -> 管理/增减法理
+		item = {
+			value = manage_annan_option
+			is_shown = {
+				exists = title:e_annan_protectorate.holder
+			}
+			is_valid = {
+				always = yes
+			}
+			current_description = manage_annan_option_desc
+			localization = manage_annan_option
+			icon = "gfx/interface/icons/empire_crown.dds"
+			ai_chance = { value = 100 }
 		}
 	}
 
-	is_valid = {
-		custom_tooltip = {
-			text = establish_grand_protectorate_has_unlocked_tt
-			OR = {
-				AND = {
-					NOT = { exists = title:e_anxi_protectorate.holder }
-					can_unlock_anxi_protectorate_trigger = yes
-				}
-				AND = {
-					NOT = { exists = title:e_andong_protectorate.holder }
-					can_unlock_andong_protectorate_trigger = yes
-				}
-				AND = {
-					NOT = { exists = title:e_anbei_protectorate.holder }
-					can_unlock_anbei_protectorate_trigger = yes
-				}
-				AND = {
-					NOT = { exists = title:e_annan_protectorate.holder }
-					can_unlock_annan_protectorate_trigger = yes
+	effect = {
+		if = {
+			limit = {
+				OR = {
+					scope:establish_anxi_option = yes
+					scope:manage_anxi_option = yes
 				}
 			}
-		}
-		custom_tooltip = {
-			text = establish_grand_protectorate_has_candidate_tt
-			OR = {
-				any_held_title = {
-					tier = tier_kingdom
-					NOT = { is_zhongyuan_core_kingdom_trigger = yes }
-				}
-				any_vassal_or_below = {
-					any_held_title = {
-						tier = tier_kingdom
-						NOT = { is_zhongyuan_core_kingdom_trigger = yes }
-					}
-				}
-				any_sub_realm_county = {
-					exists = de_jure_liege
-					exists = de_jure_liege.de_jure_liege
-					de_jure_liege.de_jure_liege = {
-						tier = tier_kingdom
-						NOT = { is_zhongyuan_core_kingdom_trigger = yes }
-					}
-				}
+			grand_protectorate_open_management_window_effect = {
+				TARGET = title:e_anxi_protectorate
 			}
 		}
-	}
-
-	effect = {
-		trigger_event = grand_protectorate_events.0001
-	}
-
-	ai_check_interval = 0
-	ai_will_do = {
-		base = 0
-	}
-}
-
-# 【更勘安西大都护府辖区】
-realign_anxi_protectorate_decision = {
-	picture = {
-		reference = "gfx/interface/illustrations/decisions/decision_realm.dds"
-	}
-	title = realign_anxi_protectorate_decision
-	desc = realign_anxi_protectorate_decision_desc
-	selection_tooltip = realign_anxi_protectorate_decision_tooltip
-	confirm_text = realign_grand_protectorate_decision_confirm
-
-	is_shown = {
-		is_celestial_hegemon_trigger = yes
-		exists = title:e_anxi_protectorate.holder
-	}
-
-	effect = {
-		grand_protectorate_open_management_window_effect = {
-			TARGET = title:e_anxi_protectorate
+		else_if = {
+			limit = {
+				OR = {
+					scope:establish_andong_option = yes
+					scope:manage_andong_option = yes
+				}
+			}
+			grand_protectorate_open_management_window_effect = {
+				TARGET = title:e_andong_protectorate
+			}
 		}
-	}
-
-	ai_check_interval = 0
-	ai_will_do = {
-		base = 0
-	}
-}
-
-# 【更勘安东大都护府辖区】
-realign_andong_protectorate_decision = {
-	picture = {
-		reference = "gfx/interface/illustrations/decisions/decision_realm.dds"
-	}
-	title = realign_andong_protectorate_decision
-	desc = realign_andong_protectorate_decision_desc
-	selection_tooltip = realign_andong_protectorate_decision_tooltip
-	confirm_text = realign_grand_protectorate_decision_confirm
-
-	is_shown = {
-		is_celestial_hegemon_trigger = yes
-		exists = title:e_andong_protectorate.holder
-	}
-
-	effect = {
-		grand_protectorate_open_management_window_effect = {
-			TARGET = title:e_andong_protectorate
+		else_if = {
+			limit = {
+				OR = {
+					scope:establish_anbei_option = yes
+					scope:manage_anbei_option = yes
+				}
+			}
+			grand_protectorate_open_management_window_effect = {
+				TARGET = title:e_anbei_protectorate
+			}
 		}
-	}
-
-	ai_check_interval = 0
-	ai_will_do = {
-		base = 0
-	}
-}
-
-# 【更勘安北大都护府辖区】
-realign_anbei_protectorate_decision = {
-	picture = {
-		reference = "gfx/interface/illustrations/decisions/decision_realm.dds"
-	}
-	title = realign_anbei_protectorate_decision
-	desc = realign_anbei_protectorate_decision_desc
-	selection_tooltip = realign_anbei_protectorate_decision_tooltip
-	confirm_text = realign_grand_protectorate_decision_confirm
-
-	is_shown = {
-		is_celestial_hegemon_trigger = yes
-		exists = title:e_anbei_protectorate.holder
-	}
-
-	effect = {
-		grand_protectorate_open_management_window_effect = {
-			TARGET = title:e_anbei_protectorate
-		}
-	}
-
-	ai_check_interval = 0
-	ai_will_do = {
-		base = 0
-	}
-}
-
-# 【更勘安南大都护府辖区】
-realign_annan_protectorate_decision = {
-	picture = {
-		reference = "gfx/interface/illustrations/decisions/decision_realm.dds"
-	}
-	title = realign_annan_protectorate_decision
-	desc = realign_annan_protectorate_decision_desc
-	selection_tooltip = realign_annan_protectorate_decision_tooltip
-	confirm_text = realign_grand_protectorate_decision_confirm
-
-	is_shown = {
-		is_celestial_hegemon_trigger = yes
-		exists = title:e_annan_protectorate.holder
-	}
-
-	effect = {
-		grand_protectorate_open_management_window_effect = {
-			TARGET = title:e_annan_protectorate
+		else_if = {
+			limit = {
+				OR = {
+					scope:establish_annan_option = yes
+					scope:manage_annan_option = yes
+				}
+			}
+			grand_protectorate_open_management_window_effect = {
+				TARGET = title:e_annan_protectorate
+			}
 		}
 	}
 

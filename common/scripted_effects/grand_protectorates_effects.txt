@@ -18,6 +18,26 @@ grand_protectorate_open_management_window_effect = {
 		clear_variable_list = grand_protectorate_candidates
 		clear_variable_list = grand_protectorate_selected_kingdoms
 
+		# 确保该大都护府法理挂载在天子霸权（大唐霸权 h_china）之下
+		if = {
+			limit = {
+				any_held_title = { tier = tier_hegemony }
+			}
+			every_held_title = {
+				limit = { tier = tier_hegemony }
+				save_scope_as = player_hegemony
+			}
+			scope:target_protectorate = {
+				set_de_jure_liege_title = scope:player_hegemony
+			}
+		}
+		else_if = {
+			limit = { exists = title:h_china }
+			scope:target_protectorate = {
+				set_de_jure_liege_title = title:h_china
+			}
+		}
+
 		# 1. 扫描天子直接持有的王国
 		every_held_title = {
 			limit = {
@@ -227,6 +247,30 @@ grand_protectorate_confirm_edict_effect = {
 			resolve_title_and_vassal_change = scope:change
 			scope:current_grand_protectorate = {
 				add_title_law = celestial_military_appointment_succession_law
+			}
+		}
+
+		# 核心整合：将大都护府法理永久整合到天子所持的最高霸权（大唐霸权 h_china）之下
+		if = {
+			limit = {
+				root = {
+					any_held_title = { tier = tier_hegemony }
+				}
+			}
+			root = {
+				every_held_title = {
+					limit = { tier = tier_hegemony }
+					save_scope_as = player_hegemony
+				}
+			}
+			scope:current_grand_protectorate = {
+				set_de_jure_liege_title = scope:player_hegemony
+			}
+		}
+		else_if = {
+			limit = { exists = title:h_china }
+			scope:current_grand_protectorate = {
+				set_de_jure_liege_title = title:h_china
 			}
 		}
 

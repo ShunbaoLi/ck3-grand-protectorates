@@ -28,6 +28,29 @@ on_title_gain = {
 					add_title_law = celestial_military_appointment_succession_law
 				}
 			}
+			# 确保大都护府法理持续归属于主君之最高霸权
+			if = {
+				limit = {
+					liege = {
+						any_held_title = { tier = tier_hegemony }
+					}
+				}
+				liege = {
+					every_held_title = {
+						limit = { tier = tier_hegemony }
+						save_scope_as = liege_hegemony
+					}
+				}
+				scope:target = {
+					set_de_jure_liege_title = scope:liege_hegemony
+				}
+			}
+			else_if = {
+				limit = { exists = title:h_china }
+				scope:target = {
+					set_de_jure_liege_title = title:h_china
+				}
+			}
 			# 赋予天朝都护行省契约，自动获得“大都护”官称与机构
 			vassal_contract_set_obligation_level = {
 				type = celestial_provinces
