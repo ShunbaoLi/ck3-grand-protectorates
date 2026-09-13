@@ -18,26 +18,6 @@ grand_protectorate_open_management_window_effect = {
 		clear_variable_list = grand_protectorate_candidates
 		clear_variable_list = grand_protectorate_selected_kingdoms
 
-		# 确保该大都护府法理挂载在天子霸权（大唐霸权 h_china）之下
-		if = {
-			limit = {
-				any_held_title = { tier = tier_hegemony }
-			}
-			every_held_title = {
-				limit = { tier = tier_hegemony }
-				save_scope_as = player_hegemony
-			}
-			scope:target_protectorate = {
-				set_de_jure_liege_title = scope:player_hegemony
-			}
-		}
-		else_if = {
-			limit = { exists = title:h_china }
-			scope:target_protectorate = {
-				set_de_jure_liege_title = title:h_china
-			}
-		}
-
 		# 1. 扫描天子直接持有的王国
 		every_held_title = {
 			limit = {
@@ -80,12 +60,15 @@ grand_protectorate_open_management_window_effect = {
 		}
 
 		# 4. 扫描当前已隶属于该大都护府法理的既有王国
-		scope:target_protectorate = {
-			every_in_de_jure_hierarchy = {
-				limit = {
-					tier = tier_kingdom
+		if = {
+			limit = { exists = scope:target_protectorate.holder }
+			scope:target_protectorate = {
+				every_in_de_jure_hierarchy = {
+					limit = {
+						tier = tier_kingdom
+					}
+					grand_protectorate_register_candidate_kingdom_effect = yes
 				}
-				grand_protectorate_register_candidate_kingdom_effect = yes
 			}
 		}
 	}

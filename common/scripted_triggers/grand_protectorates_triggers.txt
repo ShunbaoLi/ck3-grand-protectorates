@@ -31,13 +31,17 @@ is_kingdom_under_player_realm_trigger = {
 		# 被玩家自身持有
 		holder = root
 		# 被玩家下属封臣持有
-		holder = {
-			target_is_liege_or_above = root
+		AND = {
+			exists = holder
+			holder = {
+				target_is_liege_or_above = root
+			}
 		}
 		# 头衔暂无人持有，但玩家领内控制了该王国下属的伯爵领
 		AND = {
 			NOT = { exists = holder }
 			any_de_jure_county = {
+				exists = holder
 				holder = {
 					OR = {
 						this = root
