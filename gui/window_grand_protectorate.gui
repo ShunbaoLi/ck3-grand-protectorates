@@ -5,9 +5,10 @@
 
 window = {
 	name = "window_grand_protectorate"
+	visible_at_creation = no
 	parentanchor = center
 	size = { 720 860 }
-	layer = windows_layer
+	layer = top
 	filter_mouse = all
 	movable = yes
 

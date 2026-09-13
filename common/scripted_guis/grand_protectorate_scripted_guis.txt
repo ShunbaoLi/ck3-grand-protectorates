@@ -7,7 +7,10 @@
 grand_protectorate_window_is_open = {
 	scope = character
 	is_shown = {
-		has_character_flag = grand_protectorate_window_open
+		OR = {
+			has_character_flag = grand_protectorate_window_open
+			has_variable = grand_protectorate_window_open
+		}
 		exists = var:current_grand_protectorate
 	}
 }

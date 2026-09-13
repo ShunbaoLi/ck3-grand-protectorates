@@ -10,7 +10,8 @@ grand_protectorate_open_management_window_effect = {
 	}
 	root = {
 		save_scope_as = player_scope
-		set_character_flag = grand_protectorate_window_open
+		add_character_flag = grand_protectorate_window_open
+		set_variable = grand_protectorate_window_open
 		set_variable = {
 			name = current_grand_protectorate
 			value = scope:target_protectorate
@@ -315,6 +316,7 @@ grand_protectorate_confirm_edict_effect = {
 # 安全关闭管理面板并清理临时变量
 grand_protectorate_close_window_effect = {
 	remove_character_flag = grand_protectorate_window_open
+	remove_variable = grand_protectorate_window_open
 	remove_variable = current_grand_protectorate
 	clear_variable_list = grand_protectorate_candidates
 	clear_variable_list = grand_protectorate_selected_kingdoms

@@ -178,6 +178,7 @@ can_unlock_anxi_protectorate_trigger = {
 		text = unlock_anxi_protectorate_trigger_desc
 		OR = {
 			title:c_kara_khoja = {
+				exists = holder
 				holder = {
 					OR = {
 						this = root
@@ -196,6 +197,7 @@ can_unlock_andong_protectorate_trigger = {
 		text = unlock_andong_protectorate_trigger_desc
 		OR = {
 			title:c_LIAO_shenyang = {
+				exists = holder
 				holder = {
 					OR = {
 						this = root
@@ -214,6 +216,7 @@ can_unlock_anbei_protectorate_trigger = {
 		text = unlock_anbei_protectorate_trigger_desc
 		OR = {
 			title:c_karakorum = {
+				exists = holder
 				holder = {
 					OR = {
 						this = root
@@ -223,4 +226,5 @@ can_unlock_anbei_protectorate_trigger = {
 			}
 			root = { completely_controls = title:c_karakorum }
 		}
+	}
 }

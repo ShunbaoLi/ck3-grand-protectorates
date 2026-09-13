@@ -12,34 +12,32 @@
  e_anbei_protectorate: "Anbei Grand Protectorate"
  e_anbei_protectorate_adj: "Anbei"
 
- # --- Decisions (Direct 1-Step without Submenus) ---
- establish_anxi_decision: "Establish Anxi Grand Protectorate"
- manage_anxi_decision: "Manage Anxi Grand Protectorate"
- establish_anxi_decision_desc: "Establish the Anxi Grand Protectorate in the Western Regions (De Jure Capital: Gaochang) to administer Central Asia and the Silk Road."
- manage_anxi_decision_desc: "Survey and adjust the constituent kingdoms and de jure boundaries of the Anxi Grand Protectorate."
- establish_anxi_decision_tooltip: "Establish the Anxi Grand Protectorate and demarcate its frontier jurisdiction."
- manage_anxi_decision_tooltip: "Add or remove constituent kingdoms administered by the Anxi Grand Protectorate."
- open_anxi_management_window_tooltip: "Open the Anxi Grand Protectorate Management & Demarcation Panel"
+ # --- Decisions (Unified Option-List Flow) ---
+ establish_grand_protectorate_decision: "Imperial Edict: Grand Protectorate Affairs"
+ establish_grand_protectorate_decision_desc: "The Grand Protectorates are paramount institutions through which the Son of Heaven pacifies distant frontiers, commands provincial armies, and governs tributary realms. In accordance with ancient precedent, we shall establish the Grand Protectorates of Anxi, Andong, and Anbei, applying protectorate provincial contracts and governor appointments to secure imperial hegemony. Established protectorates may also have their constituent kingdom jurisdictions realigned at will."
+ establish_grand_protectorate_decision_tooltip: "Establish or realign Grand Protectorates"
+ establish_grand_protectorate_decision_effect_tooltip: "Opens the Grand Protectorate Chancellery panel to demarcate constituent de jure kingdoms."
 
- establish_andong_decision: "Establish Andong Grand Protectorate"
- manage_andong_decision: "Manage Andong Grand Protectorate"
- establish_andong_decision_desc: "Establish the Andong Grand Protectorate in the northeast (De Jure Capital: Shenyang) to administer Liaodong, Korea, and beyond."
- manage_andong_decision_desc: "Survey and adjust the constituent kingdoms and de jure boundaries of the Andong Grand Protectorate."
- establish_andong_decision_tooltip: "Establish the Andong Grand Protectorate and demarcate its frontier jurisdiction."
- manage_andong_decision_tooltip: "Add or remove constituent kingdoms administered by the Andong Grand Protectorate."
- open_andong_management_window_tooltip: "Open the Andong Grand Protectorate Management & Demarcation Panel"
+ ESTABLISH_GRAND_PROTECTORATE_NEXT_STEP_BUTTON: "Draft Imperial Edict"
+ establish_decision_confirm: "Promulgate Imperial Edict"
 
- establish_anbei_decision: "Establish Anbei Grand Protectorate"
- manage_anbei_decision: "Manage Anbei Grand Protectorate"
- establish_anbei_decision_desc: "Establish the Anbei Grand Protectorate on the northern steppe (De Jure Capital: Karakorum) to administer the steppe hordes and Siberia."
- manage_anbei_decision_desc: "Survey and adjust the constituent kingdoms and de jure boundaries of the Anbei Grand Protectorate."
- establish_anbei_decision_tooltip: "Establish the Anbei Grand Protectorate and demarcate its frontier jurisdiction."
- manage_anbei_decision_tooltip: "Add or remove constituent kingdoms administered by the Anbei Grand Protectorate."
- open_anbei_management_window_tooltip: "Open the Anbei Grand Protectorate Management & Demarcation Panel"
+ # Option List
+ establish_anxi_option: "Establish Anxi Grand Protectorate"
+ establish_anxi_option_desc: "Establish the Anxi Grand Protectorate in the Western Regions (De Jure Capital: Gaochang) to administer Central Asia and the Silk Road."
+ manage_anxi_option: "Manage Anxi Grand Protectorate"
+ manage_anxi_option_desc: "Survey and adjust the constituent kingdoms and de jure boundaries of the Anxi Grand Protectorate."
 
- establish_decision_confirm: "Promulgate Edict"
- manage_decision_confirm: "Realign Jurisdiction"
+ establish_andong_option: "Establish Andong Grand Protectorate"
+ establish_andong_option_desc: "Establish the Andong Grand Protectorate in the northeast (De Jure Capital: Shenyang) to administer Liaodong, Korea, and beyond."
+ manage_andong_option: "Manage Andong Grand Protectorate"
+ manage_andong_option_desc: "Survey and adjust the constituent kingdoms and de jure boundaries of the Andong Grand Protectorate."
 
+ establish_anbei_option: "Establish Anbei Grand Protectorate"
+ establish_anbei_option_desc: "Establish the Anbei Grand Protectorate on the northern steppe (De Jure Capital: Karakorum) to administer the steppe hordes and Siberia."
+ manage_anbei_option: "Manage Anbei Grand Protectorate"
+ manage_anbei_option_desc: "Survey and adjust the constituent kingdoms and de jure boundaries of the Anbei Grand Protectorate."
+
+ # County Hub Triggers
  unlock_anxi_protectorate_trigger_desc: "Controls the County of Gaochang"
  unlock_andong_protectorate_trigger_desc: "Controls the County of Shenyang"
  unlock_anbei_protectorate_trigger_desc: "Controls the County of Karakorum"
