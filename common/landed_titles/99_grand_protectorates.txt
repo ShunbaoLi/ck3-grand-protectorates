@@ -7,40 +7,43 @@
 e_anxi_protectorate = {
 	color = { 190 145 70 }
 	capital = c_kara_khoja
-	landless = yes
 	definite_form = yes
 	ruler_uses_title_name = no
 	destroy_if_invalid_heir = no
 	no_automatic_claims = yes
-	ignore_titularity_for_title_weighting = yes
 	always_follows_primary_heir = yes
 	can_be_named_after_dynasty = no
+	can_create = {
+		always = no
+	}
 }
 
 # 安东大都护府（独立专属帝国级头衔，统摄辽东、朝鲜半岛、日本诸方）
 e_andong_protectorate = {
 	color = { 65 125 185 }
 	capital = c_LIAO_shenyang
-	landless = yes
 	definite_form = yes
 	ruler_uses_title_name = no
 	destroy_if_invalid_heir = no
 	no_automatic_claims = yes
-	ignore_titularity_for_title_weighting = yes
 	always_follows_primary_heir = yes
 	can_be_named_after_dynasty = no
+	can_create = {
+		always = no
+	}
 }
 
 # 安北大都护府（统摄大漠、蒙古草原、极北冰原诸方）
 e_anbei_protectorate = {
 	color = { 65 165 125 }
 	capital = c_karakorum
-	landless = yes
 	definite_form = yes
 	ruler_uses_title_name = no
 	destroy_if_invalid_heir = no
 	no_automatic_claims = yes
-	ignore_titularity_for_title_weighting = yes
 	always_follows_primary_heir = yes
 	can_be_named_after_dynasty = no
+	can_create = {
+		always = no
+	}
 }

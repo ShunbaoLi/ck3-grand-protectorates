@@ -57,12 +57,15 @@ grand_protectorate_open_management_window_effect = {
 		}
 
 		# 4. 扫描当前已隶属于该大都护府法理的既有王国
-		title:$PROTECTORATE$ = {
-			every_in_de_jure_hierarchy = {
-				limit = {
-					tier = tier_kingdom
+		if = {
+			limit = { exists = title:$PROTECTORATE$.holder }
+			title:$PROTECTORATE$ = {
+				every_in_de_jure_hierarchy = {
+					limit = {
+						tier = tier_kingdom
+					}
+					grand_protectorate_register_candidate_kingdom_effect = yes
 				}
-				grand_protectorate_register_candidate_kingdom_effect = yes
 			}
 		}
 	}
@@ -123,7 +126,7 @@ grand_protectorate_register_candidate_kingdom_effect = {
 			else = {
 				set_variable = {
 					name = display_original_empire
-					value = scope:target_protectorate
+					value = root
 				}
 			}
 		}
@@ -131,10 +134,40 @@ grand_protectorate_register_candidate_kingdom_effect = {
 		# 若当前已归属于目标都护府，默认置为勾选状态 [√]
 		if = {
 			limit = {
-				exists = scope:target_protectorate
+				scope:player_scope = { has_character_flag = managing_anxi_protectorate }
 				scope:candidate_kingdom = {
 					exists = de_jure_liege
-					de_jure_liege = scope:target_protectorate
+					de_jure_liege = title:e_anxi_protectorate
+				}
+			}
+			scope:player_scope = {
+				add_to_variable_list = {
+					name = grand_protectorate_selected_kingdoms
+					target = scope:candidate_kingdom
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				scope:player_scope = { has_character_flag = managing_andong_protectorate }
+				scope:candidate_kingdom = {
+					exists = de_jure_liege
+					de_jure_liege = title:e_andong_protectorate
+				}
+			}
+			scope:player_scope = {
+				add_to_variable_list = {
+					name = grand_protectorate_selected_kingdoms
+					target = scope:candidate_kingdom
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				scope:player_scope = { has_character_flag = managing_anbei_protectorate }
+				scope:candidate_kingdom = {
+					exists = de_jure_liege
+					de_jure_liege = title:e_anbei_protectorate
 				}
 			}
 			scope:player_scope = {
@@ -171,36 +204,6 @@ grand_protectorate_toggle_kingdom_effect = {
 
 # 确认颁布天子敕令：更勘疆理 / 裁撤闭环
 grand_protectorate_confirm_edict_effect = {
-	if = {
-		limit = { has_character_flag = managing_anxi_protectorate }
-		title:e_anxi_protectorate = {
-			save_scope_as = current_grand_protectorate
-		}
-	}
-	else_if = {
-		limit = { has_character_flag = managing_andong_protectorate }
-		title:e_andong_protectorate = {
-			save_scope_as = current_grand_protectorate
-		}
-	}
-	else_if = {
-		limit = { has_character_flag = managing_anbei_protectorate }
-		title:e_anbei_protectorate = {
-			save_scope_as = current_grand_protectorate
-		}
-	}
-	else_if = {
-		limit = { has_variable = current_grand_protectorate }
-		var:current_grand_protectorate = {
-			save_scope_as = current_grand_protectorate
-		}
-	}
-	else = {
-		title:e_anxi_protectorate = {
-			save_scope_as = current_grand_protectorate
-		}
-	}
-
 	# 分支 A：裁撤机制（若勾选数为 0）
 	if = {
 		limit = {
@@ -208,45 +211,126 @@ grand_protectorate_confirm_edict_effect = {
 				has_variable_list = grand_protectorate_selected_kingdoms
 			}
 		}
-		# 将原本隶属于该大都护府的所有王国，依变量精准退回母帝国法理
-		scope:current_grand_protectorate = {
-			every_in_de_jure_hierarchy = {
-				limit = { tier = tier_kingdom }
-				if = {
-					limit = { exists = var:original_de_jure_empire }
-					set_de_jure_liege_title = var:original_de_jure_empire
-					remove_variable = original_de_jure_empire
-				}
-			}
-		}
-
-		# 销毁大都护府帝国头衔并返还威望
 		if = {
 			limit = {
-				exists = scope:current_grand_protectorate.holder
+				has_character_flag = managing_anxi_protectorate
+				exists = title:e_anxi_protectorate.holder
 			}
-			destroy_title = scope:current_grand_protectorate
+			title:e_anxi_protectorate = {
+				every_in_de_jure_hierarchy = {
+					limit = { tier = tier_kingdom }
+					if = {
+						limit = { exists = var:original_de_jure_empire }
+						set_de_jure_liege_title = var:original_de_jure_empire
+						remove_variable = original_de_jure_empire
+					}
+				}
+				destroy_title = this
+			}
 			add_prestige = 300
 			send_interface_toast = {
 				title = grand_protectorate_decommissioned_toast_title
-				left_icon = scope:current_grand_protectorate
+				left_icon = title:e_anxi_protectorate
+				custom_tooltip = grand_protectorate_decommissioned_toast_desc
+			}
+		}
+		else_if = {
+			limit = {
+				has_character_flag = managing_andong_protectorate
+				exists = title:e_andong_protectorate.holder
+			}
+			title:e_andong_protectorate = {
+				every_in_de_jure_hierarchy = {
+					limit = { tier = tier_kingdom }
+					if = {
+						limit = { exists = var:original_de_jure_empire }
+						set_de_jure_liege_title = var:original_de_jure_empire
+						remove_variable = original_de_jure_empire
+					}
+				}
+				destroy_title = this
+			}
+			add_prestige = 300
+			send_interface_toast = {
+				title = grand_protectorate_decommissioned_toast_title
+				left_icon = title:e_andong_protectorate
+				custom_tooltip = grand_protectorate_decommissioned_toast_desc
+			}
+		}
+		else_if = {
+			limit = {
+				has_character_flag = managing_anbei_protectorate
+				exists = title:e_anbei_protectorate.holder
+			}
+			title:e_anbei_protectorate = {
+				every_in_de_jure_hierarchy = {
+					limit = { tier = tier_kingdom }
+					if = {
+						limit = { exists = var:original_de_jure_empire }
+						set_de_jure_liege_title = var:original_de_jure_empire
+						remove_variable = original_de_jure_empire
+					}
+				}
+				destroy_title = this
+			}
+			add_prestige = 300
+			send_interface_toast = {
+				title = grand_protectorate_decommissioned_toast_title
+				left_icon = title:e_anbei_protectorate
 				custom_tooltip = grand_protectorate_decommissioned_toast_desc
 			}
 		}
 	}
 	# 分支 B：设府与更勘（勾选数 > 0）
 	else = {
-		# 若头衔未激活，正式创建并赋予天子
+		# 1. 若尚未创设，直接针对具体 title:xxx 创建并赋予天子
 		if = {
 			limit = {
-				NOT = { exists = scope:current_grand_protectorate.holder }
+				has_character_flag = managing_anxi_protectorate
+				NOT = { exists = title:e_anxi_protectorate.holder }
 			}
 			create_title_and_vassal_change = {
 				type = created
 				save_scope_as = change
 				add_claim_on_loss = no
 			}
-			scope:current_grand_protectorate = {
+			title:e_anxi_protectorate = {
+				change_title_holder = {
+					holder = root
+					change = scope:change
+				}
+			}
+			resolve_title_and_vassal_change = scope:change
+		}
+		else_if = {
+			limit = {
+				has_character_flag = managing_andong_protectorate
+				NOT = { exists = title:e_andong_protectorate.holder }
+			}
+			create_title_and_vassal_change = {
+				type = created
+				save_scope_as = change
+				add_claim_on_loss = no
+			}
+			title:e_andong_protectorate = {
+				change_title_holder = {
+					holder = root
+					change = scope:change
+				}
+			}
+			resolve_title_and_vassal_change = scope:change
+		}
+		else_if = {
+			limit = {
+				has_character_flag = managing_anbei_protectorate
+				NOT = { exists = title:e_anbei_protectorate.holder }
+			}
+			create_title_and_vassal_change = {
+				type = created
+				save_scope_as = change
+				add_claim_on_loss = no
+			}
+			title:e_anbei_protectorate = {
 				change_title_holder = {
 					holder = root
 					change = scope:change
@@ -255,15 +339,41 @@ grand_protectorate_confirm_edict_effect = {
 			resolve_title_and_vassal_change = scope:change
 		}
 
-		# 核心整合：将大都护府法理永久整合到天子所持的最高霸权（大唐霸权 h_china）之下
+		# 2. 此时头衔已创设并由天子持有，安全保存 scope:current_grand_protectorate
 		if = {
+			limit = { has_character_flag = managing_anxi_protectorate }
+			title:e_anxi_protectorate = {
+				save_scope_as = current_grand_protectorate
+			}
+		}
+		else_if = {
+			limit = { has_character_flag = managing_andong_protectorate }
+			title:e_andong_protectorate = {
+				save_scope_as = current_grand_protectorate
+			}
+		}
+		else_if = {
+			limit = { has_character_flag = managing_anbei_protectorate }
+			title:e_anbei_protectorate = {
+				save_scope_as = current_grand_protectorate
+			}
+		}
+
+		# 3. 核心整合：将大都护府法理永久整合到天子所持的大唐霸权（h_china）之下
+		if = {
+			limit = { exists = title:h_china }
+			scope:current_grand_protectorate = {
+				set_de_jure_liege_title = title:h_china
+			}
+		}
+		else_if = {
 			limit = {
 				root = {
 					any_held_title = { tier = tier_hegemony }
 				}
 			}
 			root = {
-				every_held_title = {
+				random_held_title = {
 					limit = { tier = tier_hegemony }
 					save_scope_as = player_hegemony
 				}
@@ -272,14 +382,8 @@ grand_protectorate_confirm_edict_effect = {
 				set_de_jure_liege_title = scope:player_hegemony
 			}
 		}
-		else_if = {
-			limit = { exists = title:h_china }
-			scope:current_grand_protectorate = {
-				set_de_jure_liege_title = title:h_china
-			}
-		}
 
-		# 1. 处理被勾选的王国：划入大都护府法理，并永久记录原始母帝国变量
+		# 4. 处理被勾选的王国：划入大都护府法理，并永久记录原始母帝国变量
 		every_in_list = {
 			variable = grand_protectorate_selected_kingdoms
 			if = {
@@ -301,7 +405,7 @@ grand_protectorate_confirm_edict_effect = {
 			}
 		}
 
-		# 2. 处理原本隶属于该府但本次被取消勾选的王国：精准退回原母帝国
+		# 5. 处理原本隶属于该府但本次被取消勾选的王国：精准退回原母帝国
 		scope:current_grand_protectorate = {
 			every_in_de_jure_hierarchy = {
 				limit = {
