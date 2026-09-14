@@ -24,18 +24,24 @@
  # 选项列表
  establish_anxi_option: "设安西大都护府"
  establish_anxi_option_desc: "在西域开建安西大都护府（法理首都：高昌），统摄河中、吐火罗及西域诸邦。"
+ establish_anxi_option_tooltip: "敕建安西大都护府，定西域、河中及中亚诸邦之疆理法度。"
  manage_anxi_option: "管理安西大都护府"
  manage_anxi_option_desc: "更勘调整安西大都护府所统辖之西域各王国法理辖区。"
+ manage_anxi_option_tooltip: "更勘安西大都护府所统领之各王国法理归属。"
 
  establish_andong_option: "设安东大都护府"
  establish_andong_option_desc: "在辽东开建安东大都护府（法理首都：沈阳），统摄辽东、朝鲜半岛及扶桑诸邦。"
+ establish_andong_option_tooltip: "敕建安东大都护府，镇抚辽东、朝鲜及东海扶桑诸域。"
  manage_andong_option: "管理安东大都护府"
  manage_andong_option_desc: "更勘调整安东大都护府所统辖之辽东及东海各王国法理辖区。"
+ manage_andong_option_tooltip: "更勘安东大都护府所统领之各王国法理归属。"
 
  establish_anbei_option: "设安北大都护府"
  establish_anbei_option_desc: "在漠北开建安北大都护府（法理首都：哈喇和林），统摄大漠南北及极北草原诸部。"
+ establish_anbei_option_tooltip: "敕建安北大都护府，经略大漠南北及极北草原诸部。"
  manage_anbei_option: "管理安北大都护府"
  manage_anbei_option_desc: "更勘调整安北大都护府所统辖之大漠草原各王国法理辖区。"
+ manage_anbei_option_tooltip: "更勘安北大都护府所统领之各王国法理归属。"
 
  # 伯爵领枢纽触发器提示
  unlock_anxi_protectorate_trigger_desc: "控制高昌伯爵领"

@@ -24,18 +24,24 @@
  # Option List
  establish_anxi_option: "Establish Anxi Grand Protectorate"
  establish_anxi_option_desc: "Establish the Anxi Grand Protectorate in the Western Regions (De Jure Capital: Gaochang) to administer Central Asia and the Silk Road."
+ establish_anxi_option_tooltip: "Establish the Anxi Grand Protectorate to govern the Western Regions, Transoxiana, and Central Asia."
  manage_anxi_option: "Manage Anxi Grand Protectorate"
  manage_anxi_option_desc: "Survey and adjust the constituent kingdoms and de jure boundaries of the Anxi Grand Protectorate."
+ manage_anxi_option_tooltip: "Realign the de jure kingdom jurisdictions of the Anxi Grand Protectorate."
 
  establish_andong_option: "Establish Andong Grand Protectorate"
  establish_andong_option_desc: "Establish the Andong Grand Protectorate in the northeast (De Jure Capital: Shenyang) to administer Liaodong, Korea, and beyond."
+ establish_andong_option_tooltip: "Establish the Andong Grand Protectorate to govern Liaodong, Korea, and Japan."
  manage_andong_option: "Manage Andong Grand Protectorate"
  manage_andong_option_desc: "Survey and adjust the constituent kingdoms and de jure boundaries of the Andong Grand Protectorate."
+ manage_andong_option_tooltip: "Realign the de jure kingdom jurisdictions of the Andong Grand Protectorate."
 
  establish_anbei_option: "Establish Anbei Grand Protectorate"
  establish_anbei_option_desc: "Establish the Anbei Grand Protectorate on the northern steppe (De Jure Capital: Karakorum) to administer the steppe hordes and Siberia."
+ establish_anbei_option_tooltip: "Establish the Anbei Grand Protectorate to govern the northern steppes and Siberia."
  manage_anbei_option: "Manage Anbei Grand Protectorate"
  manage_anbei_option_desc: "Survey and adjust the constituent kingdoms and de jure boundaries of the Anbei Grand Protectorate."
+ manage_anbei_option_tooltip: "Realign the de jure kingdom jurisdictions of the Anbei Grand Protectorate."
 
  # County Hub Triggers
  unlock_anxi_protectorate_trigger_desc: "Controls the County of Gaochang"
