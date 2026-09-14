@@ -52,9 +52,18 @@ is_kingdom_under_player_realm_trigger = {
 		AND = {
 			exists = de_jure_liege
 			OR = {
-				de_jure_liege = title:e_anxi_protectorate
-				de_jure_liege = title:e_andong_protectorate
-				de_jure_liege = title:e_anbei_protectorate
+				AND = {
+					exists = global_var:grand_protectorate_anxi
+					de_jure_liege = global_var:grand_protectorate_anxi
+				}
+				AND = {
+					exists = global_var:grand_protectorate_andong
+					de_jure_liege = global_var:grand_protectorate_andong
+				}
+				AND = {
+					exists = global_var:grand_protectorate_anbei
+					de_jure_liege = global_var:grand_protectorate_anbei
+				}
 			}
 		}
 	}
@@ -67,22 +76,17 @@ is_candidate_kingdom_for_anxi_trigger = {
 	is_kingdom_under_player_realm_trigger = yes
 	OR = {
 		AND = {
+			exists = global_var:grand_protectorate_anxi
 			exists = de_jure_liege
-			de_jure_liege = title:e_anxi_protectorate
+			de_jure_liege = global_var:grand_protectorate_anxi
 		}
 		this = title:k_hexi
 		this = title:k_guiyi
 		this = title:k_dzungaria
 		this = title:k_khotan
-		this = title:k_kashgar
-		this = title:k_ferghana
 		this = title:k_transoxiana
-		this = title:k_sogdiana
-		this = title:k_khwarazm
 		this = title:k_khorasan
 		this = title:k_kabulistan
-		this = title:k_tashkent
-		this = title:k_baljiyan
 		title_capital_county = {
 			title_province = {
 				OR = {
@@ -120,15 +124,13 @@ is_candidate_kingdom_for_andong_trigger = {
 	is_kingdom_under_player_realm_trigger = yes
 	OR = {
 		AND = {
+			exists = global_var:grand_protectorate_andong
 			exists = de_jure_liege
-			de_jure_liege = title:e_andong_protectorate
+			de_jure_liege = global_var:grand_protectorate_andong
 		}
-		this = title:k_liaodong
 		this = title:k_goguryeo
 		this = title:k_silla
 		this = title:k_baekje
-		this = title:k_korea
-		this = title:k_goryeo
 		this = title:k_balhae
 		title_capital_county = {
 			title_province = {
@@ -161,15 +163,12 @@ is_candidate_kingdom_for_anbei_trigger = {
 	is_kingdom_under_player_realm_trigger = yes
 	OR = {
 		AND = {
+			exists = global_var:grand_protectorate_anbei
 			exists = de_jure_liege
-			de_jure_liege = title:e_anbei_protectorate
+			de_jure_liege = global_var:grand_protectorate_anbei
 		}
-		this = title:k_mongolia
 		this = title:k_otuken
 		this = title:k_buryatia
-		this = title:k_yenisei
-		this = title:k_baikal
-		this = title:k_altai
 		this = title:k_tuva
 		title_capital_county = {
 			title_province = {

@@ -9,9 +9,18 @@ on_title_gain = {
 		if = {
 			limit = {
 				OR = {
-					scope:target = title:e_anxi_protectorate
-					scope:target = title:e_andong_protectorate
-					scope:target = title:e_anbei_protectorate
+					AND = {
+						exists = global_var:grand_protectorate_anxi
+						scope:target = global_var:grand_protectorate_anxi
+					}
+					AND = {
+						exists = global_var:grand_protectorate_andong
+						scope:target = global_var:grand_protectorate_andong
+					}
+					AND = {
+						exists = global_var:grand_protectorate_anbei
+						scope:target = global_var:grand_protectorate_anbei
+					}
 				}
 				is_independent_ruler = no
 				liege = {

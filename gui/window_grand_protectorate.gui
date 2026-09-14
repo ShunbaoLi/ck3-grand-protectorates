@@ -73,19 +73,19 @@ window = {
 					text_single = {
 						visible = "[GetPlayer.MakeScope.HasFlag('managing_anxi_protectorate')]"
 						text = "e_anxi_protectorate"
-						default_format = "#high;bold;size18"
+						default_format = "#high;bold"
 						align = left|nobaseline
 					}
 					text_single = {
 						visible = "[GetPlayer.MakeScope.HasFlag('managing_andong_protectorate')]"
 						text = "e_andong_protectorate"
-						default_format = "#high;bold;size18"
+						default_format = "#high;bold"
 						align = left|nobaseline
 					}
 					text_single = {
 						visible = "[GetPlayer.MakeScope.HasFlag('managing_anbei_protectorate')]"
 						text = "e_anbei_protectorate"
-						default_format = "#high;bold;size18"
+						default_format = "#high;bold"
 						align = left|nobaseline
 					}
 

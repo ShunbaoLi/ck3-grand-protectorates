@@ -35,7 +35,7 @@ establish_grand_protectorate_decision = {
 		item = {
 			value = establish_anxi_option
 			is_shown = {
-				NOT = { exists = title:e_anxi_protectorate.holder }
+				NOT = { exists = global_var:grand_protectorate_anxi.holder }
 			}
 			is_valid = {
 				can_unlock_anxi_protectorate_trigger = yes
@@ -50,7 +50,7 @@ establish_grand_protectorate_decision = {
 		item = {
 			value = manage_anxi_option
 			is_shown = {
-				exists = title:e_anxi_protectorate.holder
+				exists = global_var:grand_protectorate_anxi.holder
 			}
 			is_valid = {
 				always = yes
@@ -65,7 +65,7 @@ establish_grand_protectorate_decision = {
 		item = {
 			value = establish_andong_option
 			is_shown = {
-				NOT = { exists = title:e_andong_protectorate.holder }
+				NOT = { exists = global_var:grand_protectorate_andong.holder }
 			}
 			is_valid = {
 				can_unlock_andong_protectorate_trigger = yes
@@ -80,7 +80,7 @@ establish_grand_protectorate_decision = {
 		item = {
 			value = manage_andong_option
 			is_shown = {
-				exists = title:e_andong_protectorate.holder
+				exists = global_var:grand_protectorate_andong.holder
 			}
 			is_valid = {
 				always = yes
@@ -95,7 +95,7 @@ establish_grand_protectorate_decision = {
 		item = {
 			value = establish_anbei_option
 			is_shown = {
-				NOT = { exists = title:e_anbei_protectorate.holder }
+				NOT = { exists = global_var:grand_protectorate_anbei.holder }
 			}
 			is_valid = {
 				can_unlock_anbei_protectorate_trigger = yes
@@ -110,7 +110,7 @@ establish_grand_protectorate_decision = {
 		item = {
 			value = manage_anbei_option
 			is_shown = {
-				exists = title:e_anbei_protectorate.holder
+				exists = global_var:grand_protectorate_anbei.holder
 			}
 			is_valid = {
 				always = yes
@@ -137,9 +137,7 @@ establish_grand_protectorate_decision = {
 				remove_character_flag = managing_andong_protectorate
 				remove_character_flag = managing_anbei_protectorate
 				add_character_flag = managing_anxi_protectorate
-				grand_protectorate_open_management_window_effect = {
-					PROTECTORATE = e_anxi_protectorate
-				}
+				grand_protectorate_open_management_window_effect = yes
 			}
 			else_if = {
 				limit = {
@@ -153,9 +151,7 @@ establish_grand_protectorate_decision = {
 				remove_character_flag = managing_anxi_protectorate
 				remove_character_flag = managing_anbei_protectorate
 				add_character_flag = managing_andong_protectorate
-				grand_protectorate_open_management_window_effect = {
-					PROTECTORATE = e_andong_protectorate
-				}
+				grand_protectorate_open_management_window_effect = yes
 			}
 			else_if = {
 				limit = {
@@ -169,17 +165,13 @@ establish_grand_protectorate_decision = {
 				remove_character_flag = managing_anxi_protectorate
 				remove_character_flag = managing_andong_protectorate
 				add_character_flag = managing_anbei_protectorate
-				grand_protectorate_open_management_window_effect = {
-					PROTECTORATE = e_anbei_protectorate
-				}
+				grand_protectorate_open_management_window_effect = yes
 			}
 			else = {
 				remove_character_flag = managing_andong_protectorate
 				remove_character_flag = managing_anbei_protectorate
 				add_character_flag = managing_anxi_protectorate
-				grand_protectorate_open_management_window_effect = {
-					PROTECTORATE = e_anxi_protectorate
-				}
+				grand_protectorate_open_management_window_effect = yes
 			}
 		}
 	}

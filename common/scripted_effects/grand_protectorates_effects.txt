@@ -1,26 +1,51 @@
 ﻿# ====================================================================
 # CK3 Grand Protectorates - Scripted Effects
-# 天子敕建大都护府 - 核心业务逻辑与数据闭环脚本
+# å¤©å­æ••å»ºå¤§éƒ½æŠ¤åºœ - æ ¸å¿ƒä¸šåŠ¡é€»è¾‘ä¸Žæ•°æ®é—­çŽ¯è„šæœ¬ï¼ˆå®Œå…¨å…¼å®¹å·²æœ‰å­˜æ¡£ï¼‰
 # ====================================================================
 
-# 打开并初始化大都护府管理多选面板
+# æ‰“å¼€å¹¶åˆå§‹åŒ–å¤§éƒ½æŠ¤åºœç®¡ç†å¤šé€‰é¢æ¿
 grand_protectorate_open_management_window_effect = {
 	root = {
 		save_scope_as = player_scope
-		title:$PROTECTORATE$ = {
-			save_scope_as = target_protectorate
-		}
 
 		add_character_flag = grand_protectorate_window_open
 		set_variable = grand_protectorate_window_open
-		set_variable = {
-			name = current_grand_protectorate
-			value = title:$PROTECTORATE$
-		}
 		clear_variable_list = grand_protectorate_candidates
 		clear_variable_list = grand_protectorate_selected_kingdoms
 
-		# 1. 扫描天子直接持有的王国
+		# ç»‘å®šå½“å‰å¤„ç†çš„å¤§éƒ½æŠ¤åºœå˜é‡ï¼ˆè‹¥å·²åˆ›è®¾ï¼‰
+		if = {
+			limit = {
+				has_character_flag = managing_anxi_protectorate
+				exists = global_var:grand_protectorate_anxi
+			}
+			set_variable = {
+				name = current_grand_protectorate
+				value = global_var:grand_protectorate_anxi
+			}
+		}
+		else_if = {
+			limit = {
+				has_character_flag = managing_andong_protectorate
+				exists = global_var:grand_protectorate_andong
+			}
+			set_variable = {
+				name = current_grand_protectorate
+				value = global_var:grand_protectorate_andong
+			}
+		}
+		else_if = {
+			limit = {
+				has_character_flag = managing_anbei_protectorate
+				exists = global_var:grand_protectorate_anbei
+			}
+			set_variable = {
+				name = current_grand_protectorate
+				value = global_var:grand_protectorate_anbei
+			}
+		}
+
+		# 1. æ‰«æå¤©å­ç›´æŽ¥æŒæœ‰çš„çŽ‹å›½
 		every_held_title = {
 			limit = {
 				tier = tier_kingdom
@@ -29,7 +54,7 @@ grand_protectorate_open_management_window_effect = {
 			grand_protectorate_register_candidate_kingdom_effect = yes
 		}
 
-		# 2. 扫描封臣持有的王国
+		# 2. æ‰«æå°è‡£æŒæœ‰çš„çŽ‹å›½
 		every_vassal_or_below = {
 			every_held_title = {
 				limit = {
@@ -40,7 +65,7 @@ grand_protectorate_open_management_window_effect = {
 			}
 		}
 
-		# 3. 扫描领地内实际控制伯爵领的王国（处理暂未创建头衔的地理区域王国）
+		# 3. æ‰«æé¢†åœ°å†…å®žé™…æŽ§åˆ¶ä¼¯çˆµé¢†çš„çŽ‹å›½ï¼ˆå¤„ç†æš‚æœªåˆ›å»ºå¤´è¡”çš„åœ°ç†åŒºåŸŸçŽ‹å›½ï¼‰
 		every_sub_realm_county = {
 			if = {
 				limit = {
@@ -56,10 +81,10 @@ grand_protectorate_open_management_window_effect = {
 			}
 		}
 
-		# 4. 扫描当前已隶属于该大都护府法理的既有王国
+		# 4. æ‰«æå½“å‰å·²éš¶å±žäºŽè¯¥å¤§éƒ½æŠ¤åºœæ³•ç†çš„æ—¢æœ‰çŽ‹å›½
 		if = {
-			limit = { exists = title:$PROTECTORATE$.holder }
-			title:$PROTECTORATE$ = {
+			limit = { exists = var:current_grand_protectorate.holder }
+			var:current_grand_protectorate = {
 				every_in_de_jure_hierarchy = {
 					limit = {
 						tier = tier_kingdom
@@ -71,7 +96,7 @@ grand_protectorate_open_management_window_effect = {
 	}
 }
 
-# 注册候选王国并计算公国数与母帝国信息
+# æ³¨å†Œå€™é€‰çŽ‹å›½å¹¶è®¡ç®—å…¬å›½æ•°ä¸Žæ¯å¸å›½ä¿¡æ¯
 grand_protectorate_register_candidate_kingdom_effect = {
 	save_scope_as = candidate_kingdom
 	if = {
@@ -92,7 +117,7 @@ grand_protectorate_register_candidate_kingdom_effect = {
 			}
 		}
 
-		# 动态计算法理公国总数
+		# åŠ¨æ€è®¡ç®—æ³•ç†å…¬å›½æ€»æ•°
 		scope:candidate_kingdom = {
 			set_variable = {
 				name = de_jure_duchy_count
@@ -108,7 +133,7 @@ grand_protectorate_register_candidate_kingdom_effect = {
 				}
 			}
 
-			# 解析母帝国展示信息
+			# è§£æžæ¯å¸å›½å±•ç¤ºä¿¡æ¯
 			if = {
 				limit = { exists = var:original_de_jure_empire }
 				set_variable = {
@@ -131,43 +156,15 @@ grand_protectorate_register_candidate_kingdom_effect = {
 			}
 		}
 
-		# 若当前已归属于目标都护府，默认置为勾选状态 [√]
+		# è‹¥å½“å‰å·²å½’å±žäºŽç›®æ ‡éƒ½æŠ¤åºœï¼Œé»˜è®¤ç½®ä¸ºå‹¾é€‰çŠ¶æ€ [âˆš]
 		if = {
 			limit = {
-				scope:player_scope = { has_character_flag = managing_anxi_protectorate }
+				scope:player_scope = {
+					exists = var:current_grand_protectorate
+				}
 				scope:candidate_kingdom = {
 					exists = de_jure_liege
-					de_jure_liege = title:e_anxi_protectorate
-				}
-			}
-			scope:player_scope = {
-				add_to_variable_list = {
-					name = grand_protectorate_selected_kingdoms
-					target = scope:candidate_kingdom
-				}
-			}
-		}
-		else_if = {
-			limit = {
-				scope:player_scope = { has_character_flag = managing_andong_protectorate }
-				scope:candidate_kingdom = {
-					exists = de_jure_liege
-					de_jure_liege = title:e_andong_protectorate
-				}
-			}
-			scope:player_scope = {
-				add_to_variable_list = {
-					name = grand_protectorate_selected_kingdoms
-					target = scope:candidate_kingdom
-				}
-			}
-		}
-		else_if = {
-			limit = {
-				scope:player_scope = { has_character_flag = managing_anbei_protectorate }
-				scope:candidate_kingdom = {
-					exists = de_jure_liege
-					de_jure_liege = title:e_anbei_protectorate
+					de_jure_liege = scope:player_scope.var:current_grand_protectorate
 				}
 			}
 			scope:player_scope = {
@@ -180,7 +177,7 @@ grand_protectorate_register_candidate_kingdom_effect = {
 	}
 }
 
-# GUI多选复选框切换效果
+# GUIå¤šé€‰å¤é€‰æ¡†åˆ‡æ¢æ•ˆæžœ
 grand_protectorate_toggle_kingdom_effect = {
 	if = {
 		limit = {
@@ -202,9 +199,9 @@ grand_protectorate_toggle_kingdom_effect = {
 	}
 }
 
-# 确认颁布天子敕令：更勘疆理 / 裁撤闭环
+# ç¡®è®¤é¢å¸ƒå¤©å­æ••ä»¤ï¼šæ›´å‹˜ç–†ç† / è£æ’¤é—­çŽ¯
 grand_protectorate_confirm_edict_effect = {
-	# 分支 A：裁撤机制（若勾选数为 0）
+	# åˆ†æ”¯ Aï¼šè£æ’¤æœºåˆ¶ï¼ˆè‹¥å‹¾é€‰æ•°ä¸º 0ï¼‰
 	if = {
 		limit = {
 			NOT = {
@@ -214,9 +211,10 @@ grand_protectorate_confirm_edict_effect = {
 		if = {
 			limit = {
 				has_character_flag = managing_anxi_protectorate
-				exists = title:e_anxi_protectorate.holder
+				exists = global_var:grand_protectorate_anxi.holder
 			}
-			title:e_anxi_protectorate = {
+			global_var:grand_protectorate_anxi = {
+				save_scope_as = decommission_target
 				every_in_de_jure_hierarchy = {
 					limit = { tier = tier_kingdom }
 					if = {
@@ -225,21 +223,23 @@ grand_protectorate_confirm_edict_effect = {
 						remove_variable = original_de_jure_empire
 					}
 				}
-				destroy_title = this
 			}
+			root = { destroy_title = scope:decommission_target }
+			remove_global_variable = grand_protectorate_anxi
 			add_prestige = 300
 			send_interface_toast = {
 				title = grand_protectorate_decommissioned_toast_title
-				left_icon = title:e_anxi_protectorate
+				left_icon = e_anxi_protectorate
 				custom_tooltip = grand_protectorate_decommissioned_toast_desc
 			}
 		}
 		else_if = {
 			limit = {
 				has_character_flag = managing_andong_protectorate
-				exists = title:e_andong_protectorate.holder
+				exists = global_var:grand_protectorate_andong.holder
 			}
-			title:e_andong_protectorate = {
+			global_var:grand_protectorate_andong = {
+				save_scope_as = decommission_target
 				every_in_de_jure_hierarchy = {
 					limit = { tier = tier_kingdom }
 					if = {
@@ -248,21 +248,23 @@ grand_protectorate_confirm_edict_effect = {
 						remove_variable = original_de_jure_empire
 					}
 				}
-				destroy_title = this
 			}
+			root = { destroy_title = scope:decommission_target }
+			remove_global_variable = grand_protectorate_andong
 			add_prestige = 300
 			send_interface_toast = {
 				title = grand_protectorate_decommissioned_toast_title
-				left_icon = title:e_andong_protectorate
+				left_icon = e_andong_protectorate
 				custom_tooltip = grand_protectorate_decommissioned_toast_desc
 			}
 		}
 		else_if = {
 			limit = {
 				has_character_flag = managing_anbei_protectorate
-				exists = title:e_anbei_protectorate.holder
+				exists = global_var:grand_protectorate_anbei.holder
 			}
-			title:e_anbei_protectorate = {
+			global_var:grand_protectorate_anbei = {
+				save_scope_as = decommission_target
 				every_in_de_jure_hierarchy = {
 					limit = { tier = tier_kingdom }
 					if = {
@@ -271,95 +273,138 @@ grand_protectorate_confirm_edict_effect = {
 						remove_variable = original_de_jure_empire
 					}
 				}
-				destroy_title = this
 			}
+			root = { destroy_title = scope:decommission_target }
+			remove_global_variable = grand_protectorate_anbei
 			add_prestige = 300
 			send_interface_toast = {
 				title = grand_protectorate_decommissioned_toast_title
-				left_icon = title:e_anbei_protectorate
+				left_icon = e_anbei_protectorate
 				custom_tooltip = grand_protectorate_decommissioned_toast_desc
 			}
 		}
 	}
-	# 分支 B：设府与更勘（勾选数 > 0）
+	# åˆ†æ”¯ Bï¼šè®¾åºœä¸Žæ›´å‹˜ï¼ˆå‹¾é€‰æ•° > 0ï¼‰
 	else = {
-		# 1. 若尚未创设，直接针对具体 title:xxx 创建并赋予天子
+		# 1. è‹¥å°šæœªåˆ›è®¾ï¼Œé€šè¿‡ create_dynamic_title åˆ›å»ºå¹¶èµ‹äºˆå¤©å­
 		if = {
 			limit = {
 				has_character_flag = managing_anxi_protectorate
-				NOT = { exists = title:e_anxi_protectorate.holder }
+				NOT = { exists = global_var:grand_protectorate_anxi.holder }
+			}
+			create_dynamic_title = {
+				tier = empire
+				name = e_anxi_protectorate
+				adj = e_anxi_protectorate_adj
 			}
 			create_title_and_vassal_change = {
 				type = created
 				save_scope_as = change
 				add_claim_on_loss = no
 			}
-			title:e_anxi_protectorate = {
+			scope:new_title = {
+				set_definitive_form = yes
+				set_can_be_named_after_dynasty = no
+				set_no_automatic_claims = yes
+				set_capital_county = title:c_kara_khoja
+				set_coa = e_anxi_protectorate
 				change_title_holder = {
 					holder = root
 					change = scope:change
 				}
 			}
 			resolve_title_and_vassal_change = scope:change
+			set_global_variable = {
+				name = grand_protectorate_anxi
+				value = scope:new_title
+			}
 		}
 		else_if = {
 			limit = {
 				has_character_flag = managing_andong_protectorate
-				NOT = { exists = title:e_andong_protectorate.holder }
+				NOT = { exists = global_var:grand_protectorate_andong.holder }
+			}
+			create_dynamic_title = {
+				tier = empire
+				name = e_andong_protectorate
+				adj = e_andong_protectorate_adj
 			}
 			create_title_and_vassal_change = {
 				type = created
 				save_scope_as = change
 				add_claim_on_loss = no
 			}
-			title:e_andong_protectorate = {
+			scope:new_title = {
+				set_definitive_form = yes
+				set_can_be_named_after_dynasty = no
+				set_no_automatic_claims = yes
+				set_capital_county = title:c_LIAO_shenyang
+				set_coa = e_andong_protectorate
 				change_title_holder = {
 					holder = root
 					change = scope:change
 				}
 			}
 			resolve_title_and_vassal_change = scope:change
+			set_global_variable = {
+				name = grand_protectorate_andong
+				value = scope:new_title
+			}
 		}
 		else_if = {
 			limit = {
 				has_character_flag = managing_anbei_protectorate
-				NOT = { exists = title:e_anbei_protectorate.holder }
+				NOT = { exists = global_var:grand_protectorate_anbei.holder }
+			}
+			create_dynamic_title = {
+				tier = empire
+				name = e_anbei_protectorate
+				adj = e_anbei_protectorate_adj
 			}
 			create_title_and_vassal_change = {
 				type = created
 				save_scope_as = change
 				add_claim_on_loss = no
 			}
-			title:e_anbei_protectorate = {
+			scope:new_title = {
+				set_definitive_form = yes
+				set_can_be_named_after_dynasty = no
+				set_no_automatic_claims = yes
+				set_capital_county = title:c_karakorum
+				set_coa = e_anbei_protectorate
 				change_title_holder = {
 					holder = root
 					change = scope:change
 				}
 			}
 			resolve_title_and_vassal_change = scope:change
+			set_global_variable = {
+				name = grand_protectorate_anbei
+				value = scope:new_title
+			}
 		}
 
-		# 2. 此时头衔已创设并由天子持有，安全保存 scope:current_grand_protectorate
+		# 2. å®‰å…¨ä¿å­˜å½“å‰éƒ½æŠ¤åºœä¸º scope:current_grand_protectorate
 		if = {
 			limit = { has_character_flag = managing_anxi_protectorate }
-			title:e_anxi_protectorate = {
+			global_var:grand_protectorate_anxi = {
 				save_scope_as = current_grand_protectorate
 			}
 		}
 		else_if = {
 			limit = { has_character_flag = managing_andong_protectorate }
-			title:e_andong_protectorate = {
+			global_var:grand_protectorate_andong = {
 				save_scope_as = current_grand_protectorate
 			}
 		}
 		else_if = {
 			limit = { has_character_flag = managing_anbei_protectorate }
-			title:e_anbei_protectorate = {
+			global_var:grand_protectorate_anbei = {
 				save_scope_as = current_grand_protectorate
 			}
 		}
 
-		# 3. 核心整合：将大都护府法理永久整合到天子所持的大唐霸权（h_china）之下
+		# 3. æ ¸å¿ƒæ•´åˆï¼šå°†å¤§éƒ½æŠ¤åºœæ³•ç†æ°¸ä¹…æ•´åˆåˆ°å¤©å­æ‰€æŒçš„å¤§å”éœ¸æƒï¼ˆh_chinaï¼‰ä¹‹ä¸‹
 		if = {
 			limit = { exists = title:h_china }
 			scope:current_grand_protectorate = {
@@ -383,14 +428,14 @@ grand_protectorate_confirm_edict_effect = {
 			}
 		}
 
-		# 4. 处理被勾选的王国：划入大都护府法理，并永久记录原始母帝国变量
+		# 4. å¤„ç†è¢«å‹¾é€‰çš„çŽ‹å›½ï¼šåˆ’å…¥å¤§éƒ½æŠ¤åºœæ³•ç†ï¼Œå¹¶æ°¸ä¹…è®°å½•åŽŸå§‹æ¯å¸å›½å˜é‡
 		every_in_list = {
 			variable = grand_protectorate_selected_kingdoms
 			if = {
 				limit = {
 					NOT = { de_jure_liege = scope:current_grand_protectorate }
 				}
-				# 仅在尚无原始记录时写入，保证哪怕多次调整也不丢失最根本母帝国
+				# ä»…åœ¨å°šæ— åŽŸå§‹è®°å½•æ—¶å†™å…¥ï¼Œä¿è¯å“ªæ€•å¤šæ¬¡è°ƒæ•´ä¹Ÿä¸ä¸¢å¤±æœ€æ ¹æœ¬æ¯å¸å›½
 				if = {
 					limit = {
 						NOT = { exists = var:original_de_jure_empire }
@@ -405,7 +450,7 @@ grand_protectorate_confirm_edict_effect = {
 			}
 		}
 
-		# 5. 处理原本隶属于该府但本次被取消勾选的王国：精准退回原母帝国
+		# 5. å¤„ç†åŽŸæœ¬éš¶å±žäºŽè¯¥åºœä½†æœ¬æ¬¡è¢«å–æ¶ˆå‹¾é€‰çš„çŽ‹å›½ï¼šç²¾å‡†é€€å›žåŽŸæ¯å¸å›½
 		scope:current_grand_protectorate = {
 			every_in_de_jure_hierarchy = {
 				limit = {
@@ -439,11 +484,11 @@ grand_protectorate_confirm_edict_effect = {
 		}
 	}
 
-	# 清理临时状态与关闭界面
+	# æ¸…ç†ä¸´æ—¶çŠ¶æ€ä¸Žå…³é—­ç•Œé¢
 	grand_protectorate_close_window_effect = yes
 }
 
-# 安全关闭管理面板并清理临时变量
+# å®‰å…¨å…³é—­ç®¡ç†é¢æ¿å¹¶æ¸…ç†ä¸´æ—¶å˜é‡
 grand_protectorate_close_window_effect = {
 	remove_character_flag = grand_protectorate_window_open
 	remove_character_flag = managing_anxi_protectorate

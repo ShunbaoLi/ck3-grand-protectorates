@@ -51,21 +51,21 @@ grand_protectorate_confirm_edict = {
 		trigger_if = {
 			limit = {
 				has_character_flag = managing_anxi_protectorate
-				NOT = { exists = title:e_anxi_protectorate.holder }
+				NOT = { exists = global_var:grand_protectorate_anxi.holder }
 			}
 			has_variable_list = grand_protectorate_selected_kingdoms
 		}
 		trigger_else_if = {
 			limit = {
 				has_character_flag = managing_andong_protectorate
-				NOT = { exists = title:e_andong_protectorate.holder }
+				NOT = { exists = global_var:grand_protectorate_andong.holder }
 			}
 			has_variable_list = grand_protectorate_selected_kingdoms
 		}
 		trigger_else_if = {
 			limit = {
 				has_character_flag = managing_anbei_protectorate
-				NOT = { exists = title:e_anbei_protectorate.holder }
+				NOT = { exists = global_var:grand_protectorate_anbei.holder }
 			}
 			has_variable_list = grand_protectorate_selected_kingdoms
 		}
@@ -87,7 +87,7 @@ grand_protectorate_selected_count_is_zero = {
 			limit = {
 				has_character_flag = managing_anxi_protectorate
 			}
-			exists = title:e_anxi_protectorate.holder
+			exists = global_var:grand_protectorate_anxi.holder
 			NOT = {
 				has_variable_list = grand_protectorate_selected_kingdoms
 			}
@@ -96,7 +96,7 @@ grand_protectorate_selected_count_is_zero = {
 			limit = {
 				has_character_flag = managing_andong_protectorate
 			}
-			exists = title:e_andong_protectorate.holder
+			exists = global_var:grand_protectorate_andong.holder
 			NOT = {
 				has_variable_list = grand_protectorate_selected_kingdoms
 			}
@@ -105,7 +105,7 @@ grand_protectorate_selected_count_is_zero = {
 			limit = {
 				has_character_flag = managing_anbei_protectorate
 			}
-			exists = title:e_anbei_protectorate.holder
+			exists = global_var:grand_protectorate_anbei.holder
 			NOT = {
 				has_variable_list = grand_protectorate_selected_kingdoms
 			}
@@ -134,28 +134,31 @@ grand_protectorate_is_de_jure_established = {
 		trigger_if = {
 			limit = {
 				has_character_flag = managing_anxi_protectorate
+				exists = global_var:grand_protectorate_anxi
 			}
 			scope:target_kingdom = {
 				exists = de_jure_liege
-				de_jure_liege = title:e_anxi_protectorate
+				de_jure_liege = global_var:grand_protectorate_anxi
 			}
 		}
 		trigger_else_if = {
 			limit = {
 				has_character_flag = managing_andong_protectorate
+				exists = global_var:grand_protectorate_andong
 			}
 			scope:target_kingdom = {
 				exists = de_jure_liege
-				de_jure_liege = title:e_andong_protectorate
+				de_jure_liege = global_var:grand_protectorate_andong
 			}
 		}
 		trigger_else_if = {
 			limit = {
 				has_character_flag = managing_anbei_protectorate
+				exists = global_var:grand_protectorate_anbei
 			}
 			scope:target_kingdom = {
 				exists = de_jure_liege
-				de_jure_liege = title:e_anbei_protectorate
+				de_jure_liege = global_var:grand_protectorate_anbei
 			}
 		}
 		trigger_else = {
