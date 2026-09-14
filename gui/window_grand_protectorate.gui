@@ -40,8 +40,6 @@ window = {
 
 		# 当前处理的大都护府主信息横幅
 		widget = {
-			visible = "[GetPlayer.MakeScope.Var('current_grand_protectorate').Title.IsValid]"
-			datacontext = "[GetPlayer.MakeScope.Var('current_grand_protectorate').Title]"
 			layoutpolicy_horizontal = expanding
 			size = { 0 84 }
 
@@ -53,14 +51,40 @@ window = {
 				margin = { 16 8 }
 				spacing = 14
 
-				coa_title_medium = {}
+				# 若已创设且头衔有效，展示都护府大盾徽；初设阶段展示帝国金冠徽标
+				widget = {
+					size = { 60 60 }
+					coa_title_medium = {
+						visible = "[GetPlayer.MakeScope.Var('current_grand_protectorate').Title.IsValid]"
+						datacontext = "[GetPlayer.MakeScope.Var('current_grand_protectorate').Title]"
+					}
+					icon = {
+						visible = "[Not(GetPlayer.MakeScope.Var('current_grand_protectorate').Title.IsValid)]"
+						size = { 50 50 }
+						parentanchor = center
+						texture = "gfx/interface/icons/empire_crown.dds"
+					}
+				}
 
 				vbox = {
 					layoutpolicy_horizontal = expanding
 					spacing = 3
 
 					text_single = {
-						text = "[Title.GetNameNoTooltip]"
+						visible = "[GetPlayer.MakeScope.HasFlag('managing_anxi_protectorate')]"
+						text = "e_anxi_protectorate"
+						default_format = "#high;bold;size18"
+						align = left|nobaseline
+					}
+					text_single = {
+						visible = "[GetPlayer.MakeScope.HasFlag('managing_andong_protectorate')]"
+						text = "e_andong_protectorate"
+						default_format = "#high;bold;size18"
+						align = left|nobaseline
+					}
+					text_single = {
+						visible = "[GetPlayer.MakeScope.HasFlag('managing_anbei_protectorate')]"
+						text = "e_anbei_protectorate"
 						default_format = "#high;bold;size18"
 						align = left|nobaseline
 					}
@@ -209,6 +233,7 @@ window = {
 				layoutpolicy_horizontal = expanding
 				size = { 0 48 }
 				text = "GRAND_PROTECTORATE_CONFIRM_BUTTON"
+				enabled = "[GetScriptedGui('grand_protectorate_confirm_edict').IsValid(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
 				onclick = "[GetScriptedGui('grand_protectorate_confirm_edict').Execute(GuiScope.SetRoot(GetPlayer.MakeScope).End)]"
 				tooltip = "GRAND_PROTECTORATE_CONFIRM_BUTTON_TT"
 			}

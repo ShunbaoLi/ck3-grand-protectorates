@@ -171,8 +171,34 @@ grand_protectorate_toggle_kingdom_effect = {
 
 # 确认颁布天子敕令：更勘疆理 / 裁撤闭环
 grand_protectorate_confirm_edict_effect = {
-	var:current_grand_protectorate = {
-		save_scope_as = current_grand_protectorate
+	if = {
+		limit = { has_character_flag = managing_anxi_protectorate }
+		title:e_anxi_protectorate = {
+			save_scope_as = current_grand_protectorate
+		}
+	}
+	else_if = {
+		limit = { has_character_flag = managing_andong_protectorate }
+		title:e_andong_protectorate = {
+			save_scope_as = current_grand_protectorate
+		}
+	}
+	else_if = {
+		limit = { has_character_flag = managing_anbei_protectorate }
+		title:e_anbei_protectorate = {
+			save_scope_as = current_grand_protectorate
+		}
+	}
+	else_if = {
+		limit = { has_variable = current_grand_protectorate }
+		var:current_grand_protectorate = {
+			save_scope_as = current_grand_protectorate
+		}
+	}
+	else = {
+		title:e_anxi_protectorate = {
+			save_scope_as = current_grand_protectorate
+		}
 	}
 
 	# 分支 A：裁撤机制（若勾选数为 0）
@@ -210,7 +236,7 @@ grand_protectorate_confirm_edict_effect = {
 	}
 	# 分支 B：设府与更勘（勾选数 > 0）
 	else = {
-		# 若头衔未激活，正式创建并赋予天子，同时挂载总督委任法
+		# 若头衔未激活，正式创建并赋予天子
 		if = {
 			limit = {
 				NOT = { exists = scope:current_grand_protectorate.holder }
@@ -227,9 +253,6 @@ grand_protectorate_confirm_edict_effect = {
 				}
 			}
 			resolve_title_and_vassal_change = scope:change
-			scope:current_grand_protectorate = {
-				add_title_law = celestial_military_appointment_succession_law
-			}
 		}
 
 		# 核心整合：将大都护府法理永久整合到天子所持的最高霸权（大唐霸权 h_china）之下

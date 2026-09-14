@@ -15,9 +15,7 @@ grand_protectorate_window_is_open = {
 grand_protectorate_close_window = {
 	scope = character
 	effect = {
-		root ?= {
-			grand_protectorate_close_window_effect = yes
-		}
+		grand_protectorate_close_window_effect = yes
 	}
 }
 
@@ -28,11 +26,9 @@ grand_protectorate_is_kingdom_selected = {
 		target_kingdom
 	}
 	is_shown = {
-		root ?= {
-			is_target_in_variable_list = {
-				name = grand_protectorate_selected_kingdoms
-				target = scope:target_kingdom
-			}
+		is_target_in_variable_list = {
+			name = grand_protectorate_selected_kingdoms
+			target = scope:target_kingdom
 		}
 	}
 }
@@ -44,19 +40,41 @@ grand_protectorate_toggle_kingdom = {
 		target_kingdom
 	}
 	effect = {
-		root ?= {
-			grand_protectorate_toggle_kingdom_effect = yes
-		}
+		grand_protectorate_toggle_kingdom_effect = yes
 	}
 }
 
 # 提交敕令变更（更勘 / 设府 / 裁撤）
 grand_protectorate_confirm_edict = {
 	scope = character
-	effect = {
-		root ?= {
-			grand_protectorate_confirm_edict_effect = yes
+	is_valid = {
+		trigger_if = {
+			limit = {
+				has_character_flag = managing_anxi_protectorate
+				NOT = { exists = title:e_anxi_protectorate.holder }
+			}
+			has_variable_list = grand_protectorate_selected_kingdoms
 		}
+		trigger_else_if = {
+			limit = {
+				has_character_flag = managing_andong_protectorate
+				NOT = { exists = title:e_andong_protectorate.holder }
+			}
+			has_variable_list = grand_protectorate_selected_kingdoms
+		}
+		trigger_else_if = {
+			limit = {
+				has_character_flag = managing_anbei_protectorate
+				NOT = { exists = title:e_anbei_protectorate.holder }
+			}
+			has_variable_list = grand_protectorate_selected_kingdoms
+		}
+		trigger_else = {
+			always = yes
+		}
+	}
+	effect = {
+		grand_protectorate_confirm_edict_effect = yes
 	}
 }
 
@@ -64,14 +82,36 @@ grand_protectorate_confirm_edict = {
 grand_protectorate_selected_count_is_zero = {
 	scope = character
 	is_shown = {
-		root ?= {
-			has_variable = current_grand_protectorate
-			var:current_grand_protectorate = {
-				exists = holder
+		has_character_flag = grand_protectorate_window_open
+		trigger_if = {
+			limit = {
+				has_character_flag = managing_anxi_protectorate
 			}
+			exists = title:e_anxi_protectorate.holder
 			NOT = {
 				has_variable_list = grand_protectorate_selected_kingdoms
 			}
+		}
+		trigger_else_if = {
+			limit = {
+				has_character_flag = managing_andong_protectorate
+			}
+			exists = title:e_andong_protectorate.holder
+			NOT = {
+				has_variable_list = grand_protectorate_selected_kingdoms
+			}
+		}
+		trigger_else_if = {
+			limit = {
+				has_character_flag = managing_anbei_protectorate
+			}
+			exists = title:e_anbei_protectorate.holder
+			NOT = {
+				has_variable_list = grand_protectorate_selected_kingdoms
+			}
+		}
+		trigger_else = {
+			always = no
 		}
 	}
 }
@@ -80,9 +120,7 @@ grand_protectorate_selected_count_is_zero = {
 grand_protectorate_selected_count_is_positive = {
 	scope = character
 	is_shown = {
-		root ?= {
-			has_variable_list = grand_protectorate_selected_kingdoms
-		}
+		has_variable_list = grand_protectorate_selected_kingdoms
 	}
 }
 
@@ -93,12 +131,35 @@ grand_protectorate_is_de_jure_established = {
 		target_kingdom
 	}
 	is_shown = {
-		root ?= {
-			has_variable = current_grand_protectorate
+		trigger_if = {
+			limit = {
+				has_character_flag = managing_anxi_protectorate
+			}
 			scope:target_kingdom = {
 				exists = de_jure_liege
-				de_jure_liege = root.var:current_grand_protectorate
+				de_jure_liege = title:e_anxi_protectorate
 			}
+		}
+		trigger_else_if = {
+			limit = {
+				has_character_flag = managing_andong_protectorate
+			}
+			scope:target_kingdom = {
+				exists = de_jure_liege
+				de_jure_liege = title:e_andong_protectorate
+			}
+		}
+		trigger_else_if = {
+			limit = {
+				has_character_flag = managing_anbei_protectorate
+			}
+			scope:target_kingdom = {
+				exists = de_jure_liege
+				de_jure_liege = title:e_anbei_protectorate
+			}
+		}
+		trigger_else = {
+			always = no
 		}
 	}
 }

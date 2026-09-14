@@ -18,14 +18,12 @@ on_title_gain = {
 					highest_held_title_tier >= tier_hegemony
 				}
 			}
-			# 确保头衔附带总督任命继承法
-			scope:target = {
-				if = {
-					limit = {
-						NOT = { has_title_law = celestial_military_appointment_succession_law }
-					}
-					add_title_law = celestial_military_appointment_succession_law
+			# 确保封臣角色附带总督任命继承法
+			if = {
+				limit = {
+					NOT = { has_realm_law = celestial_military_appointment_succession_law }
 				}
+				add_realm_law_skip_effects = celestial_military_appointment_succession_law
 			}
 			# 确保大都护府法理持续归属于主君之最高霸权
 			if = {
