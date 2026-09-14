@@ -37,16 +37,14 @@ is_kingdom_under_player_realm_trigger = {
 				target_is_liege_or_above = root
 			}
 		}
-		# 头衔暂无人持有，但玩家领内控制了该王国下属的伯爵领
-		AND = {
-			NOT = { exists = holder }
-			any_de_jure_county = {
-				exists = holder
-				holder = {
-					OR = {
-						this = root
-						target_is_liege_or_above = root
-					}
+		# 玩家领内实际控制了该王国下属的伯爵领（无论该王国是否已创设或由外人名义持有）
+		any_in_de_jure_hierarchy = {
+			tier = tier_county
+			exists = holder
+			holder = {
+				OR = {
+					this = root
+					target_is_liege_or_above = root
 				}
 			}
 		}
@@ -69,23 +67,31 @@ is_candidate_kingdom_for_anxi_trigger = {
 			exists = de_jure_liege
 			de_jure_liege = title:e_anxi_protectorate
 		}
+		this = title:k_hexi
 		title_capital_county = {
-			OR = {
-				title_province = { geographical_region = world_steppe_tarim }
-				title_province = { geographical_region = world_steppe_central }
-				title_province = { geographical_region = world_middle_east_persia }
-				title_province = { geographical_region = world_tibet }
-				title_province = { geographical_region = world_middle_east }
-				title_province = { geographical_region = world_india_rajastan }
-			}
-		}
-		any_de_jure_county = {
 			title_province = {
 				OR = {
 					geographical_region = world_steppe_tarim
 					geographical_region = world_steppe_central
 					geographical_region = world_middle_east_persia
 					geographical_region = world_tibet
+					geographical_region = world_middle_east
+					geographical_region = world_india_rajastan
+					geographical_region = dlc_mpo_steppe_hexi_tarim_expansion
+				}
+			}
+		}
+		any_in_de_jure_hierarchy = {
+			tier = tier_county
+			title_province = {
+				OR = {
+					geographical_region = world_steppe_tarim
+					geographical_region = world_steppe_central
+					geographical_region = world_middle_east_persia
+					geographical_region = world_tibet
+					geographical_region = world_middle_east
+					geographical_region = world_india_rajastan
+					geographical_region = dlc_mpo_steppe_hexi_tarim_expansion
 				}
 			}
 		}
@@ -103,18 +109,22 @@ is_candidate_kingdom_for_andong_trigger = {
 			de_jure_liege = title:e_andong_protectorate
 		}
 		title_capital_county = {
-			OR = {
-				title_province = { geographical_region = world_asia_korea }
-				title_province = { geographical_region = world_asia_japan }
-				title_province = { geographical_region = world_asia_sakhalin_hokkaido }
-				title_province = { geographical_region = world_steppe_east }
-			}
-		}
-		any_de_jure_county = {
 			title_province = {
 				OR = {
 					geographical_region = world_asia_korea
 					geographical_region = world_asia_japan
+					geographical_region = world_asia_sakhalin_hokkaido
+					geographical_region = world_steppe_east
+				}
+			}
+		}
+		any_in_de_jure_hierarchy = {
+			tier = tier_county
+			title_province = {
+				OR = {
+					geographical_region = world_asia_korea
+					geographical_region = world_asia_japan
+					geographical_region = world_asia_sakhalin_hokkaido
 					geographical_region = world_steppe_east
 				}
 			}
@@ -133,12 +143,15 @@ is_candidate_kingdom_for_anbei_trigger = {
 			de_jure_liege = title:e_anbei_protectorate
 		}
 		title_capital_county = {
-			OR = {
-				title_province = { geographical_region = world_siberia }
-				title_province = { geographical_region = world_steppe }
+			title_province = {
+				OR = {
+					geographical_region = world_siberia
+					geographical_region = world_steppe
+				}
 			}
 		}
-		any_de_jure_county = {
+		any_in_de_jure_hierarchy = {
+			tier = tier_county
 			title_province = {
 				OR = {
 					geographical_region = world_siberia
@@ -152,15 +165,39 @@ is_candidate_kingdom_for_anbei_trigger = {
 # 综合判定目标王国是否符合当前正在处理的大都护府
 is_candidate_kingdom_for_specific_protectorate_trigger = {
 	trigger_if = {
-		limit = { scope:target_protectorate = title:e_anxi_protectorate }
+		limit = {
+			OR = {
+				root = { has_character_flag = managing_anxi_protectorate }
+				AND = {
+					exists = scope:target_protectorate
+					scope:target_protectorate = { this = title:e_anxi_protectorate }
+				}
+			}
+		}
 		is_candidate_kingdom_for_anxi_trigger = yes
 	}
 	trigger_else_if = {
-		limit = { scope:target_protectorate = title:e_andong_protectorate }
+		limit = {
+			OR = {
+				root = { has_character_flag = managing_andong_protectorate }
+				AND = {
+					exists = scope:target_protectorate
+					scope:target_protectorate = { this = title:e_andong_protectorate }
+				}
+			}
+		}
 		is_candidate_kingdom_for_andong_trigger = yes
 	}
 	trigger_else_if = {
-		limit = { scope:target_protectorate = title:e_anbei_protectorate }
+		limit = {
+			OR = {
+				root = { has_character_flag = managing_anbei_protectorate }
+				AND = {
+					exists = scope:target_protectorate
+					scope:target_protectorate = { this = title:e_anbei_protectorate }
+				}
+			}
+		}
 		is_candidate_kingdom_for_anbei_trigger = yes
 	}
 	trigger_else = {

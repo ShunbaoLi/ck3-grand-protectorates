@@ -125,48 +125,56 @@ establish_grand_protectorate_decision = {
 	effect = {
 		custom_tooltip = establish_grand_protectorate_decision_effect_tooltip
 		hidden_effect = {
+			switch = {
+				trigger = yes
+				scope:establish_anxi_option = {
+					grand_protectorate_open_management_window_effect = {
+						TARGET = title:e_anxi_protectorate
+						TYPE = anxi
+					}
+				}
+				scope:manage_anxi_option = {
+					grand_protectorate_open_management_window_effect = {
+						TARGET = title:e_anxi_protectorate
+						TYPE = anxi
+					}
+				}
+				scope:establish_andong_option = {
+					grand_protectorate_open_management_window_effect = {
+						TARGET = title:e_andong_protectorate
+						TYPE = andong
+					}
+				}
+				scope:manage_andong_option = {
+					grand_protectorate_open_management_window_effect = {
+						TARGET = title:e_andong_protectorate
+						TYPE = andong
+					}
+				}
+				scope:establish_anbei_option = {
+					grand_protectorate_open_management_window_effect = {
+						TARGET = title:e_anbei_protectorate
+						TYPE = anbei
+					}
+				}
+				scope:manage_anbei_option = {
+					grand_protectorate_open_management_window_effect = {
+						TARGET = title:e_anbei_protectorate
+						TYPE = anbei
+					}
+				}
+			}
+			# 兜底保底：避免极罕见情况下未命中任何分支
 			if = {
 				limit = {
-					OR = {
-						scope:establish_anxi_option = yes
-						scope:manage_anxi_option = yes
-						exists = scope:establish_anxi_option
-						exists = scope:manage_anxi_option
+					NOR = {
+						has_character_flag = grand_protectorate_window_open
+						has_variable = grand_protectorate_window_open
 					}
 				}
 				grand_protectorate_open_management_window_effect = {
 					TARGET = title:e_anxi_protectorate
-				}
-			}
-			else_if = {
-				limit = {
-					OR = {
-						scope:establish_andong_option = yes
-						scope:manage_andong_option = yes
-						exists = scope:establish_andong_option
-						exists = scope:manage_andong_option
-					}
-				}
-				grand_protectorate_open_management_window_effect = {
-					TARGET = title:e_andong_protectorate
-				}
-			}
-			else_if = {
-				limit = {
-					OR = {
-						scope:establish_anbei_option = yes
-						scope:manage_anbei_option = yes
-						exists = scope:establish_anbei_option
-						exists = scope:manage_anbei_option
-					}
-				}
-				grand_protectorate_open_management_window_effect = {
-					TARGET = title:e_anbei_protectorate
-				}
-			}
-			else = {
-				grand_protectorate_open_management_window_effect = {
-					TARGET = title:e_anxi_protectorate
+					TYPE = anxi
 				}
 			}
 		}

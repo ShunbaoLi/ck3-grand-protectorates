@@ -10,20 +10,37 @@ grand_protectorate_open_management_window_effect = {
 	}
 	root = {
 		save_scope_as = player_scope
+		remove_character_flag = managing_anxi_protectorate
+		remove_character_flag = managing_andong_protectorate
+		remove_character_flag = managing_anbei_protectorate
+
+		if = {
+			limit = {
+				scope:target_protectorate = { this = title:e_anxi_protectorate }
+			}
+			add_character_flag = managing_anxi_protectorate
+		}
+		else_if = {
+			limit = {
+				scope:target_protectorate = { this = title:e_andong_protectorate }
+			}
+			add_character_flag = managing_andong_protectorate
+		}
+		else_if = {
+			limit = {
+				scope:target_protectorate = { this = title:e_anbei_protectorate }
+			}
+			add_character_flag = managing_anbei_protectorate
+		}
+
 		add_character_flag = grand_protectorate_window_open
 		set_variable = grand_protectorate_window_open
 		set_variable = {
 			name = current_grand_protectorate
-			value = $TARGET$
+			value = scope:target_protectorate
 		}
 		clear_variable_list = grand_protectorate_candidates
 		clear_variable_list = grand_protectorate_selected_kingdoms
-
-		send_interface_toast = {
-			title = grand_protectorate_opened_toast_title
-			left_icon = $TARGET$
-			custom_tooltip = grand_protectorate_opened_toast_desc
-		}
 
 		# 1. 扫描天子直接持有的王国
 		every_held_title = {
@@ -50,17 +67,28 @@ grand_protectorate_open_management_window_effect = {
 			if = {
 				limit = {
 					exists = de_jure_liege
-					exists = de_jure_liege.de_jure_liege
 				}
-				de_jure_liege = {
-					de_jure_liege = {
-						if = {
-							limit = {
-								tier = tier_kingdom
-								is_candidate_kingdom_for_specific_protectorate_trigger = yes
-							}
-							grand_protectorate_register_candidate_kingdom_effect = yes
+				if = {
+					limit = {
+						de_jure_liege = {
+							tier = tier_kingdom
+							is_candidate_kingdom_for_specific_protectorate_trigger = yes
 						}
+					}
+					de_jure_liege = {
+						grand_protectorate_register_candidate_kingdom_effect = yes
+					}
+				}
+				else_if = {
+					limit = {
+						exists = de_jure_liege.de_jure_liege
+						de_jure_liege.de_jure_liege = {
+							tier = tier_kingdom
+							is_candidate_kingdom_for_specific_protectorate_trigger = yes
+						}
+					}
+					de_jure_liege.de_jure_liege = {
+						grand_protectorate_register_candidate_kingdom_effect = yes
 					}
 				}
 			}
@@ -83,13 +111,14 @@ grand_protectorate_open_management_window_effect = {
 
 # 注册候选王国并计算公国数与母帝国信息
 grand_protectorate_register_candidate_kingdom_effect = {
+	save_scope_as = candidate_kingdom
 	if = {
 		limit = {
 			NOT = {
 				scope:player_scope = {
 					is_target_in_variable_list = {
 						name = grand_protectorate_candidates
-						target = prev
+						target = scope:candidate_kingdom
 					}
 				}
 			}
@@ -97,44 +126,46 @@ grand_protectorate_register_candidate_kingdom_effect = {
 		scope:player_scope = {
 			add_to_variable_list = {
 				name = grand_protectorate_candidates
-				target = prev
+				target = scope:candidate_kingdom
 			}
 		}
 
 		# 动态计算法理公国总数
-		set_variable = {
-			name = de_jure_duchy_count
-			value = 0
-		}
-		every_in_de_jure_hierarchy = {
-			limit = { tier = tier_duchy }
-			prev = {
-				change_variable = {
-					name = de_jure_duchy_count
-					add = 1
+		scope:candidate_kingdom = {
+			set_variable = {
+				name = de_jure_duchy_count
+				value = 0
+			}
+			every_in_de_jure_hierarchy = {
+				limit = { tier = tier_duchy }
+				scope:candidate_kingdom = {
+					change_variable = {
+						name = de_jure_duchy_count
+						add = 1
+					}
 				}
 			}
-		}
 
-		# 解析母帝国展示信息
-		if = {
-			limit = { exists = var:original_de_jure_empire }
-			set_variable = {
-				name = display_original_empire
-				value = var:original_de_jure_empire
+			# 解析母帝国展示信息
+			if = {
+				limit = { exists = var:original_de_jure_empire }
+				set_variable = {
+					name = display_original_empire
+					value = var:original_de_jure_empire
+				}
 			}
-		}
-		else_if = {
-			limit = { exists = de_jure_liege }
-			set_variable = {
-				name = display_original_empire
-				value = de_jure_liege
+			else_if = {
+				limit = { exists = de_jure_liege }
+				set_variable = {
+					name = display_original_empire
+					value = de_jure_liege
+				}
 			}
-		}
-		else = {
-			set_variable = {
-				name = display_original_empire
-				value = scope:target_protectorate
+			else = {
+				set_variable = {
+					name = display_original_empire
+					value = scope:target_protectorate
+				}
 			}
 		}
 
@@ -142,13 +173,15 @@ grand_protectorate_register_candidate_kingdom_effect = {
 		if = {
 			limit = {
 				exists = scope:target_protectorate
-				exists = de_jure_liege
-				de_jure_liege = scope:target_protectorate
+				scope:candidate_kingdom = {
+					exists = de_jure_liege
+					de_jure_liege = scope:target_protectorate
+				}
 			}
 			scope:player_scope = {
 				add_to_variable_list = {
 					name = grand_protectorate_selected_kingdoms
-					target = prev
+					target = scope:candidate_kingdom
 				}
 			}
 		}
@@ -291,19 +324,24 @@ grand_protectorate_confirm_edict_effect = {
 			every_in_de_jure_hierarchy = {
 				limit = {
 					tier = tier_kingdom
-					NOT = {
-						root = {
-							is_target_in_variable_list = {
-								name = grand_protectorate_selected_kingdoms
-								target = prev
+				}
+				save_scope_as = de_jure_check_kingdom
+				if = {
+					limit = {
+						NOT = {
+							root = {
+								is_target_in_variable_list = {
+									name = grand_protectorate_selected_kingdoms
+									target = scope:de_jure_check_kingdom
+								}
 							}
 						}
 					}
-				}
-				if = {
-					limit = { exists = var:original_de_jure_empire }
-					set_de_jure_liege_title = var:original_de_jure_empire
-					remove_variable = original_de_jure_empire
+					if = {
+						limit = { exists = var:original_de_jure_empire }
+						set_de_jure_liege_title = var:original_de_jure_empire
+						remove_variable = original_de_jure_empire
+					}
 				}
 			}
 		}
@@ -322,6 +360,9 @@ grand_protectorate_confirm_edict_effect = {
 # 安全关闭管理面板并清理临时变量
 grand_protectorate_close_window_effect = {
 	remove_character_flag = grand_protectorate_window_open
+	remove_character_flag = managing_anxi_protectorate
+	remove_character_flag = managing_andong_protectorate
+	remove_character_flag = managing_anbei_protectorate
 	remove_variable = grand_protectorate_window_open
 	remove_variable = current_grand_protectorate
 	clear_variable_list = grand_protectorate_candidates

@@ -16,6 +16,8 @@ e_anxi_protectorate = {
 	}
 	destroy_if_invalid_heir = no
 	no_automatic_claims = yes
+	ignore_titularity_for_title_weighting = yes
+	always_follows_primary_heir = yes
 }
 
 # 安东大都护府（独立专属帝国级头衔，统摄辽东、朝鲜半岛、日本诸方；零冲突设计，不覆盖原版e_andong）
@@ -31,6 +33,8 @@ e_andong_protectorate = {
 	}
 	destroy_if_invalid_heir = no
 	no_automatic_claims = yes
+	ignore_titularity_for_title_weighting = yes
+	always_follows_primary_heir = yes
 }
 
 # 安北大都护府（统摄大漠、蒙古草原、极北冰原诸方）
@@ -46,4 +50,6 @@ e_anbei_protectorate = {
 	}
 	destroy_if_invalid_heir = no
 	no_automatic_claims = yes
+	ignore_titularity_for_title_weighting = yes
+	always_follows_primary_heir = yes
 }
