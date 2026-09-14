@@ -60,11 +60,15 @@ grand_protectorate_confirm_edict = {
 	}
 }
 
-# 判定当前选中王国数是否为 0（用于动态触发裁撤警示文本）
+# 判定当前选中王国数是否为 0 且都护府已创设（用于动态触发裁撤警示文本）
 grand_protectorate_selected_count_is_zero = {
 	scope = character
 	is_shown = {
 		root ?= {
+			has_variable = current_grand_protectorate
+			var:current_grand_protectorate = {
+				exists = holder
+			}
 			NOT = {
 				has_variable_list = grand_protectorate_selected_kingdoms
 			}

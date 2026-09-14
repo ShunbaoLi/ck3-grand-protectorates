@@ -57,7 +57,7 @@
  GRAND_PROTECTORATE_NO_CANDIDATE_KINGDOMS: "暂无符合设府或更勘条件的候选王国。"
  GRAND_PROTECTORATE_CARD_SUBTITLE: "母帝国：[Title.MakeScope.Var('display_original_empire').Title.GetNameNoTooltip] · 辖 [Title.MakeScope.Var('de_jure_duchy_count').GetValue|0] 公国"
  GRAND_PROTECTORATE_STATUS_ESTABLISHED: "【现辖法理】"
- GRAND_PROTECTORATE_DECOMMISSION_WARNING: "⚠️ 辖区已清空，该大都护府将被正式裁撤"
+ GRAND_PROTECTORATE_DECOMMISSION_WARNING: "@warning_icon! 辖区已清空，该大都护府将被正式裁撤"
  GRAND_PROTECTORATE_BUTTON_CANCEL: "放弃更改"
  GRAND_PROTECTORATE_CONFIRM_BUTTON: "【颁布天子敕令：更勘疆理】"
  GRAND_PROTECTORATE_CONFIRM_BUTTON_TT: "将当前勾选的所有王国划归该大都护府法理；未勾选的已辖王国将安全退还母帝国法理。"

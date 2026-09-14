@@ -5,39 +5,17 @@
 
 # 打开并初始化大都护府管理多选面板
 grand_protectorate_open_management_window_effect = {
-	$TARGET$ = {
-		save_scope_as = target_protectorate
-	}
 	root = {
 		save_scope_as = player_scope
-		remove_character_flag = managing_anxi_protectorate
-		remove_character_flag = managing_andong_protectorate
-		remove_character_flag = managing_anbei_protectorate
-
-		if = {
-			limit = {
-				scope:target_protectorate = { this = title:e_anxi_protectorate }
-			}
-			add_character_flag = managing_anxi_protectorate
-		}
-		else_if = {
-			limit = {
-				scope:target_protectorate = { this = title:e_andong_protectorate }
-			}
-			add_character_flag = managing_andong_protectorate
-		}
-		else_if = {
-			limit = {
-				scope:target_protectorate = { this = title:e_anbei_protectorate }
-			}
-			add_character_flag = managing_anbei_protectorate
+		title:$PROTECTORATE$ = {
+			save_scope_as = target_protectorate
 		}
 
 		add_character_flag = grand_protectorate_window_open
 		set_variable = grand_protectorate_window_open
 		set_variable = {
 			name = current_grand_protectorate
-			value = scope:target_protectorate
+			value = title:$PROTECTORATE$
 		}
 		clear_variable_list = grand_protectorate_candidates
 		clear_variable_list = grand_protectorate_selected_kingdoms
@@ -66,44 +44,25 @@ grand_protectorate_open_management_window_effect = {
 		every_sub_realm_county = {
 			if = {
 				limit = {
-					exists = de_jure_liege
-				}
-				if = {
-					limit = {
-						de_jure_liege = {
-							tier = tier_kingdom
-							is_candidate_kingdom_for_specific_protectorate_trigger = yes
-						}
-					}
-					de_jure_liege = {
-						grand_protectorate_register_candidate_kingdom_effect = yes
-					}
-				}
-				else_if = {
-					limit = {
-						exists = de_jure_liege.de_jure_liege
-						de_jure_liege.de_jure_liege = {
-							tier = tier_kingdom
-							is_candidate_kingdom_for_specific_protectorate_trigger = yes
-						}
-					}
+					exists = de_jure_liege.de_jure_liege
 					de_jure_liege.de_jure_liege = {
-						grand_protectorate_register_candidate_kingdom_effect = yes
+						tier = tier_kingdom
+						is_candidate_kingdom_for_specific_protectorate_trigger = yes
 					}
+				}
+				de_jure_liege.de_jure_liege = {
+					grand_protectorate_register_candidate_kingdom_effect = yes
 				}
 			}
 		}
 
 		# 4. 扫描当前已隶属于该大都护府法理的既有王国
-		if = {
-			limit = { exists = scope:target_protectorate.holder }
-			scope:target_protectorate = {
-				every_in_de_jure_hierarchy = {
-					limit = {
-						tier = tier_kingdom
-					}
-					grand_protectorate_register_candidate_kingdom_effect = yes
+		title:$PROTECTORATE$ = {
+			every_in_de_jure_hierarchy = {
+				limit = {
+					tier = tier_kingdom
 				}
+				grand_protectorate_register_candidate_kingdom_effect = yes
 			}
 		}
 	}

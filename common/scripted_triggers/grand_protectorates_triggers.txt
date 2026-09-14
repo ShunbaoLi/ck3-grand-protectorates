@@ -50,9 +50,12 @@ is_kingdom_under_player_realm_trigger = {
 		}
 		# 若已有大都护府法理归属，亦属于有效管理标的
 		AND = {
-			exists = scope:target_protectorate
 			exists = de_jure_liege
-			de_jure_liege = scope:target_protectorate
+			OR = {
+				de_jure_liege = title:e_anxi_protectorate
+				de_jure_liege = title:e_andong_protectorate
+				de_jure_liege = title:e_anbei_protectorate
+			}
 		}
 	}
 }
@@ -68,6 +71,18 @@ is_candidate_kingdom_for_anxi_trigger = {
 			de_jure_liege = title:e_anxi_protectorate
 		}
 		this = title:k_hexi
+		this = title:k_guiyi
+		this = title:k_dzungaria
+		this = title:k_khotan
+		this = title:k_kashgar
+		this = title:k_ferghana
+		this = title:k_transoxiana
+		this = title:k_sogdiana
+		this = title:k_khwarazm
+		this = title:k_khorasan
+		this = title:k_kabulistan
+		this = title:k_tashkent
+		this = title:k_baljiyan
 		title_capital_county = {
 			title_province = {
 				OR = {
@@ -108,6 +123,13 @@ is_candidate_kingdom_for_andong_trigger = {
 			exists = de_jure_liege
 			de_jure_liege = title:e_andong_protectorate
 		}
+		this = title:k_liaodong
+		this = title:k_goguryeo
+		this = title:k_silla
+		this = title:k_baekje
+		this = title:k_korea
+		this = title:k_goryeo
+		this = title:k_balhae
 		title_capital_county = {
 			title_province = {
 				OR = {
@@ -142,6 +164,13 @@ is_candidate_kingdom_for_anbei_trigger = {
 			exists = de_jure_liege
 			de_jure_liege = title:e_anbei_protectorate
 		}
+		this = title:k_mongolia
+		this = title:k_otuken
+		this = title:k_buryatia
+		this = title:k_yenisei
+		this = title:k_baikal
+		this = title:k_altai
+		this = title:k_tuva
 		title_capital_county = {
 			title_province = {
 				OR = {
@@ -168,10 +197,7 @@ is_candidate_kingdom_for_specific_protectorate_trigger = {
 		limit = {
 			OR = {
 				root = { has_character_flag = managing_anxi_protectorate }
-				AND = {
-					exists = scope:target_protectorate
-					scope:target_protectorate = { this = title:e_anxi_protectorate }
-				}
+				scope:player_scope = { has_character_flag = managing_anxi_protectorate }
 			}
 		}
 		is_candidate_kingdom_for_anxi_trigger = yes
@@ -180,10 +206,7 @@ is_candidate_kingdom_for_specific_protectorate_trigger = {
 		limit = {
 			OR = {
 				root = { has_character_flag = managing_andong_protectorate }
-				AND = {
-					exists = scope:target_protectorate
-					scope:target_protectorate = { this = title:e_andong_protectorate }
-				}
+				scope:player_scope = { has_character_flag = managing_andong_protectorate }
 			}
 		}
 		is_candidate_kingdom_for_andong_trigger = yes
@@ -192,10 +215,7 @@ is_candidate_kingdom_for_specific_protectorate_trigger = {
 		limit = {
 			OR = {
 				root = { has_character_flag = managing_anbei_protectorate }
-				AND = {
-					exists = scope:target_protectorate
-					scope:target_protectorate = { this = title:e_anbei_protectorate }
-				}
+				scope:player_scope = { has_character_flag = managing_anbei_protectorate }
 			}
 		}
 		is_candidate_kingdom_for_anbei_trigger = yes

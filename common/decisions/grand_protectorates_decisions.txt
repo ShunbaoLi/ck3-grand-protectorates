@@ -124,6 +124,7 @@ establish_grand_protectorate_decision = {
 
 	effect = {
 		custom_tooltip = establish_grand_protectorate_decision_effect_tooltip
+		hidden_effect = {
 			if = {
 				limit = {
 					OR = {
@@ -133,8 +134,11 @@ establish_grand_protectorate_decision = {
 						exists = scope:manage_anxi_option
 					}
 				}
+				remove_character_flag = managing_andong_protectorate
+				remove_character_flag = managing_anbei_protectorate
+				add_character_flag = managing_anxi_protectorate
 				grand_protectorate_open_management_window_effect = {
-					TARGET = title:e_anxi_protectorate
+					PROTECTORATE = e_anxi_protectorate
 				}
 			}
 			else_if = {
@@ -146,8 +150,11 @@ establish_grand_protectorate_decision = {
 						exists = scope:manage_andong_option
 					}
 				}
+				remove_character_flag = managing_anxi_protectorate
+				remove_character_flag = managing_anbei_protectorate
+				add_character_flag = managing_andong_protectorate
 				grand_protectorate_open_management_window_effect = {
-					TARGET = title:e_andong_protectorate
+					PROTECTORATE = e_andong_protectorate
 				}
 			}
 			else_if = {
@@ -159,15 +166,22 @@ establish_grand_protectorate_decision = {
 						exists = scope:manage_anbei_option
 					}
 				}
+				remove_character_flag = managing_anxi_protectorate
+				remove_character_flag = managing_andong_protectorate
+				add_character_flag = managing_anbei_protectorate
 				grand_protectorate_open_management_window_effect = {
-					TARGET = title:e_anbei_protectorate
+					PROTECTORATE = e_anbei_protectorate
 				}
 			}
 			else = {
+				remove_character_flag = managing_andong_protectorate
+				remove_character_flag = managing_anbei_protectorate
+				add_character_flag = managing_anxi_protectorate
 				grand_protectorate_open_management_window_effect = {
-					TARGET = title:e_anxi_protectorate
+					PROTECTORATE = e_anxi_protectorate
 				}
 			}
+		}
 	}
 
 	ai_check_interval = 0
