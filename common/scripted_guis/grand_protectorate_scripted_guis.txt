@@ -7,10 +7,7 @@
 grand_protectorate_window_is_open = {
 	scope = character
 	is_shown = {
-		root ?= {
-			has_character_flag = grand_protectorate_window_open
-			has_variable = current_grand_protectorate
-		}
+		has_character_flag = grand_protectorate_window_open
 	}
 }
 
